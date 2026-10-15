@@ -44,3 +44,8 @@ Un QR solo se valida una vez, únicamente en su restaurante y antes de que caduq
 2. Publicar el índice nuevo de `visitas` (restauranteId, fecha, creada desc) **sin `--force`**, igual que con T04.
 
 **Al unir con mi rama `feat/G07-estadisticas-api`:** los dos hemos cambiado `FieldValue.increment` en `test/helpers/mockFirebase.js`. Me quedo con mi versión, porque fusiona en profundidad los mapas con incrementos (como Firestore con `merge: true`); con la tuya, `set({ avisos: { 500: inc } }, { merge: true })` borraría `avisos.1000`. También cambiaré tu `contar()` por `ofertas.contarVisita()` para que solo haya un sitio que escriba `ofertas_stats` (en la transacción hace falta la versión con `tx`, así que añadiré un parámetro opcional).
+
+## Desplegado (2026-10-15, Izan + Claude)
+- Índice de `visitas` publicado sin `--force` (24 índices, ninguno borrado).
+- `main` del backend `808ff00` (estadísticas + G08) en Render: `/v1/visitas/validar` responde 401 sin sesión. Al unir, G08 cuenta con `ofertas.contarVisita({ tx, fecha })` y el mock de los tests conserva el `increment` con fusión en profundidad. 376/376.
+- **Falta `VISITAS_SECRET` en Render** (lo pone Izan). Sin él, crear o validar visitas responde 503 `VISITAS_NO_CONFIGURADO`; el resto de la API no se ve afectado.

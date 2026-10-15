@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Izan (Claude), apoyo del PC 1
 pc: PC 2
 fase: 1
@@ -27,7 +27,7 @@ Rama `feat/G03-ubicacion` del frontend.
 - **Sin probar en un móvil real.** Hace falta un build nuevo (el plugin cambia los permisos nativos), o probar en Expo Go.
 - El consentimiento se guarda por dispositivo, no en el perfil, porque el permiso de ubicación también es por dispositivo.
 - **Para el PC 2:** G06 puede usar `useUbicacion()` (`activa`, `posicion`) en la web y en la app. El segundo plano se añade en G06.
-- Falta: revisión (Codex o el PC 2) y prueba en un móvil.
+- Revisión aprobada por Codex en `dce2a73`; queda la prueba real del APK con PC 2.
 
 
 ## Revisión del PC 2 (Alex + Claude, 2026-10-15)
@@ -45,3 +45,15 @@ Rama `feat/G03-ubicacion` del frontend.
 - Propuesta: comprobar `vivo` también después de la consulta de servicios, proteger ambos callbacks y mantener la liberación de la suscripción que llega tarde. Añadir regresiones para desactivar durante permisos, servicios y creación de la suscripción, verificando que los callbacks tardíos no restauran posición/error.
 - **Resultado: en revisión, pendiente del P2 móvil y de la prueba real.** No se ha marcado «hecho».
 - Coordinación: Alex informa arriba de la integración en `feat/mira-app`; llevar también allí la corrección del P2 móvil y coordinar la prueba del APK. Su control de la espera del permiso es compatible con este hallazgo: el fallo reproducido está en la espera posterior de servicios.
+
+## Corrección del P2 de Codex (2026-10-15, Izan + Claude)
+`dce2a73` en `feat/G03-ubicacion`: la secuencia de arranque de la app pasa a `mobile/src/services/seguimientoUbicacion.js` (`iniciarSeguimiento`, sin React, con `expo-location` inyectado). Vuelve a comprobar si sigue activa después del permiso, de los servicios y de la suscripción; los callbacks de posición y error también lo comprueban; una suscripción que llega tarde se elimina al momento. `useUbicacion` solo la llama.
+- 5 tests nuevos con un `expo-location` falso y esperas controladas (`test/seguimientoUbicacion.test.js`): flujo normal; desactivar durante el permiso, durante los servicios (el caso de Codex: 0 seguimientos) y durante la suscripción (se elimina y la posición tardía no se guarda); permiso denegado y servicios apagados. `npm test` 204/204, `npx expo lint` correcto.
+- **Alex:** como G03 ya está unida en `feat/mira-app`, trae también este commit (o vuelve a unir `feat/G03-ubicacion`).
+
+## Segunda revisión de Codex (2026-10-15)
+- **Estado: hecho. Aprobado `dce2a73`** en `feat/G03-ubicacion`; P2 cerrado, sin nuevos hallazgos en la corrección.
+- `iniciarSeguimiento` comprueba actividad después del permiso, de los servicios y de crear la suscripción; protege callbacks de posición/error y elimina la suscripción que llega tarde. El cleanup del hook invalida la instancia y ejecuta la parada.
+- Revisadas las 5 regresiones con Expo falso y promesas controladas: flujo normal, desactivación en cada una de las 3 esperas, posición tardía, permiso denegado y servicios apagados. La espera de servicios ya termina con 0 seguimientos; al resolver una suscripción tardía se ejecuta `remove()` sin restaurar posición.
+- Verificado en `codex-review-G03`: `npm test` **204/204**, build web y `npm run lint` móvil correctos; worktree limpio y `git diff --check` correcto. No cambia el lockfile respecto a la revisión anterior. Sin cambios de código de Codex.
+- Limitaciones ya conocidas: `tsc --noEmit` solo muestra ayuda por falta de `tsconfig.json`, no se cuenta como typecheck superado; sin prueba en dispositivo real. Alex debe traer `dce2a73` a `feat/mira-app` y probar el APK con la corrección.

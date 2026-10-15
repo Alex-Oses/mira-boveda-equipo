@@ -106,7 +106,63 @@ Errores: `400 VALIDATION_ERROR` (lat/lng ausentes o fuera de rango), `429` (lím
 Pendiente de acordar con el PC 3 para [[G07 Estadísticas de ofertas]]: qué contadores agregados guarda la API (por ejemplo, avisos mostrados por nivel y día), siempre sin ubicación.
 
 ## Fase 3: Llegada al restaurante
-_(pendiente)_
+Publicado el 2026-10-15 por el PC 1 (Izan + Claude). Lo implementa Codex en [[G08 QR firmado, visitas y comisión]]. Lo usan el PC 2 ([[G09 Pantalla de llegada con QR]]) y el PC 3 ([[G10 Escáner de QR y aviso de llegada]]).
+
+### Modelo `Visita` (colección `visitas`)
+```
+{
+  id: "vis123",
+  restauranteId: "1",
+  ofertaId: "of1",
+  uid: "<cliente>",                    // nunca se devuelve al restaurante
+  nivel: { distancia: 20, texto: "20 % + postre gratis", descuentoPct: 20 },  // copia del nivel de llegada al crearla
+  estado: "pendiente" | "confirmada" | "caducada",
+  creada: "2026-10-15T20:01:00.000Z",
+  caducaEn: "2026-10-15T20:16:00.000Z",  // 15 min
+  confirmadaEn: null | "…",
+  comisionPct: null | 8                  // copia de restaurants.comisionPct al confirmar
+}
+```
+- La visita **no guarda la posición** del cliente: solo se usa para comprobar la distancia al crearla.
+- Una visita pendiente por cliente y restaurante: si ya hay una sin caducar, se devuelve esa con un QR nuevo.
+
+### El QR
+El contenido del QR es un texto `v1.<visitaId>.<caducaEnMs>.<firma>`, donde la firma es HMAC-SHA256 (base64url) de `v1.<visitaId>.<caducaEnMs>` con la variable de entorno `VISITAS_SECRET` (solo en Render, nunca en el repo). La app lo pinta como QR; el panel lo lee con la cámara y lo manda tal cual a validar.
+
+### POST /v1/visitas  (auth: sí, cliente)
+Petición: `{ restauranteId, lat, lng }`
+- Comprueba que el restaurante tiene una oferta activa y vigente y que el cliente está a **≤ 50 m** (el nivel de llegada es 20 m; los 30 m de margen absorben el error del GPS). La posición no se guarda.
+Respuesta 201: `{ visita: Visita (sin uid), qr: "v1.…" }`
+Errores: 400 (validación), 401, 404 (restaurante o sin oferta vigente), 422 `{ error: "LEJOS", distanciaM }` (a más de 50 m), 429.
+
+### GET /v1/visitas/:id  (auth: sí, solo el cliente de la visita)
+Para que la app vea cuándo el restaurante la ha confirmado (consultar cada pocos segundos mientras la pantalla de llegada esté abierta).
+Respuesta 200: `Visita` (sin uid). Si ha pasado `caducaEn` y seguía pendiente, se devuelve como `caducada`.
+Errores: 401, 403, 404.
+
+### POST /v1/visitas/validar  (auth: empresa dueña del restaurante de la visita, o admin)
+Petición: `{ qr: "v1.…" }`
+- Comprueba, en este orden: formato y firma, caducidad, que la visita existe, que es de un restaurante del que el usuario es dueño, y que sigue pendiente. Confirmarla y copiar la comisión se hace en una transacción: **un QR solo se valida una vez**, aunque se escanee dos veces a la vez.
+Respuesta 200: `{ visita: Visita (sin uid), aplicar: { texto, descuentoPct }, cliente: { nombre } }`
+Errores: 400 `QR_INVALIDO` (formato o firma), 410 `QR_CADUCADO`, 404, 403 `OTRO_RESTAURANTE`, 409 `QR_USADO`.
+
+### GET /v1/visitas/restaurante?restauranteId=1&fecha=2026-10-15  (auth: empresa dueña o admin)
+Para la lista de llegadas del día del panel (G10). `fecha` opcional (hoy en Madrid por defecto).
+Respuesta 200: `{ data: [Visita (sin uid) + cliente: { nombre }] }`, de la más reciente a la más antigua.
+Errores: 400, 401, 403, 404.
+
+### Comisión
+Al confirmar se copia `restaurants.comisionPct` (el mismo campo que usan los tickets) en la visita. **El importe no se calcula aquí**, porque la visita no conoce la cuenta; queda para cuando haya ticket. Pendiente de decidir con el equipo si además se cobra una tarifa fija por visita confirmada.
+
+### Estadísticas para el PC 3 ([[G07 Estadísticas de ofertas]])
+Contadores agregados por restaurante y día en `ofertas_stats/{restauranteId}_{AAAA-MM-DD}`: `{ avisos: { 1000, 500, 100, 20 }, visitas, confirmadas }`. **Sin datos del usuario ni de ubicación.** Los implementa el PC 1 (Claude) en el módulo de ofertas.
+
+#### POST /v1/ofertas/:id/avisos  (auth: no)
+Lo llama la app (PC 2) cuando muestra un aviso de nivel. Petición: `{ nivel: 1000 | 500 | 100 | 20 }`. Respuesta 204. Errores: 400, 404, 429 (límite por IP).
+El servidor no deduplica por usuario (no sabe quién es): la app ya evita repetir el mismo nivel para el mismo restaurante (G06).
+
+#### GET /v1/ofertas/estadisticas?restauranteId=1&desde=2026-10-01&hasta=2026-10-31  (auth: empresa dueña o admin)
+Respuesta 200: `{ data: [{ fecha, avisos: { 1000, 500, 100, 20 }, visitas, confirmadas }] }`, un elemento por día con datos. Máximo 92 días. Errores: 400, 401, 403, 404.
 
 ## Push · T04 (PC 1, Codex · 2026-10-15)
 Contrato cerrado para PC 2; se mantienen las decisiones de canales pendientes de confirmación del equipo.

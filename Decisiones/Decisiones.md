@@ -44,6 +44,12 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - **Por qué:** evita duplicados y permite limpiar tokens después de la aceptación inicial del proveedor, incluso tras reiniciar la API. Contrato publicado en [[Contratos API]].
 - **Quién:** Codex (PC 1), T04; pendiente revisión de Claude. Se mantienen pendientes de confirmación del equipo las decisiones de canales del 2026-10-14.
 
+### 2026-10-15 · Visitas con QR y estadísticas (contrato fase 3)
+- **Decisión:** QR = token `v1.<visitaId>.<caducaEnMs>.<firma>` firmado con HMAC-SHA256 (`VISITAS_SECRET`), caducidad de 15 min, una sola validación (transacción). La visita se crea a ≤ 50 m (20 m + margen de GPS) y no guarda la posición. Al confirmar se copia `comisionPct`; el importe queda para el ticket. Estadísticas como contadores agregados por restaurante y día, sin datos de usuario.
+- **Por qué:** el GPS falla a 20 m; el QR firmado es la prueba de llegada y no se puede falsificar ni reutilizar.
+- **Pendiente para el equipo:** ¿tarifa fija por visita confirmada además del porcentaje?
+- **Quién:** PC 1 (Izan + Claude). Detalle en [[Contratos API]].
+
 ### 2026-10-15 · Modelo de ofertas (contrato fase 1)
 - **Decisión:** colección `ofertas`, con 4 niveles fijos (1000, 500, 100 y 20 m) que no pueden empeorar al acercarse, y **una sola oferta activa por restaurante**. Lectura pública solo de la activa y vigente; CRUD para la empresa dueña o el admin, con la comprobación de dueño que ya existe (`comprobarRestaurante`).
 - **Por qué:** simplifica «ofertas cerca de mí» (fase 2) y el QR (fase 3): cada restaurante tiene como mucho una oferta que mostrar.

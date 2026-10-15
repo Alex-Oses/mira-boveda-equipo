@@ -1,6 +1,6 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Alex (PC 2)
 depende_de: []
 rama:
 ---

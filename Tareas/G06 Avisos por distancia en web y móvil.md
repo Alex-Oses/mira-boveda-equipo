@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Alex (PC 2)
 pc: PC 2
 fase: 2
@@ -30,3 +30,7 @@ Simulando posiciones, salen los avisos de 1 km, 500 m y 100 m una sola vez cada 
 - Probado con GPS simulado contra el mock, en la web y en la app: 900 → 400 → 80 → 15 m da 1000/500/100/20 una vez cada uno; al volver a alejarse no repite; los avisos suman en las estadísticas.
 - **Falta: segundo plano** (avisos con la app cerrada: `expo-task-manager` + permiso «Permitir siempre» y su consentimiento). APK con G06 en build `1f69638d`.
 - Nota dev: en `npm run dev` el adblock bloquea `CookieBanner.jsx` y la web sale en blanco; usar la versión compilada o desactivar el adblock.
+
+## Entrega 2026-10-15 (Alex, PC 2) — en revisión
+- Segundo plano (`58e3869`): tarea `expo-task-manager` + `startLocationUpdatesAsync` (50 m / 1 min) con servicio en primer plano y notificación fija; opt-in aparte en Mi cuenta («Avisar también con la app cerrada»), pide «Permitir siempre»; con la app abierta no duplica avisos; se para al desactivar la ubicación. `app.json` con permiso de segundo plano y texto ampliado.
+- Sin probar en móvil real: va en el APK final (build `5dce7197`).

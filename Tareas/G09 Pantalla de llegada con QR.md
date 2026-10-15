@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Alex (PC 2)
 pc: PC 2
 fase: 3
@@ -22,3 +22,8 @@ A 20 m, mostrar «¡Ya has llegado!» con la oferta y el QR.
 
 ## Terminada cuando
 El restaurante escanea el QR y en el móvil del cliente pasa a "aplicada".
+
+## Entrega 2026-10-15 (Alex, PC 2) — en revisión
+- Web `27e46d2` (`#/llegada/<id>`) y app `f2df4c2` (`/llegada?id=`): crea la visita (≤ 50 m), pinta el QR (`qrcode` → path SVG), cuenta atrás de 15 min y sondeo cada 4 s hasta «Oferta aplicada» o «caducada» (botón «Pedir otro QR»). 422 LEJOS muestra la distancia; 401/404/503 con mensaje propio. El aviso de llegada de G06 abre esta pantalla.
+- Mock: `POST/GET /v1/visitas`, `validar` y lista del restaurante según el contrato (firma «mock»). Probado en la web contra el mock: lejos → QR → validar → «Oferta aplicada».
+- Falta probar de verdad cuando esté `VISITAS_SECRET` en Render.

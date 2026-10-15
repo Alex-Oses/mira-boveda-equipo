@@ -69,6 +69,12 @@ Errores: 401, 403, 404.
 ### Avance de la fase 2 (orientativo, se cerrará en G05)
 `GET /v1/ofertas/cerca?lat=&lng=` devolverá las ofertas de los restaurantes en 1 km, con `distanciaM` y el `nivel` alcanzado. La posición no se guardará.
 
+### Revisión del mock de fase 1 (Alex, PC 2 · 2026-10-15)
+Probado `feat/G01-contrato-ofertas` (`d60f007`): GET público, 400, 409, 201, PUT/DELETE y validación de niveles cumplen el contrato. Dos diferencias, que afectan al PC 3:
+- `GET /v1/ofertas/mias` sin Bearer da **200** (el contrato dice 401): el mock no comprueba la auth.
+- `GET /v1/ofertas/mias?restauranteId=999` da **200 `[]`** (el contrato dice 404).
+El mock de `main` todavía no lo tiene: sigue en la rama.
+
 ## Fase 2: Embudo de ofertas
 _(pendiente)_
 

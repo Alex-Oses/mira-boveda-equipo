@@ -2,7 +2,7 @@
 estado: en curso
 responsable: Alex (PC 2)
 depende_de: []
-rama:
+rama: feat/T03-push-android (frontend)
 ---
 # T01 Configurar EAS y app.json
 

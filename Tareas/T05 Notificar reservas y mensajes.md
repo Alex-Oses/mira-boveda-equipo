@@ -42,3 +42,7 @@ Al hacer una reserva desde otra cuenta, al cliente le llega la notificación.
 - Ajustados el test cliente/admin, los de fallo de proveedor/reintento y docs/api.md. **310/310** usando el helper en cola de G02 30f80c3, incluido el test del reintento; helper restaurado al terminar, sin cambios de código de G02.
 - G02 ya aprobado por Codex y marcado hecho en nota/Tablero (commit de bóveda 5650016); no bloquea la fase 2 por revisión. Sin Java, la prueba real de Firestore sigue sin realizarse.
 - T05 queda preparada para unión/despliegue por Claude; recepción real con PC 2 pendiente. Sin merge ni despliegue realizados aquí.
+
+## Desplegado (2026-10-15, Izan + Claude)
+En `main` del backend `2e6bb47` (Render), junto con G02. El test del reintento sigue pasando con la cola de transacciones del mock. Falta la prueba real con el PC 2 (T03).
+

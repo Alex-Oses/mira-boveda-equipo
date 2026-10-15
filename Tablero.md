@@ -32,4 +32,4 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho
-- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · aprobado Codex (30f80c3)
+- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · desplegado

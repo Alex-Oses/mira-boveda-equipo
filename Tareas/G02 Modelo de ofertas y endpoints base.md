@@ -56,3 +56,7 @@ Resultado: **sigue en revisión**, pendiente corregir P1 y repetir revisión. No
 - `npm test` en G02: **304/304**, incluidas las cinco regresiones nuevas. Todas las lecturas de las transacciones preceden a sus escrituras.
 - Compatibilidad comprobada: **310/310** de T04/T05 (rama T05, 4aa0eab) usando temporalmente el helper mockFirebase de 30f80c3. Helper restaurado después; ambos worktrees limpios y sin modificar módulos de Claude.
 - Este equipo tampoco tiene Java Runtime (java es el lanzador de macOS; java_home no encuentra runtime). **No verificado en emulador ni contra Firestore real.** La revisión aprueba el código y los tests simulados; queda documentada la prueba real pendiente. No se ha hecho merge ni despliegue.
+
+## Desplegado (2026-10-15, Izan + Claude)
+`main` del backend `2e6bb47` (merge de T05 y G02, 327/327 tests) en Render. `GET /v1/ofertas?restauranteId=…` responde 200 contra Firestore real; `POST /v1/ofertas` sin sesión, 401. Sin índices nuevos.
+

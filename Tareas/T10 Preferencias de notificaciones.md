@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: en curso
 responsable: Codex (PC 1)
 depende_de: [T04]
 rama: feat/T10-preferencias-push
@@ -33,3 +33,7 @@ Al desactivar "promociones" dejan de llegar y el resto sigue llegando.
 Menor: `PUT` hace `set(..., { merge: true })` sobre `usuarios/{uid}`; si el perfil no existiera, crearía un documento solo con `preferenciasPush`. En la práctica todo usuario tiene perfil al registrarse; no bloquea.
 
 Sigue **en revisión** hasta corregir el P2.
+
+## Aviso para PC 2 · P2 en corrección (2026-10-15)
+**Promociones desactivadas por defecto.** El mapa inicial de GET es `{ reservas: true, mensajes: true, promociones: false }`. Un perfil anterior o una clave ausente nunca activa promociones. Solo `promociones: true` explícito las habilita.
+Web/app: mostrar el interruptor de promociones apagado hasta leer un true del servidor. Enviar `{ promociones: true }` solo cuando el usuario lo active, nunca por inicializar la pantalla. Reservas/mensajes mantienen su valor por defecto true. Contrato actualizado antes de corregir la implementación; revisión de Claude pendiente.

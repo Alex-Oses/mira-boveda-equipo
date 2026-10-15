@@ -143,8 +143,8 @@ Credenciales de Firebase en Secret File de Render mediante GOOGLE_APPLICATION_CR
 Contrato publicado antes de implementar para los interruptores de PC 2. Las preferencias afectan a todos los dispositivos del UID y solo a push, no al buzón ni a la operación de negocio.
 
 ### GET /v1/push/preferencias (auth: sí, Firebase Bearer)
-Respuesta 200: `{ reservas: true, mensajes: true, promociones: true }`.
-Lee usuarios/{uid}.preferenciasPush; UID exclusivamente del Bearer. Usuario/campo/clave ausente implica true (compatibilidad con comportamiento anterior); GET no crea documentos. Solo false explícito desactiva una categoría.
+Respuesta 200: `{ reservas: true, mensajes: true, promociones: false }`.
+Lee usuarios/{uid}.preferenciasPush; UID exclusivamente del Bearer. Usuario/campo/clave ausente implica reservas y mensajes true, pero promociones false; GET no crea documentos. Solo `promociones === true` explícito activa promociones. En reservas/mensajes, solo false explícito desactiva.
 
 ### PUT /v1/push/preferencias (auth: sí, Firebase Bearer)
 Petición parcial, al menos una clave: `{ promociones: false }`. Claves permitidas: reservas, mensajes, promociones; solo booleanos, sin campos extra ni uid.
@@ -158,3 +158,6 @@ Antes de consultar dispositivos/enviar se leen las preferencias vigentes (sin ca
 Las llamadas de promociones futuras deberán indicar tipo promociones. Nuevas categorías requieren ampliar el contrato, no se aceptan claves arbitrarias. No cambia el formato de registro de tokens.
 
 Rama T10: feat/T10-preferencias-push (`9f0a452`), en revisión de Claude; endpoints todavía no desplegados. `npm test` 339/339. La UI web/app corresponde al PC 2.
+
+### Aviso para PC 2 · T10 corregido por revisión (2026-10-15)
+Promociones empieza apagado; no precargar ni guardar true automáticamente al abrir los ajustes. Enviar PUT `{ promociones: true }` únicamente tras activación explícita por el usuario y reflejar el mapa devuelto. Perfil/campo/clave ausente o valor no booleano no equivalen a activación. Se mantiene true por defecto para reservas/mensajes. Actualización de contrato autorizada en la revisión de Claude; endpoints todavía en revisión, sin desplegar.

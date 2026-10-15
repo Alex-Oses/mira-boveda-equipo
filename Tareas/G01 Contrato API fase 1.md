@@ -18,3 +18,9 @@ Publicar el contrato de la API de la fase 1 para que los PC 2 y 3 puedan empezar
 
 ## Terminada cuando
 Los PC 2 y 3 confirman que pueden trabajar con el mock.
+
+## Hecho (2026-10-15, Izan + Claude)
+- Contrato publicado en [[Contratos API]] (fase 1) y decisión en [[Decisiones]].
+- Mock en `scripts/mock-api.mjs` del frontend, rama `feat/G01-contrato-ofertas`: GET pública, GET mias, POST, PUT y DELETE con las mismas validaciones (4 niveles, no empeorar, una activa por restaurante). Oferta de ejemplo en el restaurante `1`.
+- Falta: que los PC 2 y 3 confirmen que les sirve.
+

@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Modelo de ofertas (contrato fase 1)
+- **Decisión:** colección `ofertas`, con 4 niveles fijos (1000, 500, 100 y 20 m) que no pueden empeorar al acercarse, y **una sola oferta activa por restaurante**. Lectura pública solo de la activa y vigente; CRUD para la empresa dueña o el admin, con la comprobación de dueño que ya existe (`comprobarRestaurante`).
+- **Por qué:** simplifica «ofertas cerca de mí» (fase 2) y el QR (fase 3): cada restaurante tiene como mucho una oferta que mostrar.
+- **Quién:** PC 1 (Izan + Claude). Detalle en [[Contratos API]].
+
 ### 2026-10-14 · Ofertas por geolocalización (aprobado)
 - **Decisión:** ofertas que mejoran a 1 km, 500 m y 100 m, y QR firmado por visita a 20 m, que valida el restaurante. Sin login por SMS. RGPD: consentimiento, se puede desactivar y no se guarda el recorrido.
 - **Por qué:** el GPS no es fiable a 20 m; el QR prueba la llegada y sirve para la comisión.

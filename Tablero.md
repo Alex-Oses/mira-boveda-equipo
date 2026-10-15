@@ -26,5 +26,6 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 ## En curso
 
 ## En revisión
+- [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho

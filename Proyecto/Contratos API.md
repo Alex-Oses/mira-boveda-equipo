@@ -11,7 +11,63 @@ Errores: 400 ..., 401 ..., 404 ...
 ```
 
 ## Fase 1: Base
-_(pendiente: PC 1)_
+Publicado el 2026-10-15 por el PC 1 (Izan + Claude). Mock disponible: `npm run mock-api` en el repo del frontend (rama `feat/G01-contrato-ofertas` hasta que se una a `main`).
+
+### Modelo `Oferta` (colección `ofertas`)
+```
+{
+  id: "abc123",
+  restauranteId: "1",
+  titulo: "Menú de mediodía",          // 1-80 caracteres
+  activa: true,
+  desde: "2026-10-20" | null,          // vigencia opcional, AAAA-MM-DD (incluido)
+  hasta: "2026-12-31" | null,
+  niveles: [                           // siempre 4, en este orden
+    { distancia: 1000, texto: "Café gratis con el menú", descuentoPct: 5 },
+    { distancia: 500,  texto: "10 % en la cuenta",       descuentoPct: 10 },
+    { distancia: 100,  texto: "15 % en la cuenta",       descuentoPct: 15 },
+    { distancia: 20,   texto: "20 % + postre gratis",    descuentoPct: 20 }
+  ],
+  creado: "2026-10-15T09:00:00.000Z",
+  actualizado: "2026-10-15T09:00:00.000Z"
+}
+```
+Reglas:
+- `niveles` tiene exactamente las distancias **1000, 500, 100 y 20** (metros), en ese orden. El de 20 m es el de la llegada: el que va en el QR de la fase 3.
+- `texto`: 1-140 caracteres. `descuentoPct`: entero de 0 a 100.
+- **Cada nivel tiene que ser igual o mejor que el anterior** (`descuentoPct` no baja al acercarse), y el de 20 m tiene que ser mejor que el de 1000 m. Si no, 400.
+- `desde` ≤ `hasta` si vienen los dos.
+- **Una sola oferta activa por restaurante.** Activar una segunda da 409; hay que desactivar antes la otra.
+- La oferta no guarda nada del usuario ni de su ubicación.
+
+Errores comunes: `400 { error: "VALIDATION_ERROR", details: { campo: ["mensaje"] } }`, `401 { error: "UNAUTHORIZED" }`, `403 { error: "FORBIDDEN" }` (no eres dueño del restaurante), `404 { error: "NOT_FOUND" }`, `409 { error: "CONFLICT", message }`.
+
+### GET /v1/ofertas?restauranteId=1  (auth: no)
+Para la app del cliente (PC 2). Solo devuelve la oferta **activa y vigente hoy** del restaurante.
+Respuesta 200: `{ data: [Oferta] }` (lista vacía si no tiene)
+Errores: 400 si falta `restauranteId`.
+
+### GET /v1/ofertas/mias?restauranteId=1  (auth: empresa dueña o admin)
+Para el editor del restaurante (PC 3). Todas las ofertas del restaurante, activas o no, de la más nueva a la más antigua.
+Respuesta 200: `{ data: [Oferta] }`
+Errores: 400, 401, 403, 404 (restaurante no existe).
+
+### POST /v1/ofertas  (auth: empresa dueña o admin)
+Petición: `{ restauranteId, titulo, activa, desde?, hasta?, niveles: [4 niveles] }`
+Respuesta 201: `Oferta`
+Errores: 400, 401, 403, 404, 409 (ya hay otra activa).
+
+### PUT /v1/ofertas/:id  (auth: empresa dueña o admin)
+Sustituye los campos editables. Petición: igual que el POST, pero sin `restauranteId` (no se puede mover de restaurante).
+Respuesta 200: `Oferta`
+Errores: 400, 401, 403, 404, 409.
+
+### DELETE /v1/ofertas/:id  (auth: empresa dueña o admin)
+Respuesta 204, sin cuerpo.
+Errores: 401, 403, 404.
+
+### Avance de la fase 2 (orientativo, se cerrará en G05)
+`GET /v1/ofertas/cerca?lat=&lng=` devolverá las ofertas de los restaurantes en 1 km, con `distanciaM` y el `nivel` alcanzado. La posición no se guardará.
 
 ## Fase 2: Embudo de ofertas
 _(pendiente)_

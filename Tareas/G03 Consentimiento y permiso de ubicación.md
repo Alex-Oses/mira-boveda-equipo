@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Izan (Claude), apoyo del PC 1
 pc: PC 2
 fase: 1
@@ -19,3 +19,13 @@ Pedir la ubicación cumpliendo el RGPD, en la web y en la app.
 
 ## Terminada cuando
 Se puede aceptar, rechazar y desactivar, y la posición actual aparece en pantalla (sin enviarla todavía).
+
+## Hecho (2026-10-15, Izan + Claude, apoyo del PC 1)
+Rama `feat/G03-ubicacion` del frontend.
+- **Web** (`2aba98b`): sección «Ubicación para ofertas cercanas» en Mi cuenta, con modal de consentimiento (es/ca/en: para qué, sin guardar recorrido, solo con la página abierta, se puede desactivar). `hooks/useUbicacion.js` usa `watchPosition` solo con el consentimiento aceptado y para el seguimiento al desactivar. La posición se muestra en pantalla y no se envía ni se guarda. Mensajes para permiso bloqueado, sin señal, tiempo agotado y navegador sin soporte. `models/ubicacionModel.js` guarda solo `{ estado, version, fecha }` en `localStorage` (`mira:ubicacion`); si cambia el texto, subir `VERSION_CONSENTIMIENTO` y se vuelve a pedir. 4 tests nuevos; `npm test` 199/199 y build correcto. Probado en el navegador con un GPS simulado: aceptar, ver posición, desactivar (0 seguimientos activos), «Ahora no» y permiso bloqueado.
+- **App** (`mobile/`): `expo-location ~57.0.21` (instalado con `npx expo install`, lockfile limpio), plugin en `app.json` con el texto de permiso «mientras se usa» (sin segundo plano). Mismo modelo (el `localStorage` de la app es el shim sobre AsyncStorage), `useUbicacion` con `requestForegroundPermissionsAsync` + `watchPositionAsync` (se cierra al desactivar o salir) y la misma sección en `cuenta.js`. `npx expo lint` sin errores. `expo-doctor` da 3 avisos que ya existían antes (versiones y duplicados), no de G03.
+- **Sin probar en un móvil real.** Hace falta un build nuevo (el plugin cambia los permisos nativos), o probar en Expo Go.
+- El consentimiento se guarda por dispositivo, no en el perfil, porque el permiso de ubicación también es por dispositivo.
+- **Para el PC 2:** G06 puede usar `useUbicacion()` (`activa`, `posicion`) en la web y en la app. El segundo plano se añade en G06.
+- Falta: revisión (Codex o el PC 2) y prueba en un móvil.
+

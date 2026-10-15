@@ -1,8 +1,8 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Codex (PC 1)
 depende_de: []
-rama:
+rama: feat/T04-modulo-push
 ---
 # T04 Módulo push en mira-api
 

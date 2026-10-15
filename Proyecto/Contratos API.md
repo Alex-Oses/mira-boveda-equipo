@@ -74,3 +74,23 @@ _(pendiente)_
 
 ## Fase 3: Llegada al restaurante
 _(pendiente)_
+
+## Push · T04 (PC 1, Codex · 2026-10-15)
+Contrato cerrado para PC 2; se mantienen las decisiones de canales pendientes de confirmación del equipo.
+
+### POST /v1/push/tokens (auth: sí, Firebase Bearer)
+Petición: `{ token, tipo: "expo" | "web", plataforma: "android" | "ios" | "web", idioma: "es" | "ca" | "en" }`. Todos obligatorios; no admite campos extra.
+- `token`: cadena sin espacios, 1–4096 caracteres; para `expo`, formato ExpoPushToken[...] o ExponentPushToken[...]. Para `web`, token de registro FCM (no una suscripción PushSubscription).
+- Respuesta 200: `{ id, tipo, plataforma, idioma }`. `id` es SHA-256 de `tipo:token` (64 caracteres hexadecimales). Guardarlo para el logout. Repetir actualiza plataforma/idioma sin duplicar.
+- Persiste en `usuarios/{uid}/dispositivos/{id}`; el UID sale del Bearer, nunca del body. Campos: token, tipo, plataforma, idioma, actualizado (fecha ISO).
+- Errores: 400 `{ error: "VALIDATION_ERROR", details }`; 401 `{ error: "MISSING_TOKEN" | "INVALID_TOKEN", message }`.
+
+### DELETE /v1/push/tokens/:id (auth: sí, Firebase Bearer)
+Respuesta 204 sin cuerpo, también si no existe. Solo borra bajo el UID autenticado.
+Errores: 400 si el ID no son 64 caracteres hexadecimales minúsculos; 401 como POST.
+Al cerrar sesión, borrar **antes** de invalidar el Bearer. Al cambiar de cuenta, borrar el registro anterior y registrar en la nueva.
+
+### Servicio interno y configuración
+`enviarPush(uid, { titulo, cuerpo, data? })`: Expo Server SDK para expo y Firebase Admin Messaging para web; `data` es un mapa de cadenas compatible con FCM. No hay endpoint público de envío.
+Los tickets y recibos Expo con DeviceNotRegistered y los tokens FCM no registrados se limpian; errores temporales conservan el dispositivo.
+Credenciales de Firebase en Secret File de Render mediante GOOGLE_APPLICATION_CREDENTIALS; EXPO_ACCESS_TOKEN solo si se habilita seguridad push en Expo. FCM/VAPID/EAS se configuran fuera del repo y de la bóveda.

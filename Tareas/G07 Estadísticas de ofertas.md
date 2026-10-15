@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 estado_api: hecho
 responsable: Marco (PC 4)
 pc: PC 3
@@ -59,3 +59,6 @@ En `main` del backend `808ff00` (Render): `GET /v1/ofertas/estadisticas` (401 si
 - Probado en el navegador contra el mock de `main`: KPI (2246 avisos, 116 visitas, 88 confirmadas, 9 %), barras por distancia y evolución de 14 días; sin sesión muestra el error y «Reintentar».
 - Menor, no bloquea: `desde`/`hasta` se calculan en UTC (`toISOString`); entre las 00:00 y las 02:00 de Madrid el «hoy» sería el día anterior. Se puede cambiar a la fecha de Madrid como en G04.
 - Unido con G10 sobre `main` en una rama de prueba: 227/227 tests y build correcto. Conflictos solo en `Dashboard.jsx` (import y montaje; quedan los tres componentes: editor, escáner y estadísticas) y en `docs/coordenacion/HILO-PC3-PC4.md` (se conservan las dos versiones).
+
+## Unido a main (2026-10-15, Izan + Claude)
+`main` del frontend `218531a` (G07 + G10 juntos), 227/227 tests y build correcto, desplegado en Vercel (en el código publicado ya están `/v1/ofertas/estadisticas`, `/v1/visitas/validar` y `/v1/visitas/restaurante`). Panel del restaurante → «Ofertas»: editor, escáner y estadísticas.

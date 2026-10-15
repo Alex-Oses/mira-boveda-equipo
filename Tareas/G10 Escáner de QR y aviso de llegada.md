@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Marco (PC 4)
 pc: PC 3
 fase: 3
@@ -43,3 +43,6 @@ Se programó contra `docs/coordenacion/CONTRATOS-ASUMIDOS.md`, y **el contrato o
 - Errores de validación: **400 QR_INVALIDO y 404 NOT_FOUND → código no válido; 403 OTRO_RESTAURANTE → otro restaurante; 409 QR_USADO → ya usado; 410 QR_CADUCADO → caducado.** `httpClient` conserva `status`, `estadoDesdeError` lo interpreta y las claves mostradas existen en es/ca/en.
 - Comprobación cruzada ejecutada: respuestas HTTP producidas por G08 `ed2b8b8` con Supertest/Firestore simulado, consumidas por el modelo real de G10. Alta y validación correctas, lista tras confirmar, nombre/nivel/descuento/fecha coincidentes, ausencia de UID y los cinco errores anteriores: **OK**. Se inspeccionó además el render del componente y su uso de `aplicar`.
 - `npm test`: **211/211**; `npm run build` correcto (aviso de tamaño de chunk); `git diff --check` correcto y worktree limpio. No se ha probado cámara física ni Render: queda la prueba conjunta con G09 tras configurar `VISITAS_SECRET`, publicar el índice sin `--force` y desplegar G08.
+
+## Unido a main (2026-10-15, Izan + Claude)
+`main` del frontend `218531a` (G07 + G10 juntos), 227/227 tests y build correcto, desplegado en Vercel (en el código publicado ya están `/v1/ofertas/estadisticas`, `/v1/visitas/validar` y `/v1/visitas/restaurante`). Panel del restaurante → «Ofertas»: editor, escáner y estadísticas.

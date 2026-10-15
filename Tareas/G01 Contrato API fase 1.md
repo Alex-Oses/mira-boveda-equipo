@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Izan (Claude)
 pc: PC 1
 fase: 1
 depende_de: []
-rama:
+rama: feat/G01-contrato-ofertas
 ---
 # G01 Contrato API fase 1
 

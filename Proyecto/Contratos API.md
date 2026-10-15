@@ -76,7 +76,34 @@ Probado `feat/G01-contrato-ofertas` (`d60f007`): GET público, 400, 409, 201, PU
 El mock de `main` todavía no lo tiene: sigue en la rama.
 
 ## Fase 2: Embudo de ofertas
-_(pendiente)_
+Publicado el 2026-10-15 por el PC 1 (Izan + Claude). La API de la fase 1 ya está en producción.
+
+### GET /v1/ofertas/cerca?lat=41.3874&lng=2.1686  (auth: no)
+Para los avisos por distancia (PC 2). Devuelve las ofertas activas y vigentes de los restaurantes a **1 km o menos**, de la más cercana a la más lejana, con el nivel alcanzado.
+- `lat`: −90 a 90; `lng`: −180 a 180 (números decimales).
+- **La posición no se guarda ni se registra** (ni en logs). Solo se usa para calcular la distancia.
+- Límite: 60 peticiones por minuto. Llamadla con throttle (por ejemplo, cada 30 s o cada 50 m de movimiento).
+
+Respuesta 200:
+```
+{
+  data: [
+    {
+      restaurante: { id: "1", nombre: "Can Solé", coordenadas: { lat: 41.3881, lng: 2.1690 } },
+      oferta: Oferta,                     // el modelo de la fase 1, completo
+      distanciaM: 84,                     // metros, entero
+      nivel: { distancia: 100, texto: "15 % en la cuenta", descuentoPct: 15 }
+    }
+  ]
+}
+```
+- `nivel` es el más cercano alcanzado: el de menor `distancia` que cumpla `distanciaM <= distancia`. A 900 m → nivel 1000; a 400 m → 500; a 80 m → 100; a 15 m → 20 (llegada).
+- Los restaurantes sin coordenadas no aparecen.
+- La lista de candidatos se cachea 60 s en el servidor: una oferta recién creada o desactivada puede tardar hasta 1 minuto en reflejarse (en otra instancia).
+
+Errores: `400 VALIDATION_ERROR` (lat/lng ausentes o fuera de rango), `429` (límite).
+
+Pendiente de acordar con el PC 3 para [[G07 Estadísticas de ofertas]]: qué contadores agregados guarda la API (por ejemplo, avisos mostrados por nivel y día), siempre sin ubicación.
 
 ## Fase 3: Llegada al restaurante
 _(pendiente)_

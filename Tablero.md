@@ -9,7 +9,6 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 - [[G04 Editor básico de ofertas por distancia]] · PC 3
 
 ### Fase 2: Embudo de ofertas
-- [[G05 Ofertas cerca de mí]] · PC 1
 - [[G06 Avisos por distancia en web y móvil]] · PC 2
 - [[G07 Estadísticas de ofertas]] · PC 3
 
@@ -22,6 +21,7 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[G05 Ofertas cerca de mí]] · Izan (Claude)
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 

@@ -24,3 +24,12 @@ Al desactivar "promociones" dejan de llegar y el resto sigue llegando.
 - **npm test 339/339**, 12 tests nuevos: auth, defaults/perfil ausente, combinación/idempotencia/concurrencia, validación, aislamiento, categorías, integración T05, reactivación y fallos de lectura. git diff --check correcto.
 - Docs en mira-api/docs/api.md (T10). Sin cambios de ofertas, índices, reglas ni frontend; sin merge/despliegue. Pruebas con Firestore/Expo/FCM simulados, sin emulador por falta de Java.
 - Pendiente PC 2: interruptores de web/app y prueba real conjunta tras revisión/despliegue. Emisores futuros de promociones deberán indicar tipo promociones; el que ya esté en curso no se puede retirar al cambiar una preferencia.
+
+## Revisión de Claude (2026-10-15)
+`9f0a452`: `npm test` 339/339. Bien: GET/PUT `/v1/push/preferencias` solo del propio usuario, esquema `strict` con al menos un campo, guardado en transacción con merge, `tipo` obligatorio en `enviarPush` (nadie puede olvidarlo) y comprobado antes de leer dispositivos. Compatibilidad: perfiles sin preferencias siguen recibiendo reservas y mensajes.
+
+**[P2] Promociones activadas por defecto.** `normalizarPreferencias` trata todo lo que no sea `false` como `true`, también `promociones`. Las notificaciones comerciales necesitan consentimiento previo (LSSI art. 21 y RGPD); reservas y mensajes son transaccionales y sí pueden ir activados. Propuesta: `promociones` solo `true` si el usuario lo activa explícitamente (`datos?.promociones === true`); actualizar el contrato en [[Contratos API]] (por defecto `{ reservas: true, mensajes: true, promociones: false }`) y los tests. Avisar al PC 2 para el interruptor.
+
+Menor: `PUT` hace `set(..., { merge: true })` sobre `usuarios/{uid}`; si el perfil no existiera, crearía un documento solo con `preferenciasPush`. En la práctica todo usuario tiene perfil al registrarse; no bloquea.
+
+Sigue **en revisión** hasta corregir el P2.

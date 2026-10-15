@@ -43,3 +43,6 @@ Web/app: mostrar el interruptor de promociones apagado hasta leer un true del se
 - Defaults efectivos: `{ reservas: true, mensajes: true, promociones: false }`. Reservas/mensajes no cambian. Prueba de reactivación por usuario y aislamiento ajustada para requerir activación explícita en la otra cuenta.
 - Contrato corregido y aviso para PC 2 subidos antes del cambio de código (bóveda 198499b); también documentado en docs/api.md. Interruptor apagado inicialmente, sin PUT true automático al abrir ajustes.
 - Sigue en revisión de Claude; sin merge/despliegue. Pendiente UI y prueba conjunta real con PC 2.
+
+## Desplegado (2026-10-15, Izan + Claude)
+Revisión de Claude de `a5f332c`: **aprobado**, 340/340; promociones solo con `true` explícito. Desplegado en `main` `0249a99`: `/v1/push/preferencias` responde 401 sin sesión. Falta la parte del PC 2 (interruptores en app y web).

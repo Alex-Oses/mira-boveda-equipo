@@ -26,7 +26,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): código en `feat/mira-app`, falta clave VAPID y prueba en iPhone
 
 ## En revisión
-- [[T10 Preferencias de notificaciones]] · Codex (PC 1) · P2 corregido (a5f332c), revisa Claude; PC 2: promociones apagadas
+- [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
 - [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · rama `feat/G04-editor-ofertas`, revisa PC 1 o PC 4
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
 - [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`
@@ -34,5 +34,5 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho
-- [[G05 Ofertas cerca de mí]] · Izan (Claude) · aprobado Codex (fbe8125)
+- [[G05 Ofertas cerca de mí]] · Izan (Claude) · desplegado
 - [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · desplegado

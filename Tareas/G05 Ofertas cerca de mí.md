@@ -49,3 +49,6 @@ Sin emulador/Firestore real; reproducción con el servicio y el mock. Pendiente 
 - Generación de caché impide publicar y devolver cargas obsoletas tras invalidar; llamadas simultáneas comparten promesa. Se limpia la carga fallida sin borrar una generación posterior. Coste ~3N y tolerancia de 60 s entre instancias documentados.
 - Se mantiene el tratamiento de privacidad revisado: posición usada solo al calcular, sin guardarla en datos/caché ni incluir la query en logs. Sin cambios en código de ofertas por Codex.
 - Tests con Firestore simulado; no emulador por falta de Java ni prueba contra producción. No se ha hecho merge ni despliegue.
+
+## Desplegado (2026-10-15, Izan + Claude)
+`main` del backend `0249a99` en Render: `/v1/ofertas/cerca` responde 200 contra Firestore real y 400 sin lat/lng.

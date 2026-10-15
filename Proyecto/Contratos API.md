@@ -97,9 +97,9 @@ Respuesta 200:
   ]
 }
 ```
-- `nivel` es el más cercano alcanzado: el de menor `distancia` que cumpla `distanciaM <= distancia`. A 900 m → nivel 1000; a 400 m → 500; a 80 m → 100; a 15 m → 20 (llegada).
+- `nivel` es el más cercano alcanzado: el de menor `distancia` que cumpla distancia real ≤ `distancia`. Radio, nivel y orden se calculan con la distancia real; `distanciaM` es solo el valor redondeado (a 1000,4 m no aparece aunque `distanciaM` redondearía a 1000). A 900 m → nivel 1000; a 400 m → 500; a 80 m → 100; a 15 m → 20 (llegada).
 - Los restaurantes sin coordenadas no aparecen.
-- La lista de candidatos se cachea 60 s en el servidor: una oferta recién creada o desactivada puede tardar hasta 1 minuto en reflejarse (en otra instancia).
+- La lista de candidatos se cachea 60 s en el servidor: en la misma instancia los cambios se ven al momento; en otra instancia, una oferta recién creada o desactivada puede tardar hasta 1 minuto.
 
 Errores: `400 VALIDATION_ERROR` (lat/lng ausentes o fuera de rango), `429` (límite).
 

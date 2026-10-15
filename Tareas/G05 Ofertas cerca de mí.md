@@ -34,3 +34,11 @@ Revisado 95be3ac en worktree propio codex-review-G05. **333/333**. No he modific
 - **[P2] Una carga anterior puede deshacer la invalidación local de caché** (`service.js:115-129`). Reproducido pausando el get de la oferta tras leerla activa, desactivándola con editar (que invalida) y reanudando: la carga vieja repuebla la caché y cerca vuelve a devolver la oferta durante 60 s en la misma instancia. La tolerancia del contrato solo contempla otra instancia. Usar generación/versionado al invalidar y no publicar resultados de una generación anterior; añadir regresión de carga concurrente con editar/borrar.
 - **Coste/caché:** dos cerca simultáneas en frío hacen dos consultas completas de ofertas_activas; falta compartir la carga en curso. Además del par oferta/restaurante, se leen los N documentos de bloqueo: el barrido normal son N bloqueos + 2N lecturas individuales (aprox. 3N, no 2N). Conviene compartir la promesa de carga y documentar el coste completo y el pico al caducar. No hay coordenadas del usuario en esa caché.
 Sin emulador/Firestore real; reproducción con el servicio y el mock. Pendiente corrección y nueva revisión; sin merge ni despliegue.
+
+## Corrección de la revisión de Codex (2026-10-15, Izan + Claude)
+`5f…` en `feat/G05-ofertas-cerca`:
+- P2 bordes: radio, nivel y orden con la distancia real; solo se redondea `distanciaM`. Test a ±0,4 m de 20/100/500 m y a 999,6/1000,4 m.
+- P2 caché: generación en cada invalidación (una carga vieja no publica) y carga en curso compartida. Tests: carga parada mientras se desactiva la oferta → ni la respuesta ni la caché la devuelven; dos peticiones en frío → una sola consulta de `ofertas_activas`.
+- Coste documentado: ~3N lecturas por recarga (N bloqueos + 2N), cada 60 s por instancia con tráfico.
+- `npm test` 336/336. Contrato aclarado. Repetir revisión de Codex.
+

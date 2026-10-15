@@ -28,7 +28,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 ## En revisión
 - [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · rama `feat/G04-editor-ofertas`, revisa PC 1 o PC 4
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · revisa Claude (9f0a452), contrato publicado para PC 2
-- [[G05 Ofertas cerca de mí]] · Izan (Claude) · P2 Codex: bordes y caché concurrente
+- [[G05 Ofertas cerca de mí]] · Izan (Claude) · P2 corregidos, revisa Codex
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
 - [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · desplegado, falta prueba en dispositivo real (T03)

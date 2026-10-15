@@ -76,7 +76,34 @@ Probado `feat/G01-contrato-ofertas` (`d60f007`): GET público, 400, 409, 201, PU
 El mock de `main` todavía no lo tiene: sigue en la rama.
 
 ## Fase 2: Embudo de ofertas
-_(pendiente)_
+Publicado el 2026-10-15 por el PC 1 (Izan + Claude). La API de la fase 1 ya está en producción.
+
+### GET /v1/ofertas/cerca?lat=41.3874&lng=2.1686  (auth: no)
+Para los avisos por distancia (PC 2). Devuelve las ofertas activas y vigentes de los restaurantes a **1 km o menos**, de la más cercana a la más lejana, con el nivel alcanzado.
+- `lat`: −90 a 90; `lng`: −180 a 180 (números decimales).
+- **La posición no se guarda ni se registra** (ni en logs). Solo se usa para calcular la distancia.
+- Límite: 60 peticiones por minuto. Llamadla con throttle (por ejemplo, cada 30 s o cada 50 m de movimiento).
+
+Respuesta 200:
+```
+{
+  data: [
+    {
+      restaurante: { id: "1", nombre: "Can Solé", coordenadas: { lat: 41.3881, lng: 2.1690 } },
+      oferta: Oferta,                     // el modelo de la fase 1, completo
+      distanciaM: 84,                     // metros, entero
+      nivel: { distancia: 100, texto: "15 % en la cuenta", descuentoPct: 15 }
+    }
+  ]
+}
+```
+- `nivel` es el más cercano alcanzado: el de menor `distancia` que cumpla `distanciaM <= distancia`. A 900 m → nivel 1000; a 400 m → 500; a 80 m → 100; a 15 m → 20 (llegada).
+- Los restaurantes sin coordenadas no aparecen.
+- La lista de candidatos se cachea 60 s en el servidor: una oferta recién creada o desactivada puede tardar hasta 1 minuto en reflejarse (en otra instancia).
+
+Errores: `400 VALIDATION_ERROR` (lat/lng ausentes o fuera de rango), `429` (límite).
+
+Pendiente de acordar con el PC 3 para [[G07 Estadísticas de ofertas]]: qué contadores agregados guarda la API (por ejemplo, avisos mostrados por nivel y día), siempre sin ubicación.
 
 ## Fase 3: Llegada al restaurante
 _(pendiente)_
@@ -101,3 +128,13 @@ Al cerrar sesión, borrar **antes** de invalidar el Bearer. Al cambiar de cuenta
 `enviarPush(uid, { titulo, cuerpo, data? })`: Expo Server SDK para expo y Firebase Admin Messaging para web; `data` es un mapa de cadenas compatible con FCM. No hay endpoint público de envío.
 Los tickets y recibos Expo con DeviceNotRegistered y los tokens FCM no registrados se limpian; errores temporales conservan el dispositivo.
 Credenciales de Firebase en Secret File de Render mediante GOOGLE_APPLICATION_CREDENTIALS; EXPO_ACCESS_TOKEN solo si se habilita seguridad push en Expo. FCM/VAPID/EAS se configuran fuera del repo y de la bóveda.
+
+### T05 · Avisos de reservas y mensajes (Codex, 2026-10-15)
+- Sin endpoints nuevos. Al pasar a confirmada/cancelada, UID cliente de la reserva recibe `{ ruta: "reservas", reservaId, estado }` en data. Crear una pendiente todavía no envía confirmación.
+- Mensaje nuevo desde la API: UID destinatario recibe `{ ruta: "mensajes", mensajeId }`. Incluye enviarMensaje (espera/JAM) y mensaje de admin al dueño; sin UID se conserva el mensaje por email sin push.
+- Textos es/ca/en por idioma del token. Aviso de buzón genérico, sin mostrar contenido privado en pantalla de bloqueo.
+- Extensión interna compatible de enviarPush: `textos?: { es?: { titulo, cuerpo }, ca?: { titulo, cuerpo }, en?: { titulo, cuerpo } }`; si falta traducción, usa título/cuerpo base. El formato público de tokens no cambia.
+- Avisos tras commit, fuera de callbacks repetibles; repetir el mismo estado no vuelve a avisar. Best-effort sin cola persistida: fallo de push no revierte el negocio y una caída tras commit puede perder aviso.
+- Rama feat/T05-notificar-reservas-mensajes (4aa0eab), en revisión; aún no desplegada. Instrucciones de prueba conjunta en mira-api/docs/api.md §T05.
+
+- Ajuste T05 (08258f9): en PUT /v1/reservations/:id/cancel no se envía push si el actor es el titular; si cancela otra cuenta admin autorizada, sí se avisa al cliente. Estado, aforo y 409 no cambian.

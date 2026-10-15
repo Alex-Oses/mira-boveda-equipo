@@ -9,7 +9,6 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 - [[G04 Editor básico de ofertas por distancia]] · PC 3
 
 ### Fase 2: Embudo de ofertas
-- [[G05 Ofertas cerca de mí]] · PC 1
 - [[G06 Avisos por distancia en web y móvil]] · PC 2
 - [[G07 Estadísticas de ofertas]] · PC 3
 
@@ -22,13 +21,15 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[T05 Notificar reservas y mensajes]] · Codex (PC 1)
+- [[G05 Ofertas cerca de mí]] · Izan (Claude)
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
 ## En revisión
+- [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
+- [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · desplegado, falta prueba en dispositivo real (T03)
-- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · P1 corregido (30f80c3), revisa Codex
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho
+- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · desplegado

@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Izan (Claude)
 pc: PC 1
 fase: 2
 depende_de: [G02]
-rama:
+rama: feat/G05-ofertas-cerca
 ---
 # G05 Ofertas cerca de mí
 

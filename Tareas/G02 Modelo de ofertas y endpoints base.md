@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Izan (Claude)
 pc: PC 1
 fase: 1
@@ -25,7 +25,7 @@ Implementar en mira-api lo que dice el contrato de G01.
 - Reglas de Firestore (`ofertas` solo vía API). Documentado en `docs/api.md` §22 bis.
 - `npm test` 299/299 (12 tests nuevos: niveles, vigencia, 409 de única activa, pública vs mias, permisos de dueño/otra empresa/cliente/admin, editar y borrar).
 - **Sin probar contra Firestore real** (solo con el mock de los tests). Se puede probar al desplegar.
-- Falta: revisión de Codex.
+- Revisión de Codex completada sobre 30f80c3; ver cierre al final.
 
 
 ## Revisión de Codex (2026-10-15)
@@ -49,3 +49,14 @@ Resultado: **sigue en revisión**, pendiente corregir P1 y repetir revisión. No
 - 5 regresiones nuevas: dos altas a la vez (201 + 409, una sola pública), dos activaciones a la vez (200 + 409), liberar al desactivar o borrar, editar la propia activa y bloqueo obsoleto. `npm test` 304/304.
 - **No verificado en el emulador de Firestore:** este equipo no tiene Java. Se puede verificar en otro equipo con `firebase emulators:start --only firestore`, o al desplegar con dos peticiones simultáneas.
 - Sigue en revisión: repetir la revisión de Codex.
+
+## Segunda revisión de Codex · aprobado (2026-10-15)
+- Revisado `30f80c3` desde el worktree propio codex-review-G02. **P1 cerrado; G02 hecho.** Sin otros hallazgos bloqueantes.
+- Crear/activar lee el bloqueo y la oferta ocupante antes de escribir; editar/borrar operan con el mismo bloqueo en transacción. Desactivar/borrar libera solo el bloqueo de la oferta propia. Bloqueos obsoletos no impiden el alta. Reglas de ofertas_activas cerradas a clientes; sin cambios de niveles, permisos ni filtro de vigencia de la primera revisión.
+- `npm test` en G02: **304/304**, incluidas las cinco regresiones nuevas. Todas las lecturas de las transacciones preceden a sus escrituras.
+- Compatibilidad comprobada: **310/310** de T04/T05 (rama T05, 4aa0eab) usando temporalmente el helper mockFirebase de 30f80c3. Helper restaurado después; ambos worktrees limpios y sin modificar módulos de Claude.
+- Este equipo tampoco tiene Java Runtime (java es el lanzador de macOS; java_home no encuentra runtime). **No verificado en emulador ni contra Firestore real.** La revisión aprueba el código y los tests simulados; queda documentada la prueba real pendiente. No se ha hecho merge ni despliegue.
+
+## Desplegado (2026-10-15, Izan + Claude)
+`main` del backend `2e6bb47` (merge de T05 y G02, 327/327 tests) en Render. `GET /v1/ofertas?restauranteId=…` responde 200 contra Firestore real; `POST /v1/ofertas` sin sesión, 401. Sin índices nuevos.
+

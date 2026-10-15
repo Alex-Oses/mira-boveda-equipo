@@ -124,7 +124,7 @@ Publicado el 2026-10-15 por el PC 1 (Izan + Claude). Lo implementa Codex en [[G0
 }
 ```
 - La visita **no guarda la posición** del cliente: solo se usa para comprobar la distancia al crearla.
-- Una visita pendiente por cliente y restaurante: si ya hay una sin caducar, se devuelve esa con un QR nuevo.
+- Una visita pendiente por cliente y restaurante: si ya hay una sin caducar, se devuelve esa y se reemite el QR **sin renovar los 15 minutos originales** (confirmado por Izan). Al firmar el mismo ID/fecha con HMAC el texto es idéntico.
 
 ### El QR
 El contenido del QR es un texto `v1.<visitaId>.<caducaEnMs>.<firma>`, donde la firma es HMAC-SHA256 (base64url) de `v1.<visitaId>.<caducaEnMs>` con la variable de entorno `VISITAS_SECRET` (solo en Render, nunca en el repo). La app lo pinta como QR; el panel lo lee con la cámara y lo manda tal cual a validar.
@@ -150,6 +150,11 @@ Errores: 400 `QR_INVALIDO` (formato o firma), 410 `QR_CADUCADO`, 404, 403 `OTRO_
 Para la lista de llegadas del día del panel (G10). `fecha` opcional (hoy en Madrid por defecto).
 Respuesta 200: `{ data: [Visita (sin uid) + cliente: { nombre }] }`, de la más reciente a la más antigua.
 Errores: 400, 401, 403, 404.
+
+### Entrega G08 / preparación de despliegue (Codex · 2026-10-15)
+- feat/G08-visitas-qr, ed2b8b8, en revisión de Claude; aún no desplegado. VISITAS_SECRET mínimo 32 caracteres, solo en Render, sin valor real en repo/bóveda; si falta, crear/validar devuelve 503 VISITAS_NO_CONFIGURADO.
+- Colección auxiliar privada visitas_pendientes para idempotencia concurrente. Nuevo índice compuesto de visitas (restauranteId ASC, fecha ASC, creada DESC) para la lista por día; desplegarlo antes del listado, nunca con --force. Reglas cerradas para ambas colecciones.
+- La fecha interna de la visita es el día de creación en Madrid, usado para la lista; cada contador visitas/confirmadas se incrementa en el día del evento (Madrid). Sin UID ni posición en ofertas_stats. No cambia el modelo público.
 
 ### Comisión
 Al confirmar se copia `restaurants.comisionPct` (el mismo campo que usan los tickets) en la visita. **El importe no se calcula aquí**, porque la visita no conoce la cuenta; queda para cuando haya ticket. Pendiente de decidir con el equipo si además se cobra una tarifa fija por visita confirmada.

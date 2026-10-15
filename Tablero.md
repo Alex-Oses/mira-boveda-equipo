@@ -19,13 +19,13 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[G08 QR firmado, visitas y comisión]] · Codex (PC 1)
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
 - [[T07 Web Push en la PWA]] · Alex (PC 2): código en `feat/mira-app`, falta clave VAPID y prueba en iPhone
 
 ## En revisión
+- [[G08 QR firmado, visitas y comisión]] · Codex (PC 1) · revisa Claude (ed2b8b8); requiere secreto e índice nuevos
 - API de estadísticas para [[G07 Estadísticas de ofertas]] · Izan (Claude) · revisa Codex
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
 - [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · revisado por Claude: P2 (error del formulario), falta prueba con API real

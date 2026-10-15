@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Reemitir QR mantiene la caducidad original (G08)
+- **Decisión:** al devolver una visita pendiente no se renuevan sus 15 minutos. Se firma de nuevo ID/fecha originales: el texto HMAC es determinista y coincide. La siguiente visita se crea solo tras caducar o confirmar la anterior.
+- **Por qué:** no prolongar indefinidamente una pendiente al repetir POST. Idempotencia por cliente/restaurante en una transacción con bloqueo privado visitas_pendientes.
+- **Quién:** Izan confirma mantener la caducidad original; Codex implementa G08 (ed2b8b8), pendiente revisión de Claude.
+
 ### 2026-10-15 · Promociones push solo tras activación explícita (corrección T10)
 - **Decisión:** prevalece sobre el valor por defecto inicial de T10: promociones false salvo `preferenciasPush.promociones === true`; reservas/mensajes mantienen true por defecto. El interruptor de PC 2 debe activarse solo por acción del usuario.
 - **Por qué:** corrección P2 solicitada en la revisión de Claude: no interpretar ausencia o valores no booleanos como aceptación de promociones.

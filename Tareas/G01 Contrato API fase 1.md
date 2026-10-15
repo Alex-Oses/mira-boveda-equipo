@@ -23,3 +23,6 @@ Los PC 2 y 3 confirman que pueden trabajar con el mock.
 - Contrato publicado en [[Contratos API]] (fase 1) y decisión en [[Decisiones]].
 - Mock en `scripts/mock-api.mjs` del frontend, rama `feat/G01-contrato-ofertas`: GET pública, GET mias, POST, PUT y DELETE con las mismas validaciones (4 niveles, no empeorar, una activa por restaurante). Oferta de ejemplo en el restaurante `1`.
 - Falta: que los PC 2 y 3 confirmen que les sirve.
+
+## Mock unido a main (2026-10-15)
+El mock de ofertas (fases 1 a 3: ofertas, cerca, avisos y estadísticas) está en `main` del frontend (`7e9d85e`). Ya no hace falta cambiar a la rama `feat/G01-contrato-ofertas`: `npm run mock-api` desde `main`.

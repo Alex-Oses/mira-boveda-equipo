@@ -33,7 +33,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho
+- [[G03 Consentimiento y permiso de ubicación]] · Izan (Claude), apoyo PC 1 · en main (web); app con el APK de Alex
 - API de estadísticas para [[G07 Estadísticas de ofertas]] · Izan (Claude) · desplegada
-- [[G03 Consentimiento y permiso de ubicación]] · Izan (Claude), apoyo PC 1 · aprobado por Codex (dce2a73); Alex integra corrección y prueba APK
 - [[G05 Ofertas cerca de mí]] · Izan (Claude) · desplegado
 - [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · desplegado

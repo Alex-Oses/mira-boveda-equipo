@@ -57,3 +57,6 @@ Rama `feat/G03-ubicacion` del frontend.
 - Revisadas las 5 regresiones con Expo falso y promesas controladas: flujo normal, desactivación en cada una de las 3 esperas, posición tardía, permiso denegado y servicios apagados. La espera de servicios ya termina con 0 seguimientos; al resolver una suscripción tardía se ejecuta `remove()` sin restaurar posición.
 - Verificado en `codex-review-G03`: `npm test` **204/204**, build web y `npm run lint` móvil correctos; worktree limpio y `git diff --check` correcto. No cambia el lockfile respecto a la revisión anterior. Sin cambios de código de Codex.
 - Limitaciones ya conocidas: `tsc --noEmit` solo muestra ayuda por falta de `tsconfig.json`, no se cuenta como typecheck superado; sin prueba en dispositivo real. Alex debe traer `dce2a73` a `feat/mira-app` y probar el APK con la corrección.
+
+## Unido a main (2026-10-15, Izan + Claude)
+`main` del frontend `c42e1e3` (Vercel). La sección de ubicación ya está en Mi cuenta en producción. La app sigue pendiente del APK de Alex (`feat/mira-app`, que debe traer `dce2a73`).

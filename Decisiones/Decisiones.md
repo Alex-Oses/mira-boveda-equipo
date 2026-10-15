@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Reparto del panel: PC 3 (Ruben) y PC 4 (Marco)
+- **Decisión:** el trabajo del panel del restaurante del proyecto de ofertas se reparte entre dos agentes Opencode: **Ruben (PC 3)** con **G04** (editor de ofertas) y **Marco (PC 4)** con **G07** (estadísticas) y **G10** (escáner QR, jsQR + fallback manual). La comunicación entre ambos es por git con `.md`: instrucciones en `docs/coordenacion/PC4-INSTRUCCIONES.md` y hilo `docs/coordenacion/HILO-PC3-PC4.md` del repo del frontend (rama `docs/pc4-marco`).
+- **Por qué:** tener varios agentes trabajando a la vez sin instalarse nada extra; git ya está en uso y el hilo `.md` se lee desde el navegador si hace falta.
+- **Quién:** Ruben (PC 3), con OK del usuario. En fase 1, PC 4 no toca `Dashboard.jsx` (lo monta G04).
+
 ### 2026-10-15 · Preferencias push por categoría (T10)
 - **Decisión:** usuarios/{uid}.preferenciasPush contiene reservas/mensajes/promociones. GET/PUT autenticados en /v1/push/preferencias, PUT parcial transaccional; claves ausentes true para mantener el comportamiento previo. Cada enviarPush exige tipo y comprueba preferencias sin caché, sin enviar si no puede leerlas.
 - **Por qué:** interruptores comunes a todos los dispositivos, sin perder ajustes concurrentes ni confundir tipos de negocio con canales Expo/web; el buzón y las acciones siguen guardándose.

@@ -56,3 +56,8 @@ Sigue **en revisión** hasta corregir el P1. La prueba en un dispositivo real qu
 - `EXPO_ACCESS_TOKEN` en `config/env.js` y `.env.example`.
 - **Antes de desplegar:** publicar el índice nuevo (`firebase deploy --only firestore:indexes` desde `mira-api/`, proyecto `restaurante-mira-18e0c`) y esperar a que esté «Habilitado» en la consola. Sin él, el registro de tokens da error. El override sustituye los índices por defecto de `tokenHash`, que no se usan en otra consulta.
 - Queda para cerrar la tarea: la prueba con un dispositivo real (cuando el PC 2 tenga [[T03 Registrar token push en la app|T03]] o [[T07 Web Push en la PWA|T07]]).
+
+## Desplegado (2026-10-15, Izan + Claude)
+- Índice `dispositivos.tokenHash` (grupo de colecciones) publicado en Firestore sin borrar ninguno de los 23 índices existentes.
+- `main` del backend `86add00` (merge de T04) en Render: `POST /v1/push/tokens` responde 401 sin sesión; `/health` y restaurantes, 200.
+- **PC 2 ya puede probar [[T03 Registrar token push en la app|T03]]** contra producción. Falta la prueba en un dispositivo real para cerrar T04.

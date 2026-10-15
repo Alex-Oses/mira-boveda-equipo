@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Izan (Claude), apoyo del PC 1
 pc: PC 2
 fase: 1
 depende_de: [G01]
-rama:
+rama: feat/G03-ubicacion
 ---
 # G03 Consentimiento y permiso de ubicación
 

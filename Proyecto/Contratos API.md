@@ -109,3 +109,5 @@ Credenciales de Firebase en Secret File de Render mediante GOOGLE_APPLICATION_CR
 - Extensión interna compatible de enviarPush: `textos?: { es?: { titulo, cuerpo }, ca?: { titulo, cuerpo }, en?: { titulo, cuerpo } }`; si falta traducción, usa título/cuerpo base. El formato público de tokens no cambia.
 - Avisos tras commit, fuera de callbacks repetibles; repetir el mismo estado no vuelve a avisar. Best-effort sin cola persistida: fallo de push no revierte el negocio y una caída tras commit puede perder aviso.
 - Rama feat/T05-notificar-reservas-mensajes (4aa0eab), en revisión; aún no desplegada. Instrucciones de prueba conjunta en mira-api/docs/api.md §T05.
+
+- Ajuste T05 (08258f9): en PUT /v1/reservations/:id/cancel no se envía push si el actor es el titular; si cancela otra cuenta admin autorizada, sí se avisa al cliente. Estado, aforo y 409 no cambian.

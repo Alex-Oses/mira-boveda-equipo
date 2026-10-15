@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Codex (PC 1)
 depende_de: [T04]
 rama: feat/T05-notificar-reservas-mensajes
@@ -36,3 +36,9 @@ Al hacer una reserva desde otra cuenta, al cliente le llega la notificación.
 ## Compatibilidad con G02 (2026-10-15)
 - Probados los tests T04/T05 de `4aa0eab` con el mock de transacciones en cola de G02 `30f80c3`: **310/310**. Sin regresiones de push; helper sustituido solo durante la comprobación y restaurado después.
 - T05 ya está implementada y subida; sigue en revisión de Claude y pendiente recepción real con PC 2. No ha sido necesario cambiar la rama para esta comprobación.
+
+## Ajuste P3 de Codex (2026-10-15)
+- Subido a la misma rama: [08258f9](https://github.com/ruben-munoz-bl/restuarante-mira-backend/commit/08258f9). cancelarReserva solo envía push si reserva.uid !== uid: el titular no recibe aviso de su propia cancelación; otra cuenta admin sigue avisando al cliente.
+- Ajustados el test cliente/admin, los de fallo de proveedor/reintento y docs/api.md. **310/310** usando el helper en cola de G02 30f80c3, incluido el test del reintento; helper restaurado al terminar, sin cambios de código de G02.
+- G02 ya aprobado por Codex y marcado hecho en nota/Tablero (commit de bóveda 5650016); no bloquea la fase 2 por revisión. Sin Java, la prueba real de Firestore sigue sin realizarse.
+- T05 queda preparada para unión/despliegue por Claude; recepción real con PC 2 pendiente. Sin merge ni despliegue realizados aquí.

@@ -14,12 +14,11 @@ Objetivo: que MIRA funcione como app en Android e iOS y pueda enviar notificacio
 4. iOS / web: [[T06 Convertir la web en PWA|T06]], [[T07 Web Push en la PWA|T07]], [[T08 Aviso para instalar en iOS|T08]]
 5. Pruebas y extras: [[T09 Builds y pruebas en móviles|T09]], [[T10 Preferencias de notificaciones|T10]]
 
-## Reparto sugerido (3 personas)
-- **A, app Android:** T01 → T02 → T03 → T09
-- **B, backend:** T04 → T05 → T10 (parte de la API)
-- **C, web e iOS:** T06 → T07 → T08 → T10 (parte web)
+## Reparto (encaja con [[Ofertas por geolocalización]])
+- **PC 2 (app del cliente):** T01, T02, T03, T06, T07, T08 y T09
+- **PC 1 (backend):** T04, T05 y T10 (parte de la API)
 
-T04 une a todos: A y C necesitan el endpoint de tokens, así que el contrato que hay en [[Decisiones]] hay que cerrarlo el primer día. Mientras tanto, A y C pueden sacar el token y mostrarlo por consola.
+T04 une a todos: el PC 2 necesitan el endpoint de tokens, así que el contrato que hay en [[Decisiones]] hay que cerrarlo el primer día. Mientras tanto, A y C pueden sacar el token y mostrarlo por consola.
 
 ## Más adelante
 Con cuenta de Apple Developer: build de iOS con EAS y TestFlight usando la misma app Expo.

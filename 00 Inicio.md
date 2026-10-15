@@ -10,7 +10,9 @@ Memoria compartida del equipo y de nuestras IAs (Claude, Codex...). Aquí se apu
 
 ## Proyecto
 - [[MIRA - Resumen]]: repos, stack y cómo arrancarlo.
-- [[Plan app móvil y notificaciones]] ← objetivo actual
+- [[Ofertas por geolocalización]] ← **proyecto actual** (fases, PC y reparto)
+- [[Contratos API]]: lo publica el PC 1 al empezar cada fase
+- [[Plan app móvil y notificaciones]]: notificaciones push (apoyo a la app móvil)
 - [[Equipo]]
 
 ## Cómo trabajamos

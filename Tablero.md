@@ -1,18 +1,27 @@
 # Tablero
 
-Formato: `[[tarea]] · responsable`. Mueve la línea cuando cambie de estado.
+Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · responsable`. Al cambiar de estado, mueve la línea y cambia `estado` en la nota de la tarea.
 
 ## Libre
-- [[T01 Configurar EAS y app.json]]
-- [[T02 Firebase y FCM para Android]]
-- [[T03 Registrar token push en la app]]
-- [[T04 Módulo push en mira-api]]
-- [[T05 Notificar reservas y mensajes]]
-- [[T06 Convertir la web en PWA]]
-- [[T07 Web Push en la PWA]]
-- [[T08 Aviso para instalar en iOS]]
-- [[T09 Builds y pruebas en móviles]]
-- [[T10 Preferencias de notificaciones]]
+
+### Fase 1: Base
+- [[G01 Contrato API fase 1]] · PC 1
+- [[G02 Modelo de ofertas y endpoints base]] · PC 1
+- [[G03 Consentimiento y permiso de ubicación]] · PC 2
+- [[G04 Editor básico de ofertas por distancia]] · PC 3
+
+### Fase 2: Embudo de ofertas
+- [[G05 Ofertas cerca de mí]] · PC 1
+- [[G06 Avisos por distancia en web y móvil]] · PC 2
+- [[G07 Estadísticas de ofertas]] · PC 3
+
+### Fase 3: Llegada al restaurante
+- [[G08 QR firmado, visitas y comisión]] · PC 1
+- [[G09 Pantalla de llegada con QR]] · PC 2
+- [[G10 Escáner de QR y aviso de llegada]] · PC 3
+
+### Notificaciones push (apoyo a G06)
+Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
 

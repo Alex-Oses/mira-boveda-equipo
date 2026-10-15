@@ -25,3 +25,10 @@ Al hacer una reserva desde otra cuenta, al cliente le llega la notificación.
 - npm test: **310/310**, 12 nuevas; git diff --check correcto. Tests con proveedores/Firestore simulados, sin prueba en dispositivo real.
 - Documentado en mira-api/docs/api.md (al final, sección T05). Sin cambios de índices, reglas, ofertas ni frontend. No se ha desplegado ni unido a main.
 - Pendiente con PC 2: dispositivo de T03/T07, reserva confirmada/cancelada desde empresa/admin y mensaje de buzón; comprobar idioma, recepción y navegación por data.ruta. No hay cola persistida de eventos: caída tras commit puede perder el aviso.
+
+## Revisión de Claude (2026-10-15)
+`4aa0eab`: **aprobado.** `npm test` 310/310.
+- Bien: aviso solo después de guardar y nunca dentro del callback de la transacción (no se repite si Firestore reintenta). `actualizarEstado` pasa a transacción y solo avisa si el estado cambia (no duplica). Siempre al UID de la reserva, nunca al del actor. Un fallo de push no rompe la reserva ni el mensaje. Textos es/ca/en según el idioma de cada dispositivo, y los mensajes avisan sin enviar su contenido. Las reservas nacen `pendiente`, así que «confirmada» llega cuando el restaurante la confirma. Sin avisos duplicados (las cancelaciones y confirmaciones no crean además un mensaje).
+- **[P3, recomendado] El cliente que cancela su propia reserva recibe un push de lo que acaba de hacer.** En `cancelarReserva`, avisar solo si quien cancela no es el dueño de la reserva (`reserva.uid !== uid`, es decir, admin o restaurante). Ajustar el test «cancelación de cliente y de admin…».
+- **Al unir con G02:** mi rama cambia `runTransaction` del mock de los tests para ejecutar las transacciones en cola. Comprobar que el test «reintento del callback de Firestore…» sigue pasando después del merge.
+- Para cerrar: la prueba real con el PC 2 (T03).

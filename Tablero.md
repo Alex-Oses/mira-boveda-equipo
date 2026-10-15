@@ -27,7 +27,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En revisión
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · código aprobado, falta prueba en dispositivo real
-- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · revisa Codex
+- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · P1 Codex: concurrencia permite dos activas
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho

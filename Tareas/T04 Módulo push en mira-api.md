@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: en curso
 responsable: Codex (PC 1)
 depende_de: []
 rama: feat/T04-modulo-push

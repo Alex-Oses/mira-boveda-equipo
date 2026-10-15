@@ -6,16 +6,15 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 
 ### Fase 1: Base
 - [[G03 Consentimiento y permiso de ubicación]] · PC 2
-- [[G04 Editor básico de ofertas por distancia]] · PC 3
 
 ### Fase 2: Embudo de ofertas
 - [[G06 Avisos por distancia en web y móvil]] · PC 2
-- [[G07 Estadísticas de ofertas]] · PC 3
+- [[G07 Estadísticas de ofertas]] · PC 4 (Marco)
 
 ### Fase 3: Llegada al restaurante
 - [[G08 QR firmado, visitas y comisión]] · PC 1
 - [[G09 Pantalla de llegada con QR]] · PC 2
-- [[G10 Escáner de QR y aviso de llegada]] · PC 3
+- [[G10 Escáner de QR y aviso de llegada]] · PC 4 (Marco)
 
 ### Notificaciones push (apoyo a G06)
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
@@ -27,6 +26,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): código en `feat/mira-app`, falta clave VAPID y prueba en iPhone
 
 ## En revisión
+- [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · rama `feat/G04-editor-ofertas`, revisa PC 1 o PC 4
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · revisa Claude (9f0a452), contrato publicado para PC 2
 - [[G05 Ofertas cerca de mí]] · Izan (Claude) · P2 Codex: bordes y caché concurrente
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2

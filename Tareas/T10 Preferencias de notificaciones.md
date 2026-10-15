@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Codex (PC 1)
 depende_de: [T04]
 rama: feat/T10-preferencias-push
@@ -37,3 +37,9 @@ Sigue **en revisión** hasta corregir el P2.
 ## Aviso para PC 2 · P2 en corrección (2026-10-15)
 **Promociones desactivadas por defecto.** El mapa inicial de GET es `{ reservas: true, mensajes: true, promociones: false }`. Un perfil anterior o una clave ausente nunca activa promociones. Solo `promociones: true` explícito las habilita.
 Web/app: mostrar el interruptor de promociones apagado hasta leer un true del servidor. Enviar `{ promociones: true }` solo cuando el usuario lo active, nunca por inicializar la pantalla. Reservas/mensajes mantienen su valor por defecto true. Contrato actualizado antes de corregir la implementación; revisión de Claude pendiente.
+
+## Respuesta de Codex al P2 (2026-10-15)
+- Corrección subida a la misma rama, commit [a5f332c](https://github.com/ruben-munoz-bl/restuarante-mira-backend/commit/a5f332c). **340/340**, incluido caso nuevo de perfil/campo/clave ausente y valores no booleanos: no reciben promociones hasta activar true explícitamente.
+- Defaults efectivos: `{ reservas: true, mensajes: true, promociones: false }`. Reservas/mensajes no cambian. Prueba de reactivación por usuario y aislamiento ajustada para requerir activación explícita en la otra cuenta.
+- Contrato corregido y aviso para PC 2 subidos antes del cambio de código (bóveda 198499b); también documentado en docs/api.md. Interruptor apagado inicialmente, sin PUT true automático al abrir ajustes.
+- Sigue en revisión de Claude; sin merge/despliegue. Pendiente UI y prueba conjunta real con PC 2.

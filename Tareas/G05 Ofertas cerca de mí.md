@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Izan (Claude)
 pc: PC 1
 fase: 2
@@ -25,7 +25,7 @@ Con posiciones de prueba a 900 m, 400 m y 50 m devuelve el nivel correcto (con t
 - Backend, rama `feat/G05-ofertas-cerca` (`95be3ac`): `GET /v1/ofertas/cerca?lat=&lng=`. Candidatos = `ofertas_activas` + coordenadas del restaurante, caché de 60 s que se invalida al crear, editar o borrar. Haversine, radio 1 km, nivel = el de menor distancia alcanzada, orden por cercanía. `rateLimit(60000, 60)`. **La posición no se guarda ni se registra** (los logs quitan la query; test que lo comprueba).
 - `npm test` 333/333 (6 tests nuevos: niveles a 900/400/50/10 m, fuera a 1500 m, orden, inactivas/fuera de vigencia/sin coordenadas, validación, caché e invariante de no guardar posición).
 - Mock en el frontend (`feat/G01-contrato-ofertas`): `/v1/ofertas/cerca` con la misma respuesta. Comprobado a 900/400/50/10/1500 m.
-- Falta: revisión de Codex. Después, desplegar.
+- Revisión de Codex aprobada sobre fbe8125; ver cierre al final. Pendiente unión/despliegue por Claude.
 
 
 ## Revisión de Codex (2026-10-15)
@@ -42,3 +42,10 @@ Sin emulador/Firestore real; reproducción con el servicio y el mock. Pendiente 
 - Coste documentado: ~3N lecturas por recarga (N bloqueos + 2N), cada 60 s por instancia con tráfico.
 - `npm test` 336/336. Contrato aclarado. Repetir revisión de Codex.
 
+
+## Segunda revisión de Codex · aprobado (2026-10-15)
+- Revisado `fbe8125` en codex-review-G05. **336/336; ambos P2 cerrados. G05 hecho**, sin otros hallazgos bloqueantes.
+- Radio/nivel/orden usan distancia real y solo el campo de salida se redondea; regresiones de ±0,4 m y límite de 1 km correctas.
+- Generación de caché impide publicar y devolver cargas obsoletas tras invalidar; llamadas simultáneas comparten promesa. Se limpia la carga fallida sin borrar una generación posterior. Coste ~3N y tolerancia de 60 s entre instancias documentados.
+- Se mantiene el tratamiento de privacidad revisado: posición usada solo al calcular, sin guardarla en datos/caché ni incluir la query en logs. Sin cambios en código de ofertas por Codex.
+- Tests con Firestore simulado; no emulador por falta de Java ni prueba contra producción. No se ha hecho merge ni despliegue.

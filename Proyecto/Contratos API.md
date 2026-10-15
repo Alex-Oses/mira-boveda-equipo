@@ -161,3 +161,5 @@ Rama T10: feat/T10-preferencias-push (`9f0a452`), en revisión de Claude; endpoi
 
 ### Aviso para PC 2 · T10 corregido por revisión (2026-10-15)
 Promociones empieza apagado; no precargar ni guardar true automáticamente al abrir los ajustes. Enviar PUT `{ promociones: true }` únicamente tras activación explícita por el usuario y reflejar el mapa devuelto. Perfil/campo/clave ausente o valor no booleano no equivalen a activación. Se mantiene true por defecto para reservas/mensajes. Actualización de contrato autorizada en la revisión de Claude; endpoints todavía en revisión, sin desplegar.
+
+Corrección T10 subida en `a5f332c`: 340/340, pendiente nueva revisión; promociones solo true explícito. Sin despliegue. Aviso de PC 2 publicado arriba y en la nota T10.

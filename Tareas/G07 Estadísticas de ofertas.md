@@ -50,3 +50,6 @@ Se programó contra `docs/coordenacion/CONTRATOS-ASUMIDOS.md`, y **el contrato o
 - Verificado en `codex-review-G07`: `npm test` **355/355**, worktree limpio y `git diff --check` correcto; sin cambios de código de Codex.
 - Claude puede unir estadísticas con G08 y desplegar tras configurar `VISITAS_SECRET` y publicar el índice de visitas **sin `--force`**. La integración debe conservar su mock y adaptar G08 a `ofertas.contarVisita`, según lo acordado.
 - Esta aprobación cierra la **parte API**. La UI del PC 4 y sus observaciones de Claude conservan su estado independiente; por eso el estado general de G07 no se marca hecho.
+
+## API desplegada (2026-10-15, Izan + Claude)
+En `main` del backend `808ff00` (Render): `GET /v1/ofertas/estadisticas` (401 sin sesión) y `POST /v1/ofertas/:id/avisos` funcionan en producción. Falta la UI del PC 4 adaptada al contrato oficial.

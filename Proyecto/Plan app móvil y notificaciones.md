@@ -18,7 +18,7 @@ Objetivo: que MIRA funcione como app en Android e iOS y pueda enviar notificacio
 - **PC 2 (app del cliente):** T01, T02, T03, T06, T07, T08 y T09
 - **PC 1 (backend):** T04, T05 y T10 (parte de la API)
 
-T04 une a todos: el PC 2 necesitan el endpoint de tokens, así que el contrato que hay en [[Decisiones]] hay que cerrarlo el primer día. Mientras tanto, A y C pueden sacar el token y mostrarlo por consola.
+T04 une a los dos PC: el PC 2 necesita el endpoint de tokens, así que el contrato que hay en [[Decisiones]] hay que cerrarlo el primer día. Mientras tanto, el PC 2 puede sacar el token y mostrarlo por consola.
 
 ## Más adelante
 Con cuenta de Apple Developer: build de iOS con EAS y TestFlight usando la misma app Expo.

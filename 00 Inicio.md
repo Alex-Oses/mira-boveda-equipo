@@ -12,6 +12,7 @@ Memoria compartida del equipo y de nuestras IAs (Claude, Codex...). Aquí se apu
 - [[MIRA - Resumen]]: repos, stack y cómo arrancarlo.
 - [[Ofertas por geolocalización]] ← **proyecto actual** (fases, PC y reparto)
 - [[Contratos API]]: lo publica el PC 1 al empezar cada fase
+- [[Prueba conjunta]]: guion de la prueba de punta a punta de las 3 fases
 - [[Plan app móvil y notificaciones]]: notificaciones push (apoyo a la app móvil)
 - [[Equipo]]
 

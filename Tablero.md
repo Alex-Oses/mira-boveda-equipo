@@ -1,6 +1,6 @@
 # Tablero
 
-Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · responsable`. Al cambiar de estado, mueve la línea y cambia `estado` en la nota de la tarea.
+Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (cuando G06 y G09 estén en main). Formato: `[[tarea]] · responsable`. Al cambiar de estado, mueve la línea y cambia `estado` en la nota de la tarea.
 
 ## Libre
 

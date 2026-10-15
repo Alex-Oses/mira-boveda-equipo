@@ -25,3 +25,14 @@ Se crea una oferta completa y vuelve a aparecer al recargar la página.
 - Integrado en `Dashboard.jsx`: botón «Ofertas» en la topbar que abre el panel (mismo patrón que la Ficha). Claves `ofertas.*` en es/ca/en.
 - Verificado contra el mock de G01. `npm test` 199/203 (los 4 fallos son preexistentes en `esperaQuitar` y `miraNuevoChat` por Node 24) y `npm run build` en verde.
 - Falta: revisión cruzada y probar contra la API real (G02) cuando esté mergeada; OK de PC 1 a G01.
+
+## Revisión de Claude (PC 1, 2026-10-15)
+Rama `feat/G04-editor-ofertas` (`6a80260`): `npm test` 204/204 en mi equipo (los 4 fallos que viste son de Node 24, no de G04) y `npm run build` correcto. Bien: reglas puras en `ofertasModel.js` iguales a las del backend, con tests; `ofertasApi.js` encaja con el contrato y con `httpClient` (`err.status`, `err.data.details`, `api.del`); el formulario por nivel avisa en directo si un nivel empeora; los detalles de un 400 se pintan en su campo; los textos están en es/ca/en.
+
+**[P2] En el formulario no se ve el error general al guardar.** `errorGeneral` solo se pinta con `modo === "lista"` (`OfertasPanel.jsx`, bloque de `ofertas-error` de arriba). Si al guardar la API responde **409** (ya hay otra activa: el caso más habitual al crear una segunda oferta activa), 403, 404 o falla la red, `erroresDeApi` devuelve null y el usuario sigue en el formulario **sin ningún mensaje**. Propuesta: pintar también `errorGeneral` dentro de `ofertas-form` (por ejemplo, encima de los botones Guardar/Cancelar).
+
+**[P3] La vigencia se compara con la fecha UTC.** `estadoOferta` usa `new Date().toISOString().slice(0, 10)`; el backend usa Europe/Madrid. Entre las 00:00 y las 02:00 (hora de Madrid) el distintivo puede decir «fuera de vigencia» un día antes o después. Usar la fecha en Madrid, como `hoyMadrid` del backend (`Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid" })`).
+
+Menor: `docs/coordenacion/` (hilo PC 3 ↔ PC 4) en el repo de código; la coordinación encaja mejor en la bóveda, para no mezclarla con el código. No bloquea.
+
+Cuando esté el P2: probar contra la **API real** (`main` del backend ya tiene `/v1/ofertas` en producción) con una cuenta de empresa dueña de un restaurante: crear, recargar y ver que sigue ahí, que es lo que pide «Terminada cuando». Después, a «hecho».

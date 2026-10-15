@@ -28,7 +28,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 ## En revisión
 - API de estadísticas para [[G07 Estadísticas de ofertas]] · Izan (Claude) · revisa Codex
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
-- [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · rama `feat/G04-editor-ofertas`, revisa PC 1 o PC 4
+- [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · revisado por Claude: P2 (error del formulario), falta prueba con API real
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
 - [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · desplegado, falta prueba en dispositivo real (T03)

@@ -49,3 +49,6 @@ Un QR solo se valida una vez, únicamente en su restaurante y antes de que caduq
 - Índice de `visitas` publicado sin `--force` (24 índices, ninguno borrado).
 - `main` del backend `808ff00` (estadísticas + G08) en Render: `/v1/visitas/validar` responde 401 sin sesión. Al unir, G08 cuenta con `ofertas.contarVisita({ tx, fecha })` y el mock de los tests conserva el `increment` con fusión en profundidad. 376/376.
 - **Falta `VISITAS_SECRET` en Render** (lo pone Izan). Sin él, crear o validar visitas responde 503 `VISITAS_NO_CONFIGURADO`; el resto de la API no se ve afectado.
+
+## VISITAS_SECRET (2026-10-15)
+Configurado en Render por Izan (el valor no está en ningún sitio del repo ni de la bóveda). Pendiente de comprobar con una cuenta de restaurante: el escáner con un código inventado debe responder «código no válido» (400) y no un error del servidor (503).

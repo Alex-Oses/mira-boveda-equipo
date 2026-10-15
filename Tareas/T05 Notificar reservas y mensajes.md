@@ -44,5 +44,5 @@ Al hacer una reserva desde otra cuenta, al cliente le llega la notificación.
 - T05 queda preparada para unión/despliegue por Claude; recepción real con PC 2 pendiente. Sin merge ni despliegue realizados aquí.
 
 ## Desplegado (2026-10-15, Izan + Claude)
-En `main` del backend `2e6bb47` (Render), junto con G02. El test del reintento sigue pasando con la cola de transacciones del mock. Falta la prueba real con el PC 2 (T03).
+En `main` del backend `2e6bb47` (Render), junto con G02; el P3 (`08258f9`) va en `85c8e21`, también desplegado. El test del reintento sigue pasando con la cola de transacciones del mock. Falta la prueba real con el PC 2 (T03).
 

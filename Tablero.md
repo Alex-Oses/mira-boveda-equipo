@@ -24,6 +24,8 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
+- [[T07 Web Push en la PWA]] · Alex (PC 2): código en `feat/mira-app`, falta clave VAPID y prueba en iPhone
+
 ## En revisión
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · revisa Claude (9f0a452), contrato publicado para PC 2
 - [[G05 Ofertas cerca de mí]] · Izan (Claude) · P2 Codex: bordes y caché concurrente

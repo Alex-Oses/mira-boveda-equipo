@@ -1,7 +1,7 @@
 ---
-estado: en curso
+estado: en revisión
 estado_api: hecho
-responsable: Izan (Claude), retoma el trabajo de Marco
+responsable: Marco (PC 4)
 pc: PC 3
 fase: 2
 depende_de: [G04, G05]

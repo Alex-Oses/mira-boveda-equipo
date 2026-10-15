@@ -14,8 +14,6 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[G07 Estadísticas de ofertas]] · Izan (Claude), retoma el trabajo de Marco
-- [[G10 Escáner de QR y aviso de llegada]] · Codex (PC 1), retoma el trabajo de Marco
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2)
 - [[G09 Pantalla de llegada con QR]] · Alex (PC 2)
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
@@ -24,6 +22,8 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): código en `feat/mira-app`, falta clave VAPID y prueba en iPhone
 
 ## En revisión
+- [[G07 Estadísticas de ofertas]] · Marco (PC 4) · adaptado al contrato oficial (e83287f), revisa Claude
+- [[G10 Escáner de QR y aviso de llegada]] · Marco (PC 4) · adaptado al contrato oficial (80c751c), revisa Claude
 - [[G08 QR firmado, visitas y comisión]] · Codex (PC 1) · desplegado; falta VISITAS_SECRET en Render
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2

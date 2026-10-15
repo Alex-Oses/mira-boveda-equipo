@@ -1,6 +1,6 @@
 ---
-estado: en curso
-responsable: Codex (PC 1), retoma el trabajo de Marco
+estado: en revisión
+responsable: Marco (PC 4)
 pc: PC 3
 fase: 3
 depende_de: [G08]

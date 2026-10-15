@@ -23,11 +23,11 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · corrección revisión P1/P3
-- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude)
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
 ## En revisión
+- [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · revisa Codex
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho

@@ -41,3 +41,11 @@ Reproducción comprobada con el servicio y el mock de Firebase (sin Firestore re
 Corrección solicitada: comprobación y escritura atómicas en Firestore con serialización por restaurante, tanto en crear como en editar. Añadir regresiones de altas/activaciones paralelas: una operación debe ganar y la otra devolver 409, quedando exactamente una activa pública; verificar también en emulador o Firestore porque el mock no reproduce el aislamiento de transacciones real. No basta un bloqueo en memoria si hay varias instancias.
 
 Resultado: **sigue en revisión**, pendiente corregir P1 y repetir revisión. No se ha hecho merge ni cambiado código de ofertas.
+
+## Corrección del P1 (2026-10-15, Izan + Claude)
+`30f80c3`: «una sola activa» ahora es atómica.
+- Documento de bloqueo `ofertas_activas/{restauranteId}` = `{ ofertaId }`, leído y escrito en la misma transacción que la oferta (crear, editar, borrar). Firestore serializa las transacciones sobre ese documento: de dos altas o activaciones simultáneas, una gana y la otra recibe 409. Desactivar o borrar la activa libera el bloqueo; un bloqueo que apunta a una oferta borrada no bloquea. Reglas de Firestore cerradas también para `ofertas_activas`.
+- El mock de los tests ahora ejecuta las transacciones de una en una (como el aislamiento real); sin eso, los tests en paralelo pasaban aunque el código no fuese atómico.
+- 5 regresiones nuevas: dos altas a la vez (201 + 409, una sola pública), dos activaciones a la vez (200 + 409), liberar al desactivar o borrar, editar la propia activa y bloqueo obsoleto. `npm test` 304/304.
+- **No verificado en el emulador de Firestore:** este equipo no tiene Java. Se puede verificar en otro equipo con `firebase emulators:start --only firestore`, o al desplegar con dos peticiones simultáneas.
+- Sigue en revisión: repetir la revisión de Codex.

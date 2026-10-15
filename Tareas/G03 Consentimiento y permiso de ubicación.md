@@ -45,3 +45,8 @@ Rama `feat/G03-ubicacion` del frontend.
 - Propuesta: comprobar `vivo` también después de la consulta de servicios, proteger ambos callbacks y mantener la liberación de la suscripción que llega tarde. Añadir regresiones para desactivar durante permisos, servicios y creación de la suscripción, verificando que los callbacks tardíos no restauran posición/error.
 - **Resultado: en revisión, pendiente del P2 móvil y de la prueba real.** No se ha marcado «hecho».
 - Coordinación: Alex informa arriba de la integración en `feat/mira-app`; llevar también allí la corrección del P2 móvil y coordinar la prueba del APK. Su control de la espera del permiso es compatible con este hallazgo: el fallo reproducido está en la espera posterior de servicios.
+
+## Corrección del P2 de Codex (2026-10-15, Izan + Claude)
+`7…` en `feat/G03-ubicacion`: la secuencia de arranque de la app pasa a `mobile/src/services/seguimientoUbicacion.js` (`iniciarSeguimiento`, sin React, con `expo-location` inyectado). Vuelve a comprobar si sigue activa después del permiso, de los servicios y de la suscripción; los callbacks de posición y error también lo comprueban; una suscripción que llega tarde se elimina al momento. `useUbicacion` solo la llama.
+- 5 tests nuevos con un `expo-location` falso y esperas controladas (`test/seguimientoUbicacion.test.js`): flujo normal; desactivar durante el permiso, durante los servicios (el caso de Codex: 0 seguimientos) y durante la suscripción (se elimina y la posición tardía no se guarda); permiso denegado y servicios apagados. `npm test` 204/204, `npx expo lint` correcto.
+- **Alex:** como G03 ya está unida en `feat/mira-app`, trae también este commit (o vuelve a unir `feat/G03-ubicacion`).

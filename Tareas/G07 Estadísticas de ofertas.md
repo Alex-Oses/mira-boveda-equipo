@@ -39,3 +39,6 @@ Se programó contra `docs/coordenacion/CONTRATOS-ASUMIDOS.md`, y **el contrato o
 - Reproducción con Supertest y Firestore simulado, misma IP y dos ofertas activas: 30 POST a `/v1/ofertas/oferta-a/avisos` con `{ nivel: 20 }` → 204; el siguiente a A → 429; otro a `/v1/ofertas/oferta-b/avisos` → **204**, cuando debería ser 429. No hace falta autenticación. Reproducción independiente de la suite, con aserciones.
 - Propuesta: pasar una clave específica estable para avisos, por ejemplo `req => "ofertas-avisos:" + req.ip`, sin el ID; añadir regresión que alterne ofertas y compruebe 429 al superar 30 en total. Mantener separados los límites de las otras rutas.
 - **Resultado: API en revisión, pendiente del P2.** El estado general de G07 sigue correspondiendo a la UI del PC 4; sus observaciones de Claude son independientes. La integración G08/`contarVisita` queda a cargo de Claude según lo acordado.
+
+## Corrección del P2 de Codex en la API (2026-10-15, Izan + Claude)
+`2b6f5b6` en `feat/G07-estadisticas-api`: `POST /v1/ofertas/:id/avisos` usa la clave `ofertas-avisos:<ip>`, sin el id, así que el límite es de 30/min por IP para todas las ofertas juntas. Regresión: 30 avisos alternando dos ofertas y, después, 429 en las dos. `npm test` 355/355.

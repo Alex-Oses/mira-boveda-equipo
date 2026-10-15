@@ -31,3 +31,16 @@ Un QR solo se valida una vez, únicamente en su restaurante y antes de que caduq
 - **Antes de desplegar:** configurar VISITAS_SECRET aleatorio (mínimo 32 caracteres) solo en Render. Falta o corto → 503 para crear/validar, sin secreto por defecto. Reglas cerradas para visitas y visitas_pendientes.
 - **Índice nuevo:** visitas, restauranteId ASC + fecha ASC + creada DESC, añadido a firestore.indexes.json; publicar y esperar antes de usar listado. Avisado al usuario; nunca --force ni borrar índices existentes.
 - Docs §22 ter antes de «## 23. Resumen». Sin merge/despliegue; no emulador por falta de Java ni pruebas contra Firestore real. Pendiente prueba conjunta de QR con PC 2/PC 4 tras revisión.
+
+## Revisión de Claude (2026-10-15)
+`ed2b8b8`: **aprobado.** `npm test` 370/370 (21 tests de visitas). Cumple el contrato de la fase 3:
+- QR `v1.<id>.<caduca>.<firma>` con HMAC-SHA256, formato canónico estricto (solo 43 caracteres base64url, sin variantes de la misma firma) y `timingSafeEqual`; sin `VISITAS_SECRET` de 32+ caracteres responde 503 en vez de firmar con algo débil.
+- Validar: firma → caducidad → existe → dueño (`OTRO_RESTAURANTE`) → pendiente, con la confirmación, la comisión y el contador en una transacción; además comprueba que la caducidad del QR coincide con la de la visita. Un QR solo vale una vez.
+- Crear: oferta vigente releída en la transacción, ≤ 50 m, nivel de 20 m copiado, una visita pendiente por cliente y restaurante con bloqueo propio (`visitas_pendientes`), y reemitir no alarga la caducidad. La posición no se guarda (va en el body, que no se registra).
+- Nunca devuelve el `uid` del cliente; solo `cliente.nombre`.
+
+**Antes de desplegar:**
+1. `VISITAS_SECRET` en Render (32+ caracteres; por ejemplo, `openssl rand -base64 48`).
+2. Publicar el índice nuevo de `visitas` (restauranteId, fecha, creada desc) **sin `--force`**, igual que con T04.
+
+**Al unir con mi rama `feat/G07-estadisticas-api`:** los dos hemos cambiado `FieldValue.increment` en `test/helpers/mockFirebase.js`. Me quedo con mi versión, porque fusiona en profundidad los mapas con incrementos (como Firestore con `merge: true`); con la tuya, `set({ avisos: { 500: inc } }, { merge: true })` borraría `avisos.1000`. También cambiaré tu `contar()` por `ofertas.contarVisita()` para que solo haya un sitio que escriba `ofertas_stats` (en la transacción hace falta la versión con `tx`, así que añadiré un parámetro opcional).

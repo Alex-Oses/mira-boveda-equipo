@@ -7,17 +7,9 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 ### Fase 1: Base
 
 ### Fase 2: Embudo de ofertas
-<<<<<<< HEAD
 - [[G07 Estadísticas de ofertas]] · PC 4 (Marco)
 
 ### Fase 3: Llegada al restaurante
-=======
-- [[G06 Avisos por distancia en web y móvil]] · PC 3 (Ruben) móvil + PC 4 (Marco) web
-- [[G07 Estadísticas de ofertas]] · PC 4 (Marco)
-
-### Fase 3: Llegada al restaurante
-- [[G09 Pantalla de llegada con QR]] · PC 3 (Ruben)
->>>>>>> c700157 (reparto web/app (G06/G09 a PC 3, web a PC 4) y G04 a hecho con prueba real)
 - [[G10 Escáner de QR y aviso de llegada]] · PC 4 (Marco)
 
 ### Notificaciones push (apoyo a G06)

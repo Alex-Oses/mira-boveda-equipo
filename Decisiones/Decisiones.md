@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · G06 y G09 se quedan con Alex (PC 2); PC 3, de momento, fuera de la app
+- **Decisión:** al asignar la parte de app a Ruben (PC 3) apareció a la vez Alex (PC 2) con G06 y G09 **en curso** en `feat/mira-app`. El usuario decide: **se los deja Alex** y PC 3 no toca la app de momento. A futuro se valorá **llevar el panel del restaurante a la app** (ahí entraría PC 3).
+- **Por qué:** no duplicar trabajo en la misma rama; Alex ya estaba en ello cuando se acordó el reparto web/app.
+- **Quién:** decisión del usuario con Ruben (PC 3); sustituye en lo que se refiere a G06/G09 a la entrada siguiente (el reparto **web = Marco** se mantiene).
+
 ### 2026-10-15 · Reparto web/app del proyecto de ofertas (cambio)
 - **Decisión:** Marco (PC 4) se queda con **toda la parte web** del proyecto de ofertas: revisión y merge de G04, G07 (estadísticas), G10 (escáner) y los avisos web de G06. Ruben (PC 3) pasa a la **app móvil** (`mobile/`, Expo, rama de base `feat/mira-app`): G06 móvil (avisos por distancia con notificaciones locales) y G09 móvil (llegada a 20 m con QR), además de la prueba en móvil real de G03. La web del cliente (consentimiento y avisos en la landing) sigue en PC 2.
 - **Por qué:** así cada agente web lleva un solo lado sin pisarse (G04 tocó `Dashboard.jsx`, ahora lo revisa/mergea Marco) y la app Expo —que sigue desarrollándose con Alex— avanza en paralelo; en localhost no se veía la parte de la app.

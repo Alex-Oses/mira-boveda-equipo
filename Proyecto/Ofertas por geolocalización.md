@@ -15,9 +15,9 @@ Propuesta aprobada el 2026-10-14.
 | PC | Quién | Parte |
 |---|---|---|
 | PC 1 | Izan + Claude + Codex | Backend y datos: API de ofertas por distancia, ofertas cerca de mí, QR (generar y validar), visitas y comisión |
-| PC 2 | 2 personas | App del cliente: consentimiento (hecho, G03) y web del cliente; notificaciones T01–T10 |
-| PC 3 | Ruben | **App móvil** (`mobile/`, Expo): avisos por distancia (G06 móvil), pantalla de llegada con QR (G09 móvil), prueba en móvil de G03; antes: panel (G04, hecho) |
-| PC 4 | Marco | **Web** del proyecto: revisión/merge del editor (G04), estadísticas (G07), escáner de QR (G10), avisos web (G06 web) |
+| PC 2 | Alex (+ Claude) | App del cliente (`mobile/`, `feat/mira-app`): consentimiento (hecho, G03), avisos por distancia (G06), pantalla de llegada (G09), notificaciones T01–T10 |
+| PC 3 | Ruben | Panel del restaurante: editor de ofertas (G04, hecho). A futuro: **llevar el panel del restaurante a la app** |
+| PC 4 | Marco | Web del proyecto de ofertas: revisión/merge del editor (G04), estadísticas (G07), escáner de QR (G10) |
 
 **Regla clave:** al empezar cada fase, el PC 1 publica el **contrato de la API** en [[Contratos API]]. Así los PC 2 y 3 pueden trabajar con datos simulados (`npm run mock-api`).
 

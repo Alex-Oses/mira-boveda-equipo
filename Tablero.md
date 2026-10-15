@@ -5,7 +5,6 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 ## Libre
 
 ### Fase 1: Base
-- [[G01 Contrato API fase 1]] · PC 1
 - [[G02 Modelo de ofertas y endpoints base]] · PC 1
 - [[G03 Consentimiento y permiso de ubicación]] · PC 2
 - [[G04 Editor básico de ofertas por distancia]] · PC 3

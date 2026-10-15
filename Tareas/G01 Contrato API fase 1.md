@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en revisión
+responsable: Izan (Claude)
 pc: PC 1
 fase: 1
 depende_de: []
-rama:
+rama: feat/G01-contrato-ofertas (frontend, mock)
 ---
 # G01 Contrato API fase 1
 
@@ -23,4 +23,3 @@ Los PC 2 y 3 confirman que pueden trabajar con el mock.
 - Contrato publicado en [[Contratos API]] (fase 1) y decisión en [[Decisiones]].
 - Mock en `scripts/mock-api.mjs` del frontend, rama `feat/G01-contrato-ofertas`: GET pública, GET mias, POST, PUT y DELETE con las mismas validaciones (4 niveles, no empeorar, una activa por restaurante). Oferta de ejemplo en el restaurante `1`.
 - Falta: que los PC 2 y 3 confirmen que les sirve.
-

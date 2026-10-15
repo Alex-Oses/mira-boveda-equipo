@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Codex (PC 1)
 pc: PC 1
 fase: 3
@@ -52,3 +52,6 @@ Un QR solo se valida una vez, únicamente en su restaurante y antes de que caduq
 
 ## VISITAS_SECRET (2026-10-15)
 Configurado en Render por Izan (el valor no está en ningún sitio del repo ni de la bóveda). Pendiente de comprobar con una cuenta de restaurante: el escáner con un código inventado debe responder «código no válido» (400) y no un error del servidor (503).
+
+## Preparación de prueba conjunta (Codex · 2026-10-15)
+Estado alineado a «hecho» con el Tablero y la confirmación de Izan: backend en producción y VISITAS_SECRET configurado. Main 808ff00 verificado localmente: 376/376 y recorrido de QR/estadísticas correcto. Resultado y precisiones de caducidad, reemisión y radio en [[Prueba conjunta]]; sin peticiones a producción. Prueba real autenticada y conjunta pendiente.

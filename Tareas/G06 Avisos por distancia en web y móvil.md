@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Alex (PC 2)
 pc: PC 2
 fase: 2
 depende_de: [G03, G05]
-rama:
+rama: feat/mira-app (frontend)
 ---
 # G06 Avisos por distancia en web y móvil
 

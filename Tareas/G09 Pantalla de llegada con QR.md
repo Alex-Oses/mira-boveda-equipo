@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Alex (PC 2)
 pc: PC 2
 fase: 3
 depende_de: [G06, G08]
-rama:
+rama: feat/mira-app (frontend)
 ---
 # G09 Pantalla de llegada con QR
 

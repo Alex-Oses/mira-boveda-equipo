@@ -7,17 +7,17 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 ### Fase 1: Base
 
 ### Fase 2: Embudo de ofertas
-- [[G06 Avisos por distancia en web y móvil]] · PC 2
 - [[G07 Estadísticas de ofertas]] · PC 4 (Marco)
 
 ### Fase 3: Llegada al restaurante
-- [[G09 Pantalla de llegada con QR]] · PC 2
 - [[G10 Escáner de QR y aviso de llegada]] · PC 4 (Marco)
 
 ### Notificaciones push (apoyo a G06)
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2)
+- [[G09 Pantalla de llegada con QR]] · Alex (PC 2)
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 

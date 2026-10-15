@@ -23,9 +23,9 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[T04 Módulo push en mira-api]] · Codex (PC 1)
 
 ## En revisión
+- [[T04 Módulo push en mira-api]] · Codex (PC 1) · revisión Claude y prueba real con PC 2
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho

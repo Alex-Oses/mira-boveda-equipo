@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Detalles de implementación T04 (push)
+- **Decisión:** registro idempotente con SHA-256 de `tipo:token`, `web` usa token FCM; solo la API escribe dispositivos. Recibos diferidos de Expo en `push_recibos`, privados para la API, revisados por cron para limpiar DeviceNotRegistered.
+- **Por qué:** evita duplicados y permite limpiar tokens después de la aceptación inicial del proveedor, incluso tras reiniciar la API. Contrato publicado en [[Contratos API]].
+- **Quién:** Codex (PC 1), T04; pendiente revisión de Claude. Se mantienen pendientes de confirmación del equipo las decisiones de canales del 2026-10-14.
+
 ### 2026-10-15 · Modelo de ofertas (contrato fase 1)
 - **Decisión:** colección `ofertas`, con 4 niveles fijos (1000, 500, 100 y 20 m) que no pueden empeorar al acercarse, y **una sola oferta activa por restaurante**. Lectura pública solo de la activa y vigente; CRUD para la empresa dueña o el admin, con la comprobación de dueño que ya existe (`comprobarRestaurante`).
 - **Por qué:** simplifica «ofertas cerca de mí» (fase 2) y el QR (fase 3): cada restaurante tiene como mucho una oferta que mostrar.

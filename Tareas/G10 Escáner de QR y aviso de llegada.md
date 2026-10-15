@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Codex (PC 1), retoma el trabajo de Marco
 pc: PC 3
 fase: 3
 depende_de: [G08]
-rama:
+rama: feat/G10-escaner-qr (frontend)
 ---
 # G10 Escáner de QR y aviso de llegada
 

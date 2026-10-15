@@ -1,11 +1,11 @@
 ---
-estado: libre
+estado: en curso
 estado_api: hecho
-responsable:
+responsable: Izan (Claude), retoma el trabajo de Marco
 pc: PC 3
 fase: 2
 depende_de: [G04, G05]
-rama:
+rama: feat/G07-estadisticas-ofertas (frontend)
 ---
 # G07 Estadísticas de ofertas
 

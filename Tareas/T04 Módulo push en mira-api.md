@@ -48,3 +48,11 @@ Sigue **en revisión** hasta corregir el P1. La prueba en un dispositivo real qu
 - Validación: npm test 298/298; git diff --check correcto. El fallo de consulta global no confirma el alta.
 - Despliegue: primero publicar firestore.indexes.json y esperar el índice COLLECTION_GROUP de dispositivos.tokenHash. Los registros de prueba de 6878b80 sin tokenHash deben eliminarse antes de habilitar la versión; documentado en docs/api.md.
 - Sigue pendiente prueba real con PC 2. No se ha hecho merge, despliegue ni borrado de datos reales.
+
+## Segunda revisión de Claude (2026-10-15)
+`03983b0`: **código aprobado.** `npm test` 298/298.
+- P1 corregido: `tokenHash` en cada dispositivo; al registrar, una transacción borra el mismo token de otras cuentas y aplica el cupo. Test A→B para Expo y web, y test de que si falla la búsqueda no se confirma el alta.
+- P3 corregido: máximo 10 dispositivos, se borra el más antiguo y renovar uno lo conserva.
+- `EXPO_ACCESS_TOKEN` en `config/env.js` y `.env.example`.
+- **Antes de desplegar:** publicar el índice nuevo (`firebase deploy --only firestore:indexes` desde `mira-api/`, proyecto `restaurante-mira-18e0c`) y esperar a que esté «Habilitado» en la consola. Sin él, el registro de tokens da error. El override sustituye los índices por defecto de `tokenHash`, que no se usan en otra consulta.
+- Queda para cerrar la tarea: la prueba con un dispositivo real (cuando el PC 2 tenga [[T03 Registrar token push en la app|T03]] o [[T07 Web Push en la PWA|T07]]).

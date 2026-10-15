@@ -26,7 +26,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
 ## En revisión
-- [[T04 Módulo push en mira-api]] · Codex (PC 1) · P1/P3 corregidos (03983b0), nueva revisión Claude
+- [[T04 Módulo push en mira-api]] · Codex (PC 1) · código aprobado, falta prueba en dispositivo real
 - [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · revisa Codex
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 

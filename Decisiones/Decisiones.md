@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Despliegue de índices sin force
+- **Decisión:** nunca usar `--force` al desplegar índices de Firestore. Partir de main alineado con los índices publicados (86add00); Firebase devuelve los de restaurants sin el __name__ implícito.
+- **Por qué:** el despliegue forzado habría borrado índices existentes. Si pide force, revisar y alinear el fichero primero.
+- **Quién:** Izan + Claude; aviso de producción a Codex.
+
 ### 2026-10-15 · Corrección T04 tras revisión de Claude
 - **Decisión:** un token push solo pertenece a una cuenta; alta/reasignación por tokenHash en transacción y máximo 10 dispositivos por UID (expulsión del más antiguo). Índice de grupo en dispositivos.tokenHash previo al despliegue.
 - **Por qué:** evitar que un móvil con otra sesión reciba avisos de la cuenta anterior si falla DELETE; acotar el envío por usuario.

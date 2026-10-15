@@ -11,12 +11,13 @@ Propuesta aprobada el 2026-10-14.
 - El GPS no es fiable a 20 m, así que **la prueba real es el QR**.
 - **RGPD:** consentimiento explícito, opción de desactivarlo y no guardar el recorrido.
 
-## Equipo: 4 personas en 3 PC
+## Equipo: 4 personas en 4 PC
 | PC | Quién | Parte |
 |---|---|---|
 | PC 1 | Izan + Claude + Codex | Backend y datos: API de ofertas por distancia, ofertas cerca de mí, QR (generar y validar), visitas y comisión |
-| PC 2 | 2 personas | App del cliente (web + móvil): permiso y consentimiento, avisos por distancia, pantalla de llegada con QR, estado de la oferta |
-| PC 3 | 1 persona | Panel del restaurante: editor de ofertas por distancia, estadísticas, escáner de QR, aviso de llegada |
+| PC 2 | 2 personas | App del cliente: consentimiento (hecho, G03) y web del cliente; notificaciones T01–T10 |
+| PC 3 | Ruben | **App móvil** (`mobile/`, Expo): avisos por distancia (G06 móvil), pantalla de llegada con QR (G09 móvil), prueba en móvil de G03; antes: panel (G04, hecho) |
+| PC 4 | Marco | **Web** del proyecto: revisión/merge del editor (G04), estadísticas (G07), escáner de QR (G10), avisos web (G06 web) |
 
 **Regla clave:** al empezar cada fase, el PC 1 publica el **contrato de la API** en [[Contratos API]]. Así los PC 2 y 3 pueden trabajar con datos simulados (`npm run mock-api`).
 

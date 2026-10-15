@@ -53,3 +53,9 @@ Se programó contra `docs/coordenacion/CONTRATOS-ASUMIDOS.md`, y **el contrato o
 
 ## API desplegada (2026-10-15, Izan + Claude)
 En `main` del backend `808ff00` (Render): `GET /v1/ofertas/estadisticas` (401 sin sesión) y `POST /v1/ofertas/:id/avisos` funcionan en producción. Falta la UI del PC 4 adaptada al contrato oficial.
+
+## Segunda revisión de Claude: UI adaptada (2026-10-15)
+`e83287f` (Marco): **aprobado.** Lee `{ data: [...] }` del contrato oficial, suma los avisos por nivel para las barras y deja avisos, visitas y confirmadas por día para la línea; conversión = confirmadas / avisos a 1 km. Carga los datos él mismo (últimos 30 días), con estados de carga, error con «Reintentar» y «sin datos»; **ya no hay datos inventados**. Montado en el panel de ofertas.
+- Probado en el navegador contra el mock de `main`: KPI (2246 avisos, 116 visitas, 88 confirmadas, 9 %), barras por distancia y evolución de 14 días; sin sesión muestra el error y «Reintentar».
+- Menor, no bloquea: `desde`/`hasta` se calculan en UTC (`toISOString`); entre las 00:00 y las 02:00 de Madrid el «hoy» sería el día anterior. Se puede cambiar a la fecha de Madrid como en G04.
+- Unido con G10 sobre `main` en una rama de prueba: 227/227 tests y build correcto. Conflictos solo en `Dashboard.jsx` (import y montaje; quedan los tres componentes: editor, escáner y estadísticas) y en `docs/coordenacion/HILO-PC3-PC4.md` (se conservan las dos versiones).

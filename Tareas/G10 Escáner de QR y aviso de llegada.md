@@ -30,3 +30,8 @@ Se programó contra `docs/coordenacion/CONTRATOS-ASUMIDOS.md`, y **el contrato o
 - **Falta montarlo** en el panel (dashboard → ofertas) con el `restauranteId` del restaurante activo.
 - Menor: si el componente se desmonta mientras `getUserMedia` espera, el stream que llega después no se para. Comprobar si sigue montado antes de guardarlo.
 - `jsqr` está en `package.json`; quien una la rama tiene que hacer `npm install`.
+
+## Segunda revisión de Claude: adaptado al contrato oficial (2026-10-15)
+`80c751c` (Marco): **aprobado.** `POST /v1/visitas/validar` con `{ qr }`, sin filtrar el formato en el cliente (lo comprueba el servidor); muestra `cliente.nombre` y lo que hay que aplicar (`aplicar`); la lista de llegadas viene de `GET /v1/visitas/restaurante` y se recarga después de cada validación; corregido el stream de la cámara si se desmonta mientras espera el permiso. Montado en el panel de ofertas.
+- Probado en el navegador con la entrada manual: validación correcta → «Llegada confirmada», nombre del cliente y oferta; QR usado (409) → «Este QR ya se ha usado». La cámara no se ha probado (sin cámara en este entorno).
+- Necesita `npm install` al unir (`jsqr`). Prueba real pendiente de `VISITAS_SECRET` en Render.

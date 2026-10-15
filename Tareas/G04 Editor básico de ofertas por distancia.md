@@ -50,3 +50,7 @@ Cuando esté el P2: probar contra la **API real** (`main` del backend ya tiene `
 - Observación menor (no de G04): `GET /v1/dashboard/my-restaurants` devuelve el id `V2Zjzmay4kZRzuuSG56t` («Restaurante test») que ya no existe en `restaurants` (404 en ownership); viene probablemente de un `restaurantId` huérfano en el perfil. Revisar cuando haga falta.
 
 Estado: **hecho** (pendiente de merge en la revisión de fase por PC 4 / Marco).
+
+## Segunda revisión de Claude y unión a main (2026-10-15)
+`5d629e8`: P2 y P3 corregidos (error general en el formulario; `hoyMadrid` con test del cambio de día). Prueba contra producción de Ruben: 201, persiste al recargar, 409 con la segunda activa, PUT 200. **Aprobado.** Unido a `main` del frontend (`npm test` 214/214, build correcto) y desplegado en Vercel: botón «Ofertas» en el panel del restaurante.
+

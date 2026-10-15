@@ -32,7 +32,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho
-- [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · P2/P3 corregidos (5d629e8) y prueba real OK (crear, 409, editar, persistencia); merge de fase pendiente de PC 4
+- [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · en main
 - [[G03 Consentimiento y permiso de ubicación]] · Izan (Claude), apoyo PC 1 · en main (web); app con el APK de Alex
 - API de estadísticas para [[G07 Estadísticas de ofertas]] · Izan (Claude) · desplegada
 - [[G05 Ofertas cerca de mí]] · Izan (Claude) · desplegado

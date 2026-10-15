@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Avisos T05 por idioma y después del commit
+- **Decisión:** avisos de confirmación/cancelación al UID de la reserva y de mensaje al UID destinatario, después de persistir. Textos por idioma del token; el aviso de buzón es genérico para no mostrar contenido privado en la pantalla de bloqueo.
+- **Por qué:** mantener el idioma de cada dispositivo y evitar avisar de escrituras fallidas o revertir una acción por un fallo de push. Sin cola persistida de eventos en T05; pruebas reales con PC 2 pendientes.
+- **Quién:** Codex (PC 1), según T05; implementado en 4aa0eab, pendiente revisión de Claude.
+
 ### 2026-10-15 · Despliegue de índices sin force
 - **Decisión:** nunca usar `--force` al desplegar índices de Firestore. Partir de main alineado con los índices publicados (86add00); Firebase devuelve los de restaurants sin el __name__ implícito.
 - **Por qué:** el despliegue forzado habría borrado índices existentes. Si pide force, revisar y alinear el fichero primero.

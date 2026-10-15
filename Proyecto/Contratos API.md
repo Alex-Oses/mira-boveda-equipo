@@ -101,3 +101,11 @@ Al cerrar sesión, borrar **antes** de invalidar el Bearer. Al cambiar de cuenta
 `enviarPush(uid, { titulo, cuerpo, data? })`: Expo Server SDK para expo y Firebase Admin Messaging para web; `data` es un mapa de cadenas compatible con FCM. No hay endpoint público de envío.
 Los tickets y recibos Expo con DeviceNotRegistered y los tokens FCM no registrados se limpian; errores temporales conservan el dispositivo.
 Credenciales de Firebase en Secret File de Render mediante GOOGLE_APPLICATION_CREDENTIALS; EXPO_ACCESS_TOKEN solo si se habilita seguridad push en Expo. FCM/VAPID/EAS se configuran fuera del repo y de la bóveda.
+
+### T05 · Avisos de reservas y mensajes (Codex, 2026-10-15)
+- Sin endpoints nuevos. Al pasar a confirmada/cancelada, UID cliente de la reserva recibe `{ ruta: "reservas", reservaId, estado }` en data. Crear una pendiente todavía no envía confirmación.
+- Mensaje nuevo desde la API: UID destinatario recibe `{ ruta: "mensajes", mensajeId }`. Incluye enviarMensaje (espera/JAM) y mensaje de admin al dueño; sin UID se conserva el mensaje por email sin push.
+- Textos es/ca/en por idioma del token. Aviso de buzón genérico, sin mostrar contenido privado en pantalla de bloqueo.
+- Extensión interna compatible de enviarPush: `textos?: { es?: { titulo, cuerpo }, ca?: { titulo, cuerpo }, en?: { titulo, cuerpo } }`; si falta traducción, usa título/cuerpo base. El formato público de tokens no cambia.
+- Avisos tras commit, fuera de callbacks repetibles; repetir el mismo estado no vuelve a avisar. Best-effort sin cola persistida: fallo de push no revierte el negocio y una caída tras commit puede perder aviso.
+- Rama feat/T05-notificar-reservas-mensajes (4aa0eab), en revisión; aún no desplegada. Instrucciones de prueba conjunta en mira-api/docs/api.md §T05.

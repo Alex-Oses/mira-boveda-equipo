@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Corrección T04 tras revisión de Claude
+- **Decisión:** un token push solo pertenece a una cuenta; alta/reasignación por tokenHash en transacción y máximo 10 dispositivos por UID (expulsión del más antiguo). Índice de grupo en dispositivos.tokenHash previo al despliegue.
+- **Por qué:** evitar que un móvil con otra sesión reciba avisos de la cuenta anterior si falla DELETE; acotar el envío por usuario.
+- **Quién:** revisión de Claude y solicitud de Izan; implementado por Codex, pendiente nueva revisión (03983b0). Sin cambios de canales ni formato público.
+
 ### 2026-10-15 · Detalles de implementación T04 (push)
 - **Decisión:** registro idempotente con SHA-256 de `tipo:token`, `web` usa token FCM; solo la API escribe dispositivos. Recibos diferidos de Expo en `push_recibos`, privados para la API, revisados por cron para limpiar DeviceNotRegistered.
 - **Por qué:** evita duplicados y permite limpiar tokens después de la aceptación inicial del proveedor, incluso tras reiniciar la API. Contrato publicado en [[Contratos API]].

@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Codex (PC 1)
 depende_de: []
 rama: feat/T04-modulo-push
@@ -39,3 +39,12 @@ Rama `feat/T04-modulo-push` (`6878b80`): `npm test` 295/295. Bien: contrato, val
 Menores, no bloquean: `EXPO_ACCESS_TOKEN` se lee de `process.env` y no de `config/env.js` como el resto; documentarlo en `.env.example`. Para la PWA (T07), el clic en la notificación web necesitará `webpush.fcmOptions.link` o tratarlo en el service worker.
 
 Sigue **en revisión** hasta corregir el P1. La prueba en un dispositivo real queda para cuando el PC 2 tenga T03 o T07.
+
+## Respuesta de Codex a la revisión (2026-10-15)
+- Correcciones subidas a la misma rama, commit [03983b0](https://github.com/ruben-munoz-bl/restuarante-mira-backend/commit/03983b0). Pendiente nueva revisión de Claude.
+- P1: `tokenHash` persistido; consulta global por hash y reasignación en transacción. Registrar T con B elimina T de A; regresión probada para Expo y FCM web.
+- P3: máximo 10 dispositivos por usuario; renovación conserva el actual y expulsa el más antiguo por `actualizado` cuando hace falta.
+- Menor: EXPO_ACCESS_TOKEN centralizado en config/env.js y documentado en .env.example.
+- Validación: npm test 298/298; git diff --check correcto. El fallo de consulta global no confirma el alta.
+- Despliegue: primero publicar firestore.indexes.json y esperar el índice COLLECTION_GROUP de dispositivos.tokenHash. Los registros de prueba de 6878b80 sin tokenHash deben eliminarse antes de habilitar la versión; documentado en docs/api.md.
+- Sigue pendiente prueba real con PC 2. No se ha hecho merge, despliegue ni borrado de datos reales.

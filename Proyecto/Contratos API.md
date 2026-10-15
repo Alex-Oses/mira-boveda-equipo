@@ -82,7 +82,8 @@ Contrato cerrado para PC 2; se mantienen las decisiones de canales pendientes de
 Petición: `{ token, tipo: "expo" | "web", plataforma: "android" | "ios" | "web", idioma: "es" | "ca" | "en" }`. Todos obligatorios; no admite campos extra.
 - `token`: cadena sin espacios, 1–4096 caracteres; para `expo`, formato ExpoPushToken[...] o ExponentPushToken[...]. Para `web`, token de registro FCM (no una suscripción PushSubscription).
 - Respuesta 200: `{ id, tipo, plataforma, idioma }`. `id` es SHA-256 de `tipo:token` (64 caracteres hexadecimales). Guardarlo para el logout. Repetir actualiza plataforma/idioma sin duplicar.
-- Persiste en `usuarios/{uid}/dispositivos/{id}`; el UID sale del Bearer, nunca del body. Campos: token, tipo, plataforma, idioma, actualizado (fecha ISO).
+- Persiste en `usuarios/{uid}/dispositivos/{id}`; el UID sale del Bearer, nunca del body. Campos: token, tokenHash (igual al ID), tipo, plataforma, idioma, actualizado (fecha ISO).
+- Un token pertenece a una sola cuenta: registrar en B lo elimina de otras cuentas en una transacción. Máximo 10 dispositivos por UID; al superarlo se elimina el más antiguo por actualizado, conservando el que se está registrando. Desplegar antes el índice de grupo dispositivos.tokenHash (firestore.indexes.json).
 - Errores: 400 `{ error: "VALIDATION_ERROR", details }`; 401 `{ error: "MISSING_TOKEN" | "INVALID_TOKEN", message }`.
 
 ### DELETE /v1/push/tokens/:id (auth: sí, Firebase Bearer)

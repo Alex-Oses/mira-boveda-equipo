@@ -21,11 +21,11 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[T10 Preferencias de notificaciones]] · Codex (PC 1)
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
 ## En revisión
+- [[T10 Preferencias de notificaciones]] · Codex (PC 1) · revisa Claude (9f0a452), contrato publicado para PC 2
 - [[G05 Ofertas cerca de mí]] · Izan (Claude) · P2 Codex: bordes y caché concurrente
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
 - [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`

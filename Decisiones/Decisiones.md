@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-15 · Preferencias push por categoría (T10)
+- **Decisión:** usuarios/{uid}.preferenciasPush contiene reservas/mensajes/promociones. GET/PUT autenticados en /v1/push/preferencias, PUT parcial transaccional; claves ausentes true para mantener el comportamiento previo. Cada enviarPush exige tipo y comprueba preferencias sin caché, sin enviar si no puede leerlas.
+- **Por qué:** interruptores comunes a todos los dispositivos, sin perder ajustes concurrentes ni confundir tipos de negocio con canales Expo/web; el buzón y las acciones siguen guardándose.
+- **Quién:** Codex (PC 1), según T10 y contrato publicado antes de implementar. 9f0a452 pendiente revisión de Claude; UI de PC 2. Nuevas categorías requieren ampliar contrato.
+
 ### 2026-10-15 · Avisos T05 por idioma y después del commit
 - **Decisión:** avisos de confirmación/cancelación al UID de la reserva y de mensaje al UID destinatario, después de persistir. Textos por idioma del token; el aviso de buzón es genérico para no mostrar contenido privado en la pantalla de bloqueo.
 - **Por qué:** mantener el idioma de cada dispositivo y evitar avisar de escrituras fallidas o revertir una acción por un fallo de push. Sin cola persistida de eventos en T05; pruebas reales con PC 2 pendientes.

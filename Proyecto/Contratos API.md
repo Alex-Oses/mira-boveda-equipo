@@ -125,7 +125,7 @@ Errores: 400 si el ID no son 64 caracteres hexadecimales minúsculos; 401 como P
 Al cerrar sesión, borrar **antes** de invalidar el Bearer. Al cambiar de cuenta, borrar el registro anterior y registrar en la nueva.
 
 ### Servicio interno y configuración
-`enviarPush(uid, { titulo, cuerpo, data? })`: Expo Server SDK para expo y Firebase Admin Messaging para web; `data` es un mapa de cadenas compatible con FCM. No hay endpoint público de envío.
+`enviarPush(uid, { tipo, titulo, cuerpo, data? })`: Expo Server SDK para expo y Firebase Admin Messaging para web; `data` es un mapa de cadenas compatible con FCM. No hay endpoint público de envío.
 Los tickets y recibos Expo con DeviceNotRegistered y los tokens FCM no registrados se limpian; errores temporales conservan el dispositivo.
 Credenciales de Firebase en Secret File de Render mediante GOOGLE_APPLICATION_CREDENTIALS; EXPO_ACCESS_TOKEN solo si se habilita seguridad push en Expo. FCM/VAPID/EAS se configuran fuera del repo y de la bóveda.
 
@@ -156,3 +156,5 @@ Errores: 400 `{ error: "VALIDATION_ERROR", details }`; ambos endpoints: 401 `{ e
 Cada llamada interna usa `enviarPush(uid, { tipo: "reservas" | "mensajes" | "promociones", titulo, cuerpo, data?, textos? })`; tipo obligatorio y validado, sin categoría implícita. T05 etiqueta sus avisos de reservas/mensajes; el script manual también indica tipo.
 Antes de consultar dispositivos/enviar se leen las preferencias vigentes (sin caché): si la categoría está desactivada, devuelve contadores a cero y no llama a proveedores. Si falla la lectura de preferencias, no envía. No borra tokens ni afecta otras categorías, usuarios o mensajes guardados.
 Las llamadas de promociones futuras deberán indicar tipo promociones. Nuevas categorías requieren ampliar el contrato, no se aceptan claves arbitrarias. No cambia el formato de registro de tokens.
+
+Rama T10: feat/T10-preferencias-push (`9f0a452`), en revisión de Claude; endpoints todavía no desplegados. `npm test` 339/339. La UI web/app corresponde al PC 2.

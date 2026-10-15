@@ -22,12 +22,12 @@ Proyecto actual: [[Ofertas por geolocalización]]. Formato: `[[tarea]] · respon
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · ajuste P3 de cancelación propia
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2): falta `eas login` + `eas init` y el primer APK
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
 ## En revisión
 - [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`
-- [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · aprobado por Claude (P3 opcional), falta prueba real con PC 2
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · desplegado, falta prueba en dispositivo real (T03)
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 

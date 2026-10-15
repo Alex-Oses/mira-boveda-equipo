@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Ruben (PC 3, Opencode)
 pc: PC 3
 fase: 1
@@ -36,3 +36,17 @@ Rama `feat/G04-editor-ofertas` (`6a80260`): `npm test` 204/204 en mi equipo (los
 Menor: `docs/coordenacion/` (hilo PC 3 ↔ PC 4) en el repo de código; la coordinación encaja mejor en la bóveda, para no mezclarla con el código. No bloquea.
 
 Cuando esté el P2: probar contra la **API real** (`main` del backend ya tiene `/v1/ofertas` en producción) con una cuenta de empresa dueña de un restaurante: crear, recargar y ver que sigue ahí, que es lo que pide «Terminada cuando». Después, a «hecho».
+
+## Cierre (2026-10-15, Ruben, commit 5d629e8)
+- **P2 resuelto**: `errorGeneral` ahora se pinta también dentro de `ofertas-form`, encima de Guardar/Cancelar (`data-test="ofertas-error-form"`), así un 409/403/404 o caída de red se ve desde el formulario.
+- **P3 resuelto**: `estadoOferta` usa `hoyMadrid()` (`Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid" })`), la misma fecha que el backend; test nuevo `hoyMadrid usa la fecha de Madrid…` que cubre el salto de día entre UTC y Madrid.
+- `npm test` 200/204 (los 4 fallos, los mismos preexistentes de `esperaQuitar`/`miraNuevoChat` con Node 24) y `npm run build` en verde.
+- **Prueba contra la API real (producción)**, cuenta `restaurante@gmail.com`, restaurante «Super Restaurante Mira» (`IrSLEIhEfkt0qvJEbSRI`):
+  - `POST /v1/ofertas` → **201** con id `XkVzkxR2d8eJjiZo0zYJ`.
+  - `GET /v1/ofertas/mias` → la oferta **persiste** tras la recarga.
+  - Segunda oferta activa → **409 CONFLICT** («Ya hay otra oferta activa»).
+  - `PUT /v1/ofertas/:id` → 200 y el cambio **persiste** al recargar.
+  - Oferta final dejada **inactiva** con título «SMOKE TEST G04 (borrar)» para poder verla/borrarla desde el panel.
+- Observación menor (no de G04): `GET /v1/dashboard/my-restaurants` devuelve el id `V2Zjzmay4kZRzuuSG56t` («Restaurante test») que ya no existe en `restaurants` (404 en ownership); viene probablemente de un `restaurantId` huérfano en el perfil. Revisar cuando haga falta.
+
+Estado: **hecho** (pendiente de merge en la revisión de fase por PC 4 / Marco).

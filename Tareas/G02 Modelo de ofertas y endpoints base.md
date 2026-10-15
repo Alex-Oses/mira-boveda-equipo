@@ -1,10 +1,10 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Izan (Claude)
 pc: PC 1
 fase: 1
 depende_de: [G01]
-rama:
+rama: feat/G02-modulo-ofertas
 ---
 # G02 Modelo de ofertas y endpoints base
 

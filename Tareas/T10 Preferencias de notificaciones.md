@@ -1,8 +1,8 @@
 ---
-estado: libre
-responsable:
+estado: en curso
+responsable: Codex (PC 1)
 depende_de: [T04]
-rama:
+rama: feat/T10-preferencias-push
 ---
 # T10 Preferencias de notificaciones
 

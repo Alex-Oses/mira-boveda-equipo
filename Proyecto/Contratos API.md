@@ -138,3 +138,21 @@ Credenciales de Firebase en Secret File de Render mediante GOOGLE_APPLICATION_CR
 - Rama feat/T05-notificar-reservas-mensajes (4aa0eab), en revisión; aún no desplegada. Instrucciones de prueba conjunta en mira-api/docs/api.md §T05.
 
 - Ajuste T05 (08258f9): en PUT /v1/reservations/:id/cancel no se envía push si el actor es el titular; si cancela otra cuenta admin autorizada, sí se avisa al cliente. Estado, aforo y 409 no cambian.
+
+## T10 · Preferencias push (PC 1, Codex · 2026-10-15)
+Contrato publicado antes de implementar para los interruptores de PC 2. Las preferencias afectan a todos los dispositivos del UID y solo a push, no al buzón ni a la operación de negocio.
+
+### GET /v1/push/preferencias (auth: sí, Firebase Bearer)
+Respuesta 200: `{ reservas: true, mensajes: true, promociones: true }`.
+Lee usuarios/{uid}.preferenciasPush; UID exclusivamente del Bearer. Usuario/campo/clave ausente implica true (compatibilidad con comportamiento anterior); GET no crea documentos. Solo false explícito desactiva una categoría.
+
+### PUT /v1/push/preferencias (auth: sí, Firebase Bearer)
+Petición parcial, al menos una clave: `{ promociones: false }`. Claves permitidas: reservas, mensajes, promociones; solo booleanos, sin campos extra ni uid.
+Se combina de forma transaccional con las anteriores sin perder otros interruptores ni otros campos del perfil. Repetir es idempotente; crea el documento si el usuario no tenía perfil.
+Respuesta 200: mapa completo, p. ej. `{ reservas: true, mensajes: true, promociones: false }`.
+Errores: 400 `{ error: "VALIDATION_ERROR", details }`; ambos endpoints: 401 `{ error: "MISSING_TOKEN" | "INVALID_TOKEN", message }` y errores de infraestructura habituales.
+
+### Aplicación al envío
+Cada llamada interna usa `enviarPush(uid, { tipo: "reservas" | "mensajes" | "promociones", titulo, cuerpo, data?, textos? })`; tipo obligatorio y validado, sin categoría implícita. T05 etiqueta sus avisos de reservas/mensajes; el script manual también indica tipo.
+Antes de consultar dispositivos/enviar se leen las preferencias vigentes (sin caché): si la categoría está desactivada, devuelve contadores a cero y no llama a proveedores. Si falla la lectura de preferencias, no envía. No borra tokens ni afecta otras categorías, usuarios o mensajes guardados.
+Las llamadas de promociones futuras deberán indicar tipo promociones. Nuevas categorías requieren ampliar el contrato, no se aceptan claves arbitrarias. No cambia el formato de registro de tokens.

@@ -24,9 +24,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): código en `feat/mira-app`, falta clave VAPID y prueba en iPhone
 
 ## En revisión
-- [[G03 Consentimiento y permiso de ubicación]] · Izan (Claude), apoyo PC 1 · P2 corregido, revisa Codex; falta prueba en móvil
 - [[G08 QR firmado, visitas y comisión]] · Codex (PC 1) · aprobado por Claude; antes de desplegar: VISITAS_SECRET e índice
-- API de estadísticas para [[G07 Estadísticas de ofertas]] · Izan (Claude) · P2 corregido (2b6f5b6), revisa Codex
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
 - [[G04 Editor básico de ofertas por distancia]] · Ruben (PC 3) · revisado por Claude: P2 (error del formulario), falta prueba con API real
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
@@ -35,5 +33,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · falta OK de PC 2 y PC 3
 
 ## Hecho
+- [[G03 Consentimiento y permiso de ubicación]] · Izan (Claude), apoyo PC 1 · aprobado por Codex (dce2a73); Alex integra corrección y prueba APK
+- API de estadísticas para [[G07 Estadísticas de ofertas]] · Izan (Claude) · aprobada por Codex (2b6f5b6); pendiente unión con G08 y despliegue
 - [[G05 Ofertas cerca de mí]] · Izan (Claude) · desplegado
 - [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · desplegado

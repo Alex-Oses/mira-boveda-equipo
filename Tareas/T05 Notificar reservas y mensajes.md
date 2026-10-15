@@ -32,3 +32,7 @@ Al hacer una reserva desde otra cuenta, al cliente le llega la notificación.
 - **[P3, recomendado] El cliente que cancela su propia reserva recibe un push de lo que acaba de hacer.** En `cancelarReserva`, avisar solo si quien cancela no es el dueño de la reserva (`reserva.uid !== uid`, es decir, admin o restaurante). Ajustar el test «cancelación de cliente y de admin…».
 - **Al unir con G02:** mi rama cambia `runTransaction` del mock de los tests para ejecutar las transacciones en cola. Comprobar que el test «reintento del callback de Firestore…» sigue pasando después del merge.
 - Para cerrar: la prueba real con el PC 2 (T03).
+
+## Compatibilidad con G02 (2026-10-15)
+- Probados los tests T04/T05 de `4aa0eab` con el mock de transacciones en cola de G02 `30f80c3`: **310/310**. Sin regresiones de push; helper sustituido solo durante la comprobación y restaurado después.
+- T05 ya está implementada y subida; sigue en revisión de Claude y pendiente recepción real con PC 2. No ha sido necesario cambiar la rama para esta comprobación.

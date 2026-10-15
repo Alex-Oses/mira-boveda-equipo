@@ -26,6 +26,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T03 Registrar token push en la app]] · Alex (PC 2): código hecho, espera a T04 y al dev build
 
 ## En revisión
+- [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · aprobado por Claude (P3 opcional), falta prueba real con PC 2
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · desplegado, falta prueba en dispositivo real (T03)
 - [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · P1 corregido (30f80c3), revisa Codex

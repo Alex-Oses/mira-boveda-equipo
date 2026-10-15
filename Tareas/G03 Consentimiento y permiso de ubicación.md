@@ -29,3 +29,9 @@ Rama `feat/G03-ubicacion` del frontend.
 - **Para el PC 2:** G06 puede usar `useUbicacion()` (`activa`, `posicion`) en la web y en la app. El segundo plano se añade en G06.
 - Falta: revisión (Codex o el PC 2) y prueba en un móvil.
 
+
+## Revisión del PC 2 (Alex + Claude, 2026-10-15)
+- Revisado `6ac2c96`: permiso solo en primer plano, `watchPositionAsync` se cierra al desactivar/salir (incluida la carrera con el permiso), la posición no sale del dispositivo y solo se guarda `{estado, version, fecha}`. OK.
+- Menor (no bloquea): si se acepta en MIRA y luego se deniega el permiso de Android, el consentimiento queda «aceptado» y solo se ve el error.
+- Unida en `feat/mira-app` (`b049614`) junto a T03/T06/T07 y el rediseño móvil. Conflictos de i18n, `app.json`, `Cuenta.jsx` y lock resueltos quedándose con los dos lados. `npm test` 199/199, build y `expo lint` OK.
+- Prueba en móvil: va en el APK que se está generando con todo junto (build `082b1acc`).

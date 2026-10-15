@@ -157,7 +157,7 @@ Cada llamada interna usa `enviarPush(uid, { tipo: "reservas" | "mensajes" | "pro
 Antes de consultar dispositivos/enviar se leen las preferencias vigentes (sin caché): si la categoría está desactivada, devuelve contadores a cero y no llama a proveedores. Si falla la lectura de preferencias, no envía. No borra tokens ni afecta otras categorías, usuarios o mensajes guardados.
 Las llamadas de promociones futuras deberán indicar tipo promociones. Nuevas categorías requieren ampliar el contrato, no se aceptan claves arbitrarias. No cambia el formato de registro de tokens.
 
-Rama T10: feat/T10-preferencias-push (`9f0a452`), en revisión de Claude; endpoints todavía no desplegados. `npm test` 339/339. La UI web/app corresponde al PC 2.
+Rama T10 vigente: feat/T10-preferencias-push (`a5f332c`), P2 corregido y pendiente nueva revisión de Claude; endpoints todavía no desplegados. `npm test` 340/340. Defaults: reservas true, mensajes true, promociones false. La UI web/app corresponde al PC 2.
 
 ### Aviso para PC 2 · T10 corregido por revisión (2026-10-15)
 Promociones empieza apagado; no precargar ni guardar true automáticamente al abrir los ajustes. Enviar PUT `{ promociones: true }` únicamente tras activación explícita por el usuario y reflejar el mapa devuelto. Perfil/campo/clave ausente o valor no booleano no equivalen a activación. Se mantiene true por defecto para reservas/mensajes. Actualización de contrato autorizada en la revisión de Claude; endpoints todavía en revisión, sin desplegar.

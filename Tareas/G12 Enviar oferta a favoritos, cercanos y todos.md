@@ -1,5 +1,5 @@
 ---
-estado: propuesta
+estado: aparcada
 responsable: Alex (PC 2) + PC 1 (backend)
 depende_de: [G04, T04, T10, G11]
 rama:
@@ -24,3 +24,6 @@ Botones en el editor de ofertas (panel del restaurante y admin) para mandar la o
 
 ## Terminada cuando
 Desde el panel, «Favoritos y cercanos» llega solo a usuarios con promociones activadas que cumplen; «Todos» solo aparece en partners.
+
+## Aparcada (2026-10-16)
+Alex: era solo para testeo; **no se hacen notificaciones masivas**. No hay que implementarla.

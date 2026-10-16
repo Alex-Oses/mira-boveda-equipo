@@ -13,6 +13,7 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 ### Fase 2: Embudo de ofertas
 
 ### Fase 3: Llegada al restaurante
+- [[G11 Avisos solo de favoritos y destacados]] · propuesta de Alex: falta acordarla con PC 1 (backend)
 
 ### Notificaciones push (apoyo a G06)
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.

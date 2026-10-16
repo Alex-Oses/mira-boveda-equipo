@@ -29,7 +29,8 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · OK de PC 2 (Alex), falta PC 3
 
 ## Hecho
-- [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · en producción (web); falta APK (Alex)
+- Errores del APK BUG-138 a 145 · Codex, revisado por Claude · PR #10 en main y APK `android-v1.0.1` (descarga en `#/app`)
+- [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · en producción (web y APK `android-v1.0.1`)
 - [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1) · en producción (sin reglas: ver [[Permisos y primer arranque]])
 - [[G11 Avisos solo de favoritos y destacados]] · Alex (PC 2) · en main y desplegado; Izan revisa el backend a posteriori
 - [[T07 Web Push en la PWA]] · Alex (PC 2) · push recibido en iPhone (PWA)

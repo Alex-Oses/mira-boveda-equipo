@@ -23,7 +23,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · revisa Codex; falta APK en móvil (Alex) y C01
+- [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · revisión de Codex corregida, revisa Codex; falta APK (Alex)
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
 - [[G09 Pantalla de llegada con QR]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2

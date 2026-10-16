@@ -13,7 +13,6 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 ### Fase 2: Embudo de ofertas
 
 ### Fase 3: Llegada al restaurante
-- [[G11 Avisos solo de favoritos y destacados]] · propuesta de Alex: falta acordarla con PC 1 (backend)
 - [[G12 Enviar oferta a favoritos, cercanos y todos]] · aparcada (solo era para testeo, sin envíos masivos)
 
 ### Notificaciones push (apoyo a G06)
@@ -23,6 +22,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
+- [[G11 Avisos solo de favoritos y destacados]] · Alex (PC 2) · partners o favoritos; backend PR #1 (revisa PC 1), frontend PR #9
 - [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · revisión de Codex corregida, revisa Codex; falta APK (Alex)
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
 - [[G09 Pantalla de llegada con QR]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main

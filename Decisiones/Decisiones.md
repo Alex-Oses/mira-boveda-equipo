@@ -9,6 +9,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-16 · Avisos por distancia solo de partners o favoritos (G11)
+- **Decisión:** los avisos por distancia (G06) solo saltan si el restaurante es **partner** (lo marca el admin con 1 clic) o está en los **favoritos** del usuario. No hay envíos masivos de ofertas (G12 aparcada).
+- **Por qué:** no saturar al usuario con avisos de cualquier restaurante.
+- **Quién:** Alex (PC 2); el backend lo revisa PC 1.
+
 ### 2026-10-15 · G06 y G09 se quedan con Alex (PC 2); PC 3, de momento, fuera de la app
 - **Decisión:** al asignar la parte de app a Ruben (PC 3) apareció a la vez Alex (PC 2) con G06 y G09 **en curso** en `feat/mira-app`. El usuario decide: **se los deja Alex** y PC 3 no toca la app de momento. A futuro se valorá **llevar el panel del restaurante a la app** (ahí entraría PC 3).
 - **Por qué:** no duplicar trabajo en la misma rama; Alex ya estaba en ello cuando se acordó el reparto web/app.

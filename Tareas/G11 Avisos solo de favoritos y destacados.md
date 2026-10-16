@@ -1,8 +1,8 @@
 ---
-estado: propuesta
+estado: en revisión
 responsable: Alex (PC 2) + PC 1 (backend)
 depende_de: [G05, G06, T10]
-rama:
+rama: feat/G11-partner (backend, PR #1) · feat/G11-partner-favoritos (frontend, PR #9)
 ---
 # G11 Avisos solo de favoritos y destacados
 
@@ -20,3 +20,9 @@ La PWA en iOS no tiene ubicación en segundo plano: solo avisa con MIRA abierta 
 
 ## Terminada cuando
 Con GPS simulado: un favorito y un destacado avisan; otro restaurante con oferta no avisa; con promociones apagado no avisa nada.
+
+## Hecho (2026-10-16, Alex + Claude)
+Decisión de Alex: «destacado» pasa a llamarse **partner**; avisan los partners y los favoritos. Sin envíos masivos (G12 aparcada).
+- Backend (PR #1, para PC 1): `PUT /v1/dashboard/restaurant/:id/partner` solo admin; `restaurante.partner` en `ofertas/cerca` y en el listado de admin. 379/379.
+- Frontend (PR #9): filtro `soloAvisables` en web, app abierta y segundo plano; botón «Partner» de 1 clic en Gestión Restaurantes; mensaje claro si el QR falla con cuenta admin/empresa (403). 238/238, build y bundle Android OK.
+- Falta: revisión de Izan del backend y desplegarlo antes de unir el PR #9 (si no, ningún restaurante es partner y solo avisan los favoritos).

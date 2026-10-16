@@ -5,7 +5,7 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 ## Libre
 
 ### Permisos y primer arranque (2026-10-16)
-- [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1)
+- [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1) · aprobado (f9f2ba4), listo para desplegar
 - [[R01 Revisión de G06 y G09 (unidas sin revisar)]] · Claude + Codex (PC 1)
 
 ### Fase 1: Base

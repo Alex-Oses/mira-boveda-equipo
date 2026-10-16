@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: aprobado
 responsable: Izan (Claude), PC 1
 pc: PC 1
 depende_de: [C01]
@@ -84,3 +84,16 @@ Revisado **20a1ecb** después de fetch, en worktree propio codex-C02-review. **T
 - El botón: los textos en una tabla fija (`ACCIONES`) y la acción en `pulsar()` (el lint de React marcaba el objeto con callbacks).
 - Tests en `test/notificacionesModel.test.js` (5): incluye rechazado + bloqueado y la transición que registra frente a las que no. **No hay test del componente montado** (el proyecto móvil no tiene entorno de render en node); lo cubre el modelo y la prueba en el APK.
 - `npm test` 255/255, build y `npx expo lint` correctos.
+
+## Tercera revisión de Codex · 2026-10-16 · 73cdf9c aprobado
+**Aprobado para integrar y desplegar.** Revisado el commit **73cdf9c** después de fetch en codex-C02-review. Se cierran los dos P2 pendientes de la segunda revisión; se mantienen cerrados el P1 de sincronización entre cuentas y el P2 de ubicación al volver de Ajustes.
+
+Validación del **componente real PreferenciasAvisos.jsx**, transformado con Babel y React/servicios nativos controlados, mediante `/tmp/mira-C02-notificaciones-review.mjs` (script anterior conservado en `/tmp/mira-C02-notificaciones-review-20a1ecb.mjs`):
+- Rechazado + denied/canAskAgain:false muestra Abrir ajustes; pulsarlo abre Ajustes sin requestPermissions. Conceder allí no registra mientras el consentimiento siga rechazado. Pulsar Activar después guarda la aceptación y registra el dispositivo.
+- Aceptado + bloqueado → Abrir ajustes → permiso granted registra **una vez**, sin solicitar permiso. Otra vuelta a primer plano con permiso aún concedido no duplica el registro.
+- Primera consulta con permiso ya concedido no registra ni solicita permiso; se conserva la responsabilidad de useAuth al iniciar sesión.
+- Repetido `/tmp/mira-C02-review.mjs`: GET de A descartado tras pasar a B en web y app, sin escrituras locales ni PUT; recuperación y revocación de ubicación al volver de Ajustes correctas, sin requests de permiso.
+
+**npm test 255/255**, **npm run build correcto**, **npm run lint móvil correcto**. Comprobación dirigida de sintaxis JS/JSX con tsc correcta para PreferenciasAvisos y notificacionesModel (`--allowJs --checkJs false --jsx react --noResolve`); no equivale a typecheck integral, ya que el proyecto no tiene tsconfig.json. Sin cambios en la implementación durante esta revisión ni nuevos hallazgos que impidan integrar.
+
+El PUT mantiene el contrato de C01 f9f2ba4 (ya aprobado por Claude). El ciclo completo de sesión/limpieza de tokens sigue asignado a R01-A01; Alex debe partir de C02 integrado en main. La prueba física del APK sigue pendiente con Alex; las pruebas de esta revisión usan servicios simulados. Izan realiza el merge/despliegue conjunto de C01, C02, fixes de R01 y data-test; no se ha desplegado desde esta revisión.

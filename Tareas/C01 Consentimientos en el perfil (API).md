@@ -50,3 +50,10 @@ Pendiente: publicar y revisar este complemento del frontend; confirmar con Claud
 ## Segunda revisión de Claude (2026-10-16)
 **Aprobado.** El P2 se cierra por el lado del llamador, que es válido: la raíz estricta da 400 ante desconocidos y `fix/C01-data-test-perfil` (`aae000f`, publicada por Claude) deja de enviar `plataforma` y manda las alergias con su `key` (antes enviaba la etiqueta, inválida también en `main`). Frontend 236/236 y build correcto. Ningún otro llamador de `PUT /v1/users/me` envía campos fuera del esquema (registro web y app, favoritos, preferencias, accesibilidad, idioma, cookies).
 Para desplegar: unir `fix/C01-data-test-perfil` en el frontend **antes o a la vez** que C01 en el backend; después, reglas de Firestore (`firebase deploy --only firestore:rules`).
+
+## Corrección solicitada por Izan · Codex · 2026-10-16
+**Publicado f9f2ba4 en feat/C01-consentimientos**. Se sigue la instrucción posterior de Izan: quitar `.strict()` solo de la raíz de PUT /v1/users/me. Los campos extra (`plataforma`, también UID) se ignoran sin guardarse; el UID efectivo sigue saliendo exclusivamente del Bearer. Tanto el mapa consentimientos como cada decisión mantienen strict y el merge por campo.
+
+Regresión añadida: PUT con plataforma:web responde 200, actualiza campos admitidos y no persiste extras. Body solo con extras devuelve updated:false. Extras dentro de consentimientos siguen dando 400. El test de aislamiento verifica que UID extra no escribe en el perfil ajeno. docs/api.md actualizado. **npm test: 402/402**, sin fallos ni saltos.
+
+Esta decisión sustituye la respuesta anterior que mantenía strict en la raíz y la dependencia de integrar el complemento frontend para resolver plataforma. La rama fix/C01-data-test-perfil, publicada y aprobada por Claude, queda como ajuste independiente del generador (también corrige sus claves de alergias); **C01 ya no depende de ella para aceptar plataforma**. Contrato de consentimientos sin cambios. No se han cambiado reglas ni índices en este ajuste. Izan se encarga del merge/despliegue de API + reglas tras cerrar las revisiones. C02 sigue con tres cambios solicitados en su nota.

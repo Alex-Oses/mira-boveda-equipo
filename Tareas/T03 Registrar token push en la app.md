@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: hecho
 responsable: Alex (PC 2)
 depende_de: [T01, T04]
 rama: feat/T03-push-android (frontend)
@@ -24,3 +24,6 @@ Hasta que esté T04, mostrar el token por consola. Las notificaciones remotas no
 - Rama `feat/T03-push-android` del frontend (commit `c0b1aa4`): servicio `mobile/src/services/notificaciones.js` según el contrato de T04, registro al entrar, DELETE antes de cerrar sesión y apertura de `data.ruta`.
 - El mock (`npm run mock-api`) ya responde `POST/DELETE /v1/push/tokens` como el contrato, para probar sin T04.
 - Falta: `eas init` (projectId), development build y probar en un Android real.
+
+## Cerrada (2026-10-16)
+Prueba real en Android con T04: `{ enviados: 1, fallidos: 0 }`, notificación recibida. Código unido a main con `feat/mira-app` (PR #5).

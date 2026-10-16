@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: hecho
 responsable: Alex (PC 2)
 depende_de: []
 rama: feat/T03-push-android (frontend)
@@ -19,3 +19,6 @@ Dejar `mobile/` lista para generar builds y pedir tokens push.
 
 ## Notas
 Ver [[Plan app móvil y notificaciones]].
+
+## Cerrada (2026-10-16)
+EAS configurado (projectId en `app.json`); builds de desarrollo y preview generados e instalados (último APK `481fc621`, Release `android-v1.0.0`).

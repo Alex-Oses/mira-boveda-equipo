@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: hecho
 responsable: Alex (PC 2)
 depende_de: [T06, T04]
 rama: feat/mira-app (frontend)
@@ -25,3 +25,6 @@ Con la PWA instalada en un iPhone llega una notificación enviada desde la API.
 ## Avance 2026-10-16 (Alex, PC 2)
 - Clave VAPID generada en Firebase (Cloud Messaging → Certificados push web). Es pública: está en `.env.example` del frontend, rama `chore/T07-vapid`.
 - Ojo: la web está en **Vercel**, no en Render. Falta añadir `VITE_FIREBASE_VAPID_KEY` en Vercel (Production), redeploy y probar en iPhone con la PWA instalada.
+
+## Cerrada (2026-10-16)
+VAPID en Vercel (Ruben) y redeploy. PWA instalada en iPhone (iOS), avisos activados, token web `ios` guardado en Firestore. Mensaje de prueba desde Firebase Messaging (solo a ese token) **recibido en el iPhone**.

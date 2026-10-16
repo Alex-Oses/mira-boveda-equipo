@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Codex (PC 1)
 depende_de: []
 rama: feat/T04-modulo-push
@@ -61,3 +61,6 @@ Sigue **en revisión** hasta corregir el P1. La prueba en un dispositivo real qu
 - Índice `dispositivos.tokenHash` (grupo de colecciones) publicado en Firestore sin borrar ninguno de los 23 índices existentes.
 - `main` del backend `86add00` (merge de T04) en Render: `POST /v1/push/tokens` responde 401 sin sesión; `/health` y restaurantes, 200.
 - **PC 2 ya puede probar [[T03 Registrar token push en la app|T03]]** contra producción. Falta la prueba en un dispositivo real para cerrar T04.
+
+## Cerrada (2026-10-16)
+Probado en dispositivo real: Android (Expo, 15/10) y iPhone PWA (web, 16/10).

@@ -19,7 +19,6 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
 - [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · ver [[Permisos y primer arranque]]
-- [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
@@ -27,10 +26,11 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
 - [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`
-- [[T04 Módulo push en mira-api]] · Codex (PC 1) · desplegado, falta prueba en dispositivo real (T03)
 - [[G01 Contrato API fase 1]] · Izan (Claude) · OK de PC 2 (Alex), falta PC 3
 
 ## Hecho
+- [[T07 Web Push en la PWA]] · Alex (PC 2) · push recibido en iPhone (PWA)
+- [[T04 Módulo push en mira-api]] · Codex (PC 1) · probado en Android e iPhone
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2) · APK en Release `android-v1.0.0`
 - [[T03 Registrar token push en la app]] · Alex (PC 2) · push probado en Android real
 - [[G08 QR firmado, visitas y comisión]] · Codex (PC 1) · desplegado con VISITAS_SECRET

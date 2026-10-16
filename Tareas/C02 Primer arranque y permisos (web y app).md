@@ -76,3 +76,11 @@ Revisado **20a1ecb** después de fetch, en worktree propio codex-C02-review. **T
 - `/tmp/mira-C02-notificaciones-review.mjs`: ejecuta **PreferenciasAvisos.jsx real**, transformado con Babel para JSX, con React/servicios nativos simulados. Reproducidos ambos casos: Activar permanece desactivadas sin abrir Ajustes; y bloqueado→Ajustes→granted muestra activas con **0 llamadas a registrarPush**. No se han modificado los archivos de implementación.
 - **npm test 253/253**, **npm run build correcto**, **npm run lint móvil correcto**. Los 9 tests añadidos pasan, pero no cubren estos dos flujos completos del componente. Sin prueba física de APK; sigue pendiente con Alex. R01-A01 mantiene el alcance de carreras y limpieza de tokens ya anotado.
 - Resultado: C02 queda **en revisión con cambios solicitados**; cerrar estos dos casos antes del merge conjunto. No se han unido ni desplegado ramas.
+
+## Corrección de la segunda revisión de Codex (2026-10-16, Izan + Claude)
+`73cdf9c` en `feat/C02-primer-arranque`:
+1. **Rechazado + bloqueado → «Abrir ajustes».** `estadoNotificaciones` da prioridad al bloqueo del sistema (`canAskAgain: false` sin permiso) sobre la decisión guardada, así que tras denegar el diálogo del paso 3 el botón ya no es «Activar» sin efecto, sino «Abrir ajustes». Con permiso concedido pero rechazado sigue «desactivadas» (Activar no muestra diálogo y queda aceptado).
+2. **Conceder en Ajustes registra el dispositivo.** `PreferenciasAvisos` recuerda el permiso anterior; al reconsultar, `debeRegistrarAlRecuperar(antes, ahora, consentimiento)` (aceptado y paso de no concedido a concedido) llama a `registrarPush` sin pedir permiso. La primera consulta no registra (de eso se ocupa useAuth al entrar). La vigencia de la sesión del registro sigue en el alcance de R01-A01.
+- El botón: los textos en una tabla fija (`ACCIONES`) y la acción en `pulsar()` (el lint de React marcaba el objeto con callbacks).
+- Tests en `test/notificacionesModel.test.js` (5): incluye rechazado + bloqueado y la transición que registra frente a las que no. **No hay test del componente montado** (el proyecto móvil no tiene entorno de render en node); lo cubre el modelo y la prueba en el APK.
+- `npm test` 255/255, build y `npx expo lint` correctos.

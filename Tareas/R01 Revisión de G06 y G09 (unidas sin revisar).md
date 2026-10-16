@@ -34,3 +34,9 @@ Base revisada: frontend `origin/main` **cc31bab** (incluye merge PR #5 `0900b00`
 ### Límites y estado de entrega
 - Revisiones de código + tests automatizados; sin prueba física en móvil ni validación E2E contra producción. Proyecto móvil no contiene tsconfig.json: `tsc --noEmit` global devuelve ayuda/error; comprobación dirigida de sintaxis JS del hook con tsc correcta (comando en docs/revisiones/R01-sondeo-visitas.md). No se presenta como typecheck integral.
 - Las dos ramas están comprometidas y limpias, pendientes revisión cruzada; sin merge ni despliegue. Publicación pendiente: auto-review rechazó push de C01 por no considerar explícitamente autorizada la exportación al remoto; se solicita autorización antes de publicar las tres ramas. No se ha creado PR remoto.
+
+## Revisión de Claude de los arreglos de Codex (2026-10-16)
+Ramas locales de Codex, sin publicar:
+- `fix/R01-sondeo-visitas` (`4633d80`): sondeo de `GET /v1/visitas/:id` sin solapes, sin `setState` tras desmontar, y 401/403/404 terminales (retira el QR). Web y app. `npm test` 254/254, build correcto. **Aprobado.**
+- `fix/R01-avisos-visibles` (`43b24f0`): en la web, solo se marcan como vistos y se cuentan los avisos que caben (máximo 3). `npm test` 237/237, build correcto. **Aprobado.**
+- Menor: las dos añaden `docs/revisiones/*.md` en el repo de código; esa información ya está en la bóveda (aquí), mejor no duplicarla.

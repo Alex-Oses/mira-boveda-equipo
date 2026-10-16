@@ -21,3 +21,10 @@ Regla en el cliente: al iniciar sesión, si el dispositivo y el perfil no coinci
 - [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1)
 - [[C02 Primer arranque y permisos (web y app)]] · Claude (PC 1)
 - [[R01 Revisión de G06 y G09 (unidas sin revisar)]] · Claude + Codex (PC 1)
+
+## Reglas de Firestore: dos ficheros distintos (pendiente de decidir, 2026-10-16)
+- **Frontend** `firestore.rules` (13 líneas, BUG-014): **lo bloquea todo** para los clientes (`match /{document=**}`).
+- **Backend** `mira-api/firestore.rules` (209 líneas): reglas por colección; permite algunas lecturas desde el cliente (p. ej. cada usuario su perfil) y cierra `consentimientos`, `ofertas`, `visitas`, etc.
+- No se sabe cuál está publicada. Publicar la del backend sobre la del frontend **abriría** accesos que hoy pueden estar cerrados. Para C01 no hace falta publicar nada (la API escribe con Admin SDK).
+- **Decidir entre todos:** un único fichero como fuente de verdad, revisar qué lecturas directas necesita de verdad la web o la app (si usan `firebase/firestore` en el cliente) y publicar solo después.
+

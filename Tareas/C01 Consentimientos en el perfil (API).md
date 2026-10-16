@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Codex (PC 1)
 pc: PC 1
 depende_de: []
@@ -60,3 +60,9 @@ Esta decisión sustituye la respuesta anterior que mantenía strict en la raíz 
 
 ## Tercera revisión de Claude (2026-10-16)
 `f9f2ba4`: **aprobado.** Sin `.strict()` en la raíz de `PUT /v1/users/me` (los extras se ignoran y no se guardan), con `consentimientos` y cada decisión estrictos. `npm test` 402/402; el mismo cuerpo con `plataforma: 'web'` vuelve a dar **200**. `fix/C01-data-test-perfil` queda como mejora independiente (sobre todo por las claves de alergias). Listo para unir y desplegar (API + reglas) junto con C02.
+
+## Desplegado (2026-10-16, Izan + Claude)
+- **Backend** `main` `3b7473a` (C01 sobre G11) en Render: 405/405 tests. **No se han publicado reglas de Firestore**: ver «Reglas de Firestore: dos ficheros distintos» en [[Permisos y primer arranque]].
+- **Frontend** `main` `3a1fbc6` (C02 + `fix/R01-sondeo-visitas` + `fix/R01-avisos-visibles` + `fix/C01-data-test-perfil`) en Vercel: 276/276 tests y build. Conflicto con G11 en `useAvisosOfertas` resuelto combinando los dos: primero partners o favoritos (G11) y después el límite de 3 visibles (R01).
+- Comprobado en la web publicada con almacenamiento vacío: cookies → ubicación → notificaciones.
+- **Falta:** el APK desde `main` y la prueba en el móvil (Alex).

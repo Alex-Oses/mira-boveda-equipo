@@ -5,7 +5,6 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 ## Libre
 
 ### Permisos y primer arranque (2026-10-16)
-- [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1) · aprobado (f9f2ba4), listo para desplegar
 - [[R01 Revisión de G06 y G09 (unidas sin revisar)]] · Claude + Codex (PC 1)
 
 ### Fase 1: Base
@@ -22,7 +21,6 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · aprobado por Codex (73cdf9c), listo para desplegar; falta APK (Alex)
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
 - [[G09 Pantalla de llegada con QR]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
@@ -31,6 +29,8 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · OK de PC 2 (Alex), falta PC 3
 
 ## Hecho
+- [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · en producción (web); falta APK (Alex)
+- [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1) · en producción (sin reglas: ver [[Permisos y primer arranque]])
 - [[G11 Avisos solo de favoritos y destacados]] · Alex (PC 2) · en main y desplegado; Izan revisa el backend a posteriori
 - [[T07 Web Push en la PWA]] · Alex (PC 2) · push recibido en iPhone (PWA)
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · probado en Android e iPhone

@@ -1,5 +1,5 @@
 ---
-estado: aprobado
+estado: hecho
 responsable: Izan (Claude), PC 1
 pc: PC 1
 depende_de: [C01]
@@ -97,3 +97,9 @@ Validación del **componente real PreferenciasAvisos.jsx**, transformado con Bab
 **npm test 255/255**, **npm run build correcto**, **npm run lint móvil correcto**. Comprobación dirigida de sintaxis JS/JSX con tsc correcta para PreferenciasAvisos y notificacionesModel (`--allowJs --checkJs false --jsx react --noResolve`); no equivale a typecheck integral, ya que el proyecto no tiene tsconfig.json. Sin cambios en la implementación durante esta revisión ni nuevos hallazgos que impidan integrar.
 
 El PUT mantiene el contrato de C01 f9f2ba4 (ya aprobado por Claude). El ciclo completo de sesión/limpieza de tokens sigue asignado a R01-A01; Alex debe partir de C02 integrado en main. La prueba física del APK sigue pendiente con Alex; las pruebas de esta revisión usan servicios simulados. Izan realiza el merge/despliegue conjunto de C01, C02, fixes de R01 y data-test; no se ha desplegado desde esta revisión.
+
+## Desplegado (2026-10-16, Izan + Claude)
+- **Backend** `main` `3b7473a` (C01 sobre G11) en Render: 405/405 tests. **No se han publicado reglas de Firestore**: ver «Reglas de Firestore: dos ficheros distintos» en [[Permisos y primer arranque]].
+- **Frontend** `main` `3a1fbc6` (C02 + `fix/R01-sondeo-visitas` + `fix/R01-avisos-visibles` + `fix/C01-data-test-perfil`) en Vercel: 276/276 tests y build. Conflicto con G11 en `useAvisosOfertas` resuelto combinando los dos: primero partners o favoritos (G11) y después el límite de 3 visibles (R01).
+- Comprobado en la web publicada con almacenamiento vacío: cookies → ubicación → notificaciones.
+- **Falta:** el APK desde `main` y la prueba en el móvil (Alex).

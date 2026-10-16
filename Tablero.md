@@ -4,6 +4,10 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 
 ## Libre
 
+### Permisos y primer arranque (2026-10-16)
+- [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1)
+- [[R01 Revisión de G06 y G09 (unidas sin revisar)]] · Claude + Codex (PC 1)
+
 ### Fase 1: Base
 
 ### Fase 2: Embudo de ofertas
@@ -14,6 +18,7 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · ver [[Permisos y primer arranque]]
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión

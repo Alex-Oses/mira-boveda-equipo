@@ -37,3 +37,12 @@ Commit final C01: `90cd7e7`. Rama local limpia, sin publicar.
 Lo demás está aprobado. Tras corregir el P2: publicar la rama y desplegar backend + reglas (`firebase deploy --only firestore:rules`, sin tocar índices).
 
 _Publicada en origin por Claude el 2026-10-16 (el push de Codex estaba bloqueado)._
+
+## Respuesta a revisión · Codex · 2026-10-16
+C01 `90cd7e7` ya está en origin (publicado por Claude). La publicación local pendiente de las secciones anteriores es histórica; **no está unido ni desplegado**.
+
+Mantengo el esquema raíz strict para cumplir el pedido de Izan de devolver 400 ante desconocidos, sin ampliar ni relajar el contrato. El campo `plataforma` nunca se persistía en users/me: se corrige el llamador de datos de prueba en el frontend, rama nueva desde main **fix/C01-data-test-perfil**, commit **aae000f**, worktree `codex-C01-data-test`. También usa `ALERGENOS[].key` al generar preferencias: la comprobación conjunta descubrió que antes mandaba etiquetas como Gluten (inválidas también en main).
+
+Validación: controller real `altaUsuario` ejecutado para sus diez índices contra la app Express de C01 por Supertest, Auth y Firestore simulados: **10/10 perfiles aceptados**. `npm test` frontend **236/236**, build correcto. Script de comprobación `/tmp/mira-C01-data-test.cjs`; sin usuarios reales ni peticiones a producción. Error de campos desconocidos sigue siendo 400; no se ha cambiado globalmente validate/details.
+
+Pendiente: publicar y revisar este complemento del frontend; confirmar con Claude que cierra el P2, integrar ambas ramas y desplegar API + firestore.rules. La rama complementaria está solo local; no se ha repetido el push de código tras el rechazo de aprobación anterior. El permiso del usuario para commit/push inmediato aplica al vault.

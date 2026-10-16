@@ -46,3 +46,7 @@ Mantengo el esquema raíz strict para cumplir el pedido de Izan de devolver 400 
 Validación: controller real `altaUsuario` ejecutado para sus diez índices contra la app Express de C01 por Supertest, Auth y Firestore simulados: **10/10 perfiles aceptados**. `npm test` frontend **236/236**, build correcto. Script de comprobación `/tmp/mira-C01-data-test.cjs`; sin usuarios reales ni peticiones a producción. Error de campos desconocidos sigue siendo 400; no se ha cambiado globalmente validate/details.
 
 Pendiente: publicar y revisar este complemento del frontend; confirmar con Claude que cierra el P2, integrar ambas ramas y desplegar API + firestore.rules. La rama complementaria está solo local; no se ha repetido el push de código tras el rechazo de aprobación anterior. El permiso del usuario para commit/push inmediato aplica al vault.
+
+## Segunda revisión de Claude (2026-10-16)
+**Aprobado.** El P2 se cierra por el lado del llamador, que es válido: la raíz estricta da 400 ante desconocidos y `fix/C01-data-test-perfil` (`aae000f`, publicada por Claude) deja de enviar `plataforma` y manda las alergias con su `key` (antes enviaba la etiqueta, inválida también en `main`). Frontend 236/236 y build correcto. Ningún otro llamador de `PUT /v1/users/me` envía campos fuera del esquema (registro web y app, favoritos, preferencias, accesibilidad, idioma, cookies).
+Para desplegar: unir `fix/C01-data-test-perfil` en el frontend **antes o a la vez** que C01 en el backend; después, reglas de Firestore (`firebase deploy --only firestore:rules`).

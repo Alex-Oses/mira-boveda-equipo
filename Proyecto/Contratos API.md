@@ -224,3 +224,5 @@ Rama T10 vigente: feat/T10-preferencias-push (`a5f332c`), P2 corregido y pendien
 Promociones empieza apagado; no precargar ni guardar true automáticamente al abrir los ajustes. Enviar PUT `{ promociones: true }` únicamente tras activación explícita por el usuario y reflejar el mapa devuelto. Perfil/campo/clave ausente o valor no booleano no equivalen a activación. Se mantiene true por defecto para reservas/mensajes. Actualización de contrato autorizada en la revisión de Claude; endpoints todavía en revisión, sin desplegar.
 
 Corrección T10 subida en `a5f332c`: 340/340, pendiente nueva revisión; promociones solo true explícito. Sin despliegue. Aviso de PC 2 publicado arriba y en la nota T10.
+
+- C01 (2026-10-16, en revisión local, `feat/C01-consentimientos`): GET/PUT `/v1/users/me` implementan `consentimientos` según [[Permisos y primer arranque]], strict y merge por campo; GET `{}` si no hay. Contrato sin cambios; 403/403 tests; pendiente publicación, revisión y despliegue API + reglas.

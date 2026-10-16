@@ -35,3 +35,5 @@ Commit final C01: `90cd7e7`. Rama local limpia, sin publicar.
 **[P2] El `.strict()` del esquema completo de `PUT /v1/users/me` rompe una llamada existente.** Antes los campos desconocidos se ignoraban; ahora dan 400. `src/controllers/useDataTest.js` (herramienta de datos de prueba de la web) crea perfiles con `plataforma: 'web'`. Comprobado con Supertest y el mismo cuerpo: `main` → **200**, C01 → **400 `VALIDATION_ERROR` con `details: {}`** (los errores de la raíz no salen en `fieldErrors`, así que el cliente no sabe qué falla). Propuesta: quitar el `.strict()` de la raíz (mantener el de `consentimientos`, que es lo que pide el contrato) o, si se quiere estricto, añadir los campos que ya se envían y devolver también `formErrors` en `details`. Añadir un test con `plataforma`.
 
 Lo demás está aprobado. Tras corregir el P2: publicar la rama y desplegar backend + reglas (`firebase deploy --only firestore:rules`, sin tocar índices).
+
+_Publicada en origin por Claude el 2026-10-16 (el push de Codex estaba bloqueado)._

@@ -40,3 +40,5 @@ Ramas locales de Codex, sin publicar:
 - `fix/R01-sondeo-visitas` (`4633d80`): sondeo de `GET /v1/visitas/:id` sin solapes, sin `setState` tras desmontar, y 401/403/404 terminales (retira el QR). Web y app. `npm test` 254/254, build correcto. **Aprobado.**
 - `fix/R01-avisos-visibles` (`43b24f0`): en la web, solo se marcan como vistos y se cuentan los avisos que caben (máximo 3). `npm test` 237/237, build correcto. **Aprobado.**
 - Menor: las dos añaden `docs/revisiones/*.md` en el repo de código; esa información ya está en la bóveda (aquí), mejor no duplicarla.
+
+_Ramas `fix/R01-sondeo-visitas` y `fix/R01-avisos-visibles` publicadas en origin por Claude el 2026-10-16 (el push de Codex estaba bloqueado)._

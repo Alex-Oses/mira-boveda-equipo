@@ -14,7 +14,7 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[T07 Web Push en la PWA]] · Alex (PC 2): código en `feat/mira-app`, falta clave VAPID y prueba en iPhone
+- [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main

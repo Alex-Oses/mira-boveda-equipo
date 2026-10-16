@@ -21,3 +21,7 @@ Con la PWA instalada en un iPhone llega una notificación enviada desde la API.
 - Código en `feat/mira-app` (`4e2b36b`): `src/services/pushWeb.js` + sección «Notificaciones» en Mi cuenta (botón de activar e interruptores de T10, ocultos si la API aún no los tiene). Borra el token al cerrar sesión.
 - `sw.js` acepta `data.ruta` como `"reservas"` o `"/reservas"` (el backend la manda sin barra) y solo rutas internas.
 - Falta: clave VAPID de Firebase → `VITE_FIREBASE_VAPID_KEY` en Render, desplegar y probar en un iPhone con la PWA instalada.
+
+## Avance 2026-10-16 (Alex, PC 2)
+- Clave VAPID generada en Firebase (Cloud Messaging → Certificados push web). Es pública: está en `.env.example` del frontend, rama `chore/T07-vapid`.
+- Ojo: la web está en **Vercel**, no en Render. Falta añadir `VITE_FIREBASE_VAPID_KEY` en Vercel (Production), redeploy y probar en iPhone con la PWA instalada.

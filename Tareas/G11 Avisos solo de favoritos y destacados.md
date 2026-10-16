@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Alex (PC 2) + PC 1 (backend)
 depende_de: [G05, G06, T10]
 rama: feat/G11-partner (backend, PR #1) · feat/G11-partner-favoritos (frontend, PR #9)
@@ -26,3 +26,7 @@ Decisión de Alex: «destacado» pasa a llamarse **partner**; avisan los partner
 - Backend (PR #1, para PC 1): `PUT /v1/dashboard/restaurant/:id/partner` solo admin; `restaurante.partner` en `ofertas/cerca` y en el listado de admin. 379/379.
 - Frontend (PR #9): filtro `soloAvisables` en web, app abierta y segundo plano; botón «Partner» de 1 clic en Gestión Restaurantes; mensaje claro si el QR falla con cuenta admin/empresa (403). 238/238, build y bundle Android OK.
 - Falta: revisión de Izan del backend y desplegarlo antes de unir el PR #9 (si no, ningún restaurante es partner y solo avisan los favoritos).
+
+## Unido y desplegado (2026-10-16)
+A petición de Alex se unieron sin revisión: backend PR #1 (Render) y frontend PR #6–#9 (Vercel). Antes, prueba de unión local de los 4 PR: sin conflictos, 238/238, build y bundle Android OK. **Izan: revisa el backend a posteriori.**
+Probado en producción: Les Bruixes marcado partner desde Gestión Restaurantes (1 clic); oferta «PRUEBA G06 (borrar)» creada desde Ofertas por distancia (admin); `ofertas/cerca` la devuelve con `partner: true`. APK nuevo: build EAS `31a5d5bd`.

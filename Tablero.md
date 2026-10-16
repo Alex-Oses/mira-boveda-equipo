@@ -22,7 +22,6 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[G11 Avisos solo de favoritos y destacados]] · Alex (PC 2) · partners o favoritos; backend PR #1 (revisa PC 1), frontend PR #9
 - [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · revisión de Codex corregida, revisa Codex; falta APK (Alex)
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
 - [[G09 Pantalla de llegada con QR]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
@@ -32,6 +31,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · OK de PC 2 (Alex), falta PC 3
 
 ## Hecho
+- [[G11 Avisos solo de favoritos y destacados]] · Alex (PC 2) · en main y desplegado; Izan revisa el backend a posteriori
 - [[T07 Web Push en la PWA]] · Alex (PC 2) · push recibido en iPhone (PWA)
 - [[T04 Módulo push en mira-api]] · Codex (PC 1) · probado en Android e iPhone
 - [[T01 Configurar EAS y app.json]] · Alex (PC 2) · APK en Release `android-v1.0.0`

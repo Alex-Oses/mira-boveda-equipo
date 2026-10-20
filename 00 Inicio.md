@@ -10,6 +10,7 @@ Memoria compartida del equipo y de nuestras IAs (Claude, Codex...). Aquí se apu
 
 ## Proyecto
 - [[MIRA - Resumen]]: repos, stack y cómo arrancarlo.
+- [[Arquitectura frontend y plan de estilos]]: investigación, estilos y plan de diseño (2026-10-19).
 - [[Ofertas por geolocalización]] ← **proyecto actual** (fases, PC y reparto)
 - [[Contratos API]]: lo publica el PC 1 al empezar cada fase
 - [[Permisos y primer arranque]] ← **bugs del 2026-10-16** (bienvenida, permisos, RGPD)

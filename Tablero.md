@@ -23,7 +23,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 ## En revisión
 - Tanda 2 de bugs UI web BUG-146 a 152 · OpenCode · en `main` `8aac33e` y desplegado en Vercel; pendiente revisión visual del usuario (detalle en `docs/bugs/`)
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
-- [[G09 Pantalla de llegada con QR]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
+- [[G09 Pantalla de llegada con QR]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main · estado canjeado en main `7dbba6c` (2026-10-20)
 - [[T10 Preferencias de notificaciones]] · Codex (PC 1) · aprobado y desplegado (API); falta interruptor del PC 2
 - [[T05 Notificar reservas y mensajes]] · Codex (PC 1) · desplegado (con P3), falta prueba real con PC 2
 - [[T06 Convertir la web en PWA]] · Alex (PC 2): rama `feat/T06-pwa-descargas`, página `#/app`

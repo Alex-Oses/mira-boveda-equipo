@@ -21,6 +21,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
+- Rediseño web en la app (PR #16, `feat/app-rediseno-web`) · Alex (PC 2) · APK `android-v1.0.4` en build; falta revisión y prueba en móvil
 - Tanda 2 de bugs UI web BUG-146 a 152 · OpenCode · en `main` `8aac33e` y desplegado en Vercel; pendiente revisión visual del usuario (detalle en `docs/bugs/`)
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main
 - [[G09 Pantalla de llegada con QR]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main · estado canjeado en main `7dbba6c` (2026-10-20)

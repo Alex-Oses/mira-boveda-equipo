@@ -1,10 +1,10 @@
 ---
-estado: libre
+estado: en curso
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M01]
-rama:
+rama: feat/M02-carta
 ---
 # M02 Carta del restaurante en la API
 

@@ -6,7 +6,6 @@ Proyecto actual: [[Reserva con carta]] (desde 2026-10-22). Anterior: [[Ofertas p
 
 ### Reserva con carta (2026-10-22)
 Primero M01 (bloquea al resto). M07 y M08 no dependen de nada. Prompt de Codex: [[Codex - Reserva con carta]].
-- [[M02 Carta del restaurante en la API]] · Izan (Codex) (PC 1)
 - [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1)
 - [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1)
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1)
@@ -34,6 +33,7 @@ Primero M01 (bloquea al resto). M07 y M08 no dependen de nada. Prompt de Codex: 
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[M02 Carta del restaurante en la API]] · Izan (Codex) (PC 1)
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión

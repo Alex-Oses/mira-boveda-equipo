@@ -33,7 +33,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[M07 Landing por secciones]] · Ruben (PC 3) · rama `feat/M07-landing-secciones` (`570a717`, `08ca563`) + ajustes en `feat/M07-ajustes-ui` (`05a6652`…`09317a8`, subida): todas las secciones en carrusel y buscador compacto; tests 320/320, build, E2E 28/28 y monkey verdes; pendiente PR, revisión y M14 en producción
+- [[M07 Landing por secciones]] · Ruben (PC 3) · rama `feat/M07-landing-secciones` (`570a717`, `08ca563`) + ajustes en `feat/M07-ajustes-ui` (`05a6652`…`b8d123a`, subida): todas las secciones en carrusel, avance automático y buscador compacto; tests 320/320, build, E2E 29/29 y monkey verdes; pendiente PR, revisión y M14 en producción
 - [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43 · reglas cerradas y RESERVAS_QR_SECRET configurado
 - [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`) · script solo para emulador: falta sembrar producción (Izan)
 - [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)

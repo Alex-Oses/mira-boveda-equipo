@@ -27,7 +27,7 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 ```
 
 ### 2026-10-22 · Todas las secciones de la landing en carrusel
-- **Decisión:** las cuatro secciones con datos usan el mismo carrusel de scroll-snap y flechas. La pista ocupa todo el ancho de la ventana: la primera tarjeta alinea con el título y las siguientes llegan al borde, con anchos 82% móvil, 46% tableta y `clamp(320px, 27vw, 370px)` escritorio. El CTA del buscador es corto («Buscar»/«Cercar»/«Search») y no se parte.
+- **Decisión:** las cuatro secciones con datos usan el mismo carrusel de scroll-snap y flechas. La pista ocupa todo el ancho de la ventana: la primera tarjeta alinea con el título y las siguientes llegan al borde, con anchos 82% móvil, 46% tableta y `clamp(320px, 27vw, 370px)` escritorio. El CTA del buscador es corto («Buscar»/«Cercar»/«Search») y no se parte. El carrusel avanza solo cada 5 s y vuelve al inicio; se pausa al pasar el ratón o al enfocar con el teclado, y se queda quieto con `prefers-reduced-motion`. Sin barra de scroll: solo flechas y deslizamiento táctil.
 - **Por qué:** las filas de 3 tarjetas parecían una rejilla estática y dejaban franjas vacías; el carrusel muestra que hay más contenido y llena los lados. El botón anterior se partía en dos líneas y parecía desproporcionado.
 - **Quién:** Ruben (PC 3), commit `09317a8`.
 

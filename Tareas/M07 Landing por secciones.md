@@ -62,3 +62,4 @@ Rama `feat/M07-ajustes-ui` (worktree `.worktrees/m07`), desde `08ca563`:
 - `09317a8`: platos, más reservados y Top Barcelona pasan al mismo `Carrusel` que promociones. La pista ocupa todo el ancho: la primera tarjeta alinea con el título y las siguientes llegan al borde de la ventana; anchos 82% móvil, 46% tableta y `clamp(320px, 27vw, 370px)` escritorio para que se vea la siguiente.
 - Buscador: CTA «Buscar»/«Cercar»/«Search», sin salto de línea y con las acciones a la derecha (104×48 px a 1280).
 - Test E2E generalizado a las cuatro secciones con datos. Verde: `npm test` 320/320, build, E2E 28/28 y monkey semilla 1.
+- `b8d123a`: avance automático cada 5 s con vuelta al inicio, pausa al pasar el ratón o enfocar y respeto a `prefers-reduced-motion`; barra de scroll oculta, solo flechas y deslizamiento táctil. Nuevo test E2E: E2E 29/29.

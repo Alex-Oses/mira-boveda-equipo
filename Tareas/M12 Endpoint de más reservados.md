@@ -30,3 +30,6 @@ Lo pide Ruben (PC 3) para [[M07 Landing por secciones]]. Revisión cruzada: Clau
 - npm test: 446 pasan, 0 fallan; 1 omitido de reglas M04 (requiere emulador). Pruebas de límites, canceladas, fechas, proyección, caché y medianoche. Claude revisa; no unir ni desplegar.
 
 Validación final con emulador habilitado: **450/450, sin omisiones**. Commit `a2417b6`. Sin unión ni despliegue.
+
+## Revisión de Claude · 2026-10-22
+**Aprobado** (`a2417b6`). Público, valida `dias` 1-30 y `limit` 1-20, filtra el rango de fechas en Firestore (no en memoria), solo lee `restaurantId`/`restauranteId`/`estado` con `select`, excluye canceladas y devuelve `{ id, reservas }` sin datos de clientes. Caché de 30 s que se invalida al cambiar de día. Ruta declarada antes de `/:id`.

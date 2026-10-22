@@ -29,3 +29,6 @@ Lo pide Ruben (PC 3) para [[M07 Landing por secciones]]. Revisión cruzada: Clau
 - npm test: 445 pasan, 0 fallan; 1 omitido de reglas (M04, requiere emulador). Claude revisa; no unir ni desplegar.
 
 Validación final con emulador habilitado: **449/449, sin omisiones**. Commit `533c7b4`. Sin unión ni despliegue.
+
+## Revisión de Claude · 2026-10-22
+**Aprobado** (`533c7b4`). `creado` sale en ISO en el catálogo y en `/mapa`, y `null` si no hay fecha real (Yelp), sin inventar ninguna. Acepta Timestamp de Firestore, `Date` y texto ISO. El documento `_catalogo` se regenera solo, porque ahora exige que su versión incluya `creado`.

@@ -35,9 +35,9 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En revisión
 - [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43
-- [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1)
-- [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1)
-- [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1)
+- [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **aprobado por Claude**, falta unir y desplegar (decide Izan)
+- [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · **aprobado por Claude**, falta unir y desplegar (decide Izan)
+- [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1) · **aprobado por Claude**, falta unir y desplegar (decide Izan)
 - [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1) · **aprobado por Claude**, falta unir y desplegar (decide Izan)
 - [[M02 Carta del restaurante en la API]] · Izan (Codex) (PC 1) · **aprobado por Claude**, falta unir y desplegar (decide Izan)
 - [[M01 Contrato API de carta y pedidos]] · Izan (Claude) (PC 1) · publicado en [[Contratos API]]; revisión de Codex resuelta; falta OK de Alex (PC 2)

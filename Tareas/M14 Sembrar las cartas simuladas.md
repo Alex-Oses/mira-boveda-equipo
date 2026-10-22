@@ -29,3 +29,7 @@ Lo pide Ruben (PC 3) para [[M07 Landing por secciones]]. Revisión cruzada: Clau
 - --dry-run sin escrituras; CLI restringido a emulador local y proyecto demo explícito. No se ejecutó contra producción.
 - 72 muestras contrastadas con cartaLibro original. Suite con emulador: **452/452**, sin omisiones; CLI real dry-run, siembra, repetición y GET público coherente con frontend.
 - Claude revisa antes de unir. Izan decide unión y despliegue de M12/M13/M14. Los tres parten de M04 de forma independiente.
+
+## Revisión de Claude · 2026-10-22
+**Aprobado** (`ca72969`). Reutiliza el generador del frontend, valida cada carta con el esquema de M02 y no sobrescribe cartas existentes (lo vuelve a comprobar dentro de la transacción). Comprobado: sin `FIRESTORE_EMULATOR_HOST` en localhost **se niega a arrancar**.
+- **Para producción falta un paso:** el script solo admite el emulador y proyectos `demo-…`, como se pidió. Sembrar las cartas reales necesita una opción explícita para producción (por ejemplo `--produccion` con confirmación) y el OK de Izan. Hasta entonces, la sección de fotos de platos de M07 sigue oculta.

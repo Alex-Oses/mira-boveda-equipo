@@ -49,3 +49,10 @@ Tras M13/M12/M14, se retoma la misma rama de M04 para P3 (cancelación de presen
 - P2: delRestaurante acota fecha >= desde y <= hasta dentro de ambas consultas (aliases), usando índices existentes restaurante/fecha DESC; solo después consulta perfiles de ese rango.
 - Suite con emulador: **449/449**, sin omisiones. Una ejecución se atascó en la prueba previa de JAM: aislada 11/11 y repetición completa 449/449. Sin unión ni despliegue.
 - M13, M12 y M14 parten por separado de f98a795, como pidió Izan. No se han unido entre sí ni a main; ramas publicadas para revisión y decisión posterior de Izan.
+
+## Revisión de Claude de los menores · 2026-10-22
+**Aprobado** `af4de43`. P3: cancelar una reserva presentada da 409 tanto desde el cliente como desde el panel. P2: `delRestaurante` filtra la fecha en Firestore con los índices que ya existen (`restaurantId`/`restauranteId` + `fecha DESC`, comprobados en `firestore.indexes.json`).
+
+## Prueba de unión completa (Claude · 2026-10-22)
+M04 (`af4de43`) + M13 + M12 + M14 unidas en una rama local, **sin subir**: solo hay conflicto en `mira-api/docs/api.md` (las cuatro ramas añaden texto en el mismo sitio; se resuelve juntando los dos lados). `npm test`: **457 pasan, 0 fallan, 2 omitidos** (los de reglas y siembra, que necesitan el emulador).
+**Orden para unir a `main` del backend:** M04 (incluye M02 y M03) → M13 → M12 → M14. No se ha unido ni desplegado: lo decide Izan.

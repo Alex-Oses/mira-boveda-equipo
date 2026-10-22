@@ -34,7 +34,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43 · falta desplegar reglas y RESERVAS_QR_SECRET (Izan)
+- [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43 · reglas ya cerradas en producción; falta RESERVAS_QR_SECRET (Izan)
 - [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`) · script solo para emulador: falta sembrar producción (Izan)
 - [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
 - [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)

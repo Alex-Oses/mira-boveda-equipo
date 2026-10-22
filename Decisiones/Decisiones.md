@@ -3,6 +3,12 @@
 Una entrada por decisión, las más nuevas arriba. Formato:
 
 ```
+### 2026-10-22 · Reglas de Firestore: todo cerrado
+- **Decisión:** las reglas son las publicadas en la consola: ningún cliente lee ni escribe Firestore directamente (`allow read, write: if false` para todo). El archivo `mira-api/firestore.rules` del repo pasa a ser exactamente eso (backend `788a302`).
+- **Por qué:** la web y la app solo usan Firebase Auth; todo lo demás va por mira-api (Admin SDK, que no pasa por las reglas). El archivo antiguo del repo era mucho más permisivo y desplegarlo habría abierto restaurantes, aforo, finanzas, invitaciones…
+- **Para todos:** no añadáis lecturas o escrituras directas a Firestore desde la web o la app; si hace falta un dato, pedid un endpoint al PC 1.
+- **Quién:** Izan (Claude).
+
 ### 2026-10-22 · Contrato de reserva con carta (M01)
 - **Decisión:** carta en `cartas/{restauranteId}` (un documento, se sustituye entera). El pedido va dentro de la reserva con nombre y precio copiados y no se edita. La reserva tiene un QR propio firmado `r1.<reservaId>.<firma>` (HMAC, `RESERVAS_QR_SECRET`), válido el día de la reserva y una vez. `POST /v1/reservations/checkin` marca `presentadaEn` sin cambiar `estado` y da +50 puntos (`pedido_anticipado`) si hay pedido, en la misma transacción.
 - **Por qué:** el `codigo` `MIRA-…` se puede adivinar; no tocar `estado` evita romper ticket, comisión y puntos de reserva que ya funcionan.

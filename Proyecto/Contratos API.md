@@ -230,7 +230,7 @@ Corrección T10 subida en `a5f332c`: 340/340, pendiente nueva revisión; promoci
 ## Reserva con carta (M01)
 Publicado el 2026-10-22 por el PC 1 (Izan + Claude). Lo implementa Codex en [[M02 Carta del restaurante en la API]], [[M03 Pedido ligado a la reserva]] y [[M04 Check-in por QR y 50 puntos]]. Lo usan el PC 2 ([[M05 Pedir la comida al reservar]], [[M06 Pedido en Mis reservas]], [[M09 Editor de la carta del restaurante]]) y Claude en el panel ([[M10 Pedidos y reservas en el panel]], [[M11 Escáner QR para el check-in]]). Proyecto: [[Reserva con carta]].
 
-Errores comunes, como en el resto de la API: `400 { error: "VALIDATION_ERROR", details }`, `401 { error: "UNAUTHORIZED" }`, `403 { error: "FORBIDDEN" }`, `404 { error: "NOT_FOUND" }`, `409 { error: "CONFLICT", message }`. Los precios van en **euros con 2 decimales** (número), siempre `moneda: "EUR"`.
+Errores comunes, como en el resto de la API: `400 { error: "VALIDATION_ERROR", details }`, `401 { error: "MISSING_TOKEN" | "INVALID_TOKEN" }` (los de `verifyFirebaseAuth`, sin cambiarlo), `403 { error: "FORBIDDEN" }`, `404 { error: "NOT_FOUND" }`, `409 { error: "CONFLICT", message }`. Los precios van en **euros con 2 decimales** (número), siempre `moneda: "EUR"`.
 
 ### Modelo `Carta` (colección `cartas`, id = `restauranteId`)
 Un documento por restaurante. Se guarda y se lee entera.
@@ -320,6 +320,20 @@ Respuesta 200:
 { data: [ { id, codigo, fecha, hora, comensales, estado, comentarios, presentadaEn, cliente: { nombre }, pedido } ] }
 ```
 Sin uid ni email del cliente. Errores: 400, 401, 403, 404.
+
+### Precisiones tras la revisión de Codex (2026-10-22)
+- **Firestore (P1).** Ni la web ni la app leen o escriben `reservas` directamente: todo pasa por la API (Admin SDK, que no pasa por las reglas). En `firestore.rules`:
+  - `reservas`: `read` solo el dueño (`uid`) o admin; `create`, `update` y `delete`: `false`.
+  - `cartas`: `read` y `write`: `false` (se sirve por la API).
+  - `puntos_movimientos`: `create: false` (hoy cualquiera con sesión puede crear movimientos; lo cierra M04 porque añade el de +50).
+  - Pruebas de las reglas en local, **sin desplegar**; se despliegan con el backend tras la revisión.
+- **IDs (P2).** `id` de categorías y platos: `^[A-Za-z0-9_-]{1,40}$`. Únicos: categorías dentro de la carta y platos en **toda** la carta. Duplicados → 400 `VALIDATION_ERROR`. En el pedido, repetir un `platoId` → 400 `VALIDATION_ERROR` (no se agrupa).
+- **Secreto del QR (P2).** `RESERVAS_QR_SECRET` (o `VISITAS_SECRET`) de 32 caracteres como mínimo, como en G08.
+  - Sin secreto válido, `POST /v1/reservations/checkin` → 503 `RESERVAS_QR_NO_CONFIGURADO`.
+  - `GET /v1/reservations` sigue funcionando y devuelve `qr: null`, nunca 503 ni oculta reservas.
+- **Rango del listado (P2).** `desde` por defecto hoy (Madrid) y `hasta` por defecto igual que `desde`. Rango inclusivo. `hasta < desde` o más de 31 días → 400 `VALIDATION_ERROR`.
+
+Con esto, el contrato queda cerrado para Codex (M02-M04).
 
 ### Qué no cambia
 - `PUT /v1/reservations/:id/cancel`, el ticket y `confirm-attendance` del panel siguen igual.

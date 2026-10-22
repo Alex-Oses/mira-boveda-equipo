@@ -7,6 +7,9 @@ Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (
 ### Permisos y primer arranque (2026-10-16)
 - [[R01 Revisión de G06 y G09 (unidas sin revisar)]] · Claude + Codex (PC 1)
 
+### Próxima APK (android-v1.0.5)
+- [[Próxima APK - perfil y animaciones]] · Alex (PC 2) · perfil: Puntos/Preferencias/Ajustes/Actividad no navegan en `v1.0.4`; sugerencias de animación
+
 ### Fase 1: Base
 
 ### Fase 2: Embudo de ofertas

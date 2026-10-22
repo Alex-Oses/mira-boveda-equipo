@@ -39,3 +39,26 @@ Pendiente:
 - Revisión de Izan/Claude antes de unir a `main`.
 - M14: sembrar producción; hasta entonces «Platos» no aparece (en el emulador ya hay cartas).
 - Promociones: sin campañas activas hoy, la sección se oculta.
+
+## Ajustes UI (2026-10-22 · tarde)
+
+Rama `feat/M07-ajustes-ui` (worktree `.worktrees/m07`), desde `08ca563`:
+- Tarjetas de las filas de la landing con el mismo ancho que la rejilla de Descubrir (1/2/3 columnas) y foto de 200 px (`05a6652`).
+- Promocionados con carrusel de scroll-snap y flechas (ocultas en móvil); claves i18n `landing.anterior/siguiente`.
+- «Platos» cae a la carta simulada local (`cartaLibro` + `fotoDePlato`) mientras M14 no siembre producción. Marcado como `shortcut:`.
+- Descubrir: buscador movido justo encima de los destacados (debajo del vuelo).
+- Badge «Promocionado» sobre la foto, abajo a la izquierda, sin tapar precio ni favorito (`9676623`).
+
+### QA
+- `f584136`: el mock sirve `/v1/restaurants/mas-reservados` y el test del buscador sigue el salto a Descubrir + Limpiar.
+- `adab173`: la unitaria de CI ya bloquea (los 38 fallos quedaron resueltos en `08ca563`) y la regresión local encuentra el backend desde un worktree.
+- `d7fb901`: 5 campañas de ejemplo en el mock y test del carrusel de promocionados.
+- Verde: `npm test` 320/320 (Node 20 y 24), build, E2E 28/28, monkey semillas 20261020/1/2/3 y móvil, backend 87/87.
+- Push hecho con `ruben-munoz-bl` (`9676623`). Falta abrir el PR y la revisión del equipo.
+- Cuentas locales: GCM guarda `TontonR` (por defecto) y `ruben-munoz-bl` (frontend/backend del equipo).
+
+## Todas las secciones en carrusel (2026-10-22 · noche)
+
+- `09317a8`: platos, más reservados y Top Barcelona pasan al mismo `Carrusel` que promociones. La pista ocupa todo el ancho: la primera tarjeta alinea con el título y las siguientes llegan al borde de la ventana; anchos 82% móvil, 46% tableta y `clamp(320px, 27vw, 370px)` escritorio para que se vea la siguiente.
+- Buscador: CTA «Buscar»/«Cercar»/«Search», sin salto de línea y con las acciones a la derecha (104×48 px a 1280).
+- Test E2E generalizado a las cuatro secciones con datos. Verde: `npm test` 320/320, build, E2E 28/28 y monkey semilla 1.

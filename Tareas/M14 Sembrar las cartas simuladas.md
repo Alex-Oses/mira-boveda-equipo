@@ -1,10 +1,10 @@
 ---
-estado: libre
+estado: en curso
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: []
-rama:
+rama: feat/M14-sembrar-cartas
 ---
 # M14 Sembrar las cartas simuladas
 

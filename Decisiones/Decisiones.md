@@ -20,6 +20,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-22 · Landing por secciones y Descubrir infinito (M07)
+- **Decisión:** la landing deja de listar restaurantes. Queda: buscador con filtros plegados (solo el nombre a la vista), 5 secciones (promociones, fotos de platos, más reservados de la semana, Top 50 Barcelona, nuevos) y bloque final con botón a Descubrir. El listado infinito de 27 en 27 pasa a Descubrir, que mantiene el vuelo de los 7 mejores; si llega con filtros desde la landing se abre filtrado, sin vuelo y con el desplegable abierto. «Promoción» = campañas (`promociones`), no las ofertas por distancia. Los platos deben ser reales: se siembran las cartas simuladas actuales en Firestore (M02).
+- **Por qué:** la landing se vuelve curada y compacta; el catálogo completo vive en Descubrir, con un solo motor de paginación.
+- **Quién:** Ruben (PC 3). Peticiones a PC 1 en [[Contratos API]] §M07.
+
 ### 2026-10-16 · Avisos por distancia solo de partners o favoritos (G11)
 - **Decisión:** los avisos por distancia (G06) solo saltan si el restaurante es **partner** (lo marca el admin con 1 clic) o está en los **favoritos** del usuario. No hay envíos masivos de ofertas (G12 aparcada).
 - **Por qué:** no saturar al usuario con avisos de cualquier restaurante.

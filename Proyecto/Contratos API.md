@@ -338,3 +338,37 @@ Con esto, el contrato queda cerrado para Codex (M02-M04).
 ### Qué no cambia
 - `PUT /v1/reservations/:id/cancel`, el ticket y `confirm-attendance` del panel siguen igual.
 - El QR de las ofertas ([[G08 QR firmado, visitas y comisión]], `v1.…`) es otro: el escáner distingue por el prefijo (`v1.` visita, `r1.` reserva).
+
+## M07 · Landing por secciones (PC 3, Ruben · 2026-10-22)
+
+Lo pide el PC 3 antes de empezar [[M07 Landing por secciones]]. Las secciones sin datos se ocultan solas: **la landing no toca el backend**. Decisión de producto en [[Decisiones]] (2026-10-22).
+
+### 1. Promociones · `GET /v1/promotions?estado=activa` (ya existe, auth: no)
+Para «Restaurantes en promoción» (campañas, **no** las ofertas por distancia de G01).
+- Confirmad que es público y que devuelve `{ data: [{ id, restauranteId, tipo, estado, prioridad, fechaInicio, fechaFin }] }`.
+- Si el `estado` no se actualiza solo al caducar, filtro en cliente por `fechaInicio <= hoy <= fechaFin`.
+- Si hay varias por restaurante, me quedo con `prioridad` mayor.
+- No hace falta endpoint nuevo si esto es cierto.
+
+### 2. Más reservados · `GET /v1/restaurants/mas-reservados?dias=7&limit=8` (público, nuevo)
+Para «Los más reservados de la semana».
+- Cuenta `reservas` con `fecha` en los últimos `dias` (día de Madrid) y `estado !== "cancelada"`.
+- Respuesta: `{ data: [{ id, reservas }] }`, de más a menos. Solo agregados: sin uid ni datos del cliente.
+- `dias` 1–30 (def. 7); `limit` 1–20 (def. 8).
+- La forma de calcularlo (índice, contadores o lectura) la decidís vosotros; el PC 3 solo necesita `id` + número.
+- Sin esto, la sección queda oculta.
+
+### 3. Nuevos restaurantes · campo `creado` en `restaurants` (no es endpoint)
+Hoy el documento no tiene fecha de alta.
+- Propuesta: `creado` ISO al crear el restaurante (alta de negocio o admin) y, en el backfill de los ~700 de Yelp, la fecha que tenga sentido (p. ej. la de importación) o `null`.
+- Expuesto en `?all=1` (y en `/mapa` si sale barato); ordeno en cliente. Con `null` el local no entra en la sección.
+
+### 4. Fotos de platos · cartas simuladas a Firestore (consulta para Izan/Codex)
+La sección debe enseñar **platos reales**; M02 ya sirve `GET /v1/cartas/:id`.
+- Hoy el frontend genera la carta con `cartaDelLocal()`/`cartaLibro()` (`src/models/restaurantModel.js`): determinista por `id`, misma en web y app.
+- Propuesta: script de siembra en `mira-api/scripts` que recorra `restaurants` y escriba `cartas/{id}` con esas categorías y platos, `disponible: true` y `foto` resuelta (o `null` y la resuelve el frontend con `fotoDePlato`).
+- ¿Lo hacéis en PC 1 o preparo yo el JSON desde el frontend y os lo paso? No toco `mira-api`.
+- Mientras no haya cartas, la sección se oculta (no invento platos en la landing).
+
+### Respuesta que necesito de PC 1
+Confirmar el punto 1 y decidir 2, 3 y 4. El resto de la landing (estructura, buscador y Descubrir) no depende de nadie y lo empiezo ya.

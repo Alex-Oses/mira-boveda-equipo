@@ -26,6 +26,11 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Quién:
 ```
 
+### 2026-10-22 · Todas las secciones de la landing en carrusel
+- **Decisión:** las cuatro secciones con datos usan el mismo carrusel de scroll-snap y flechas. La pista ocupa todo el ancho de la ventana: la primera tarjeta alinea con el título y las siguientes llegan al borde, con anchos 82% móvil, 46% tableta y `clamp(320px, 27vw, 370px)` escritorio. El CTA del buscador es corto («Buscar»/«Cercar»/«Search») y no se parte.
+- **Por qué:** las filas de 3 tarjetas parecían una rejilla estática y dejaban franjas vacías; el carrusel muestra que hay más contenido y llena los lados. El botón anterior se partía en dos líneas y parecía desproporcionado.
+- **Quién:** Ruben (PC 3), commit `09317a8`.
+
 ### 2026-10-22 · Landing por secciones y Descubrir infinito (M07)
 - **Decisión:** la landing deja de listar restaurantes. Queda: buscador con filtros plegados (solo el nombre a la vista), 5 secciones (promociones, fotos de platos, más reservados de la semana, Top 50 Barcelona, nuevos) y bloque final con botón a Descubrir. El listado infinito de 27 en 27 pasa a Descubrir, que mantiene el vuelo de los 7 mejores; si llega con filtros desde la landing se abre filtrado, sin vuelo y con el desplegable abierto. «Promoción» = campañas (`promociones`), no las ofertas por distancia. Los platos deben ser reales: se siembran las cartas simuladas actuales en Firestore (M02).
 - **Por qué:** la landing se vuelve curada y compacta; el catálogo completo vive en Descubrir, con un solo motor de paginación.

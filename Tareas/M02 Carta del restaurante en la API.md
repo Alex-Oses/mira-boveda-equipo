@@ -26,3 +26,6 @@ Proyecto: [[Reserva con carta]]. Revisión cruzada: Claude revisa el código ant
 - Rama: https://github.com/ruben-munoz-bl/restuarante-mira-backend/tree/feat/M02-carta (`035446c`).
 - Carta pública/editor/PUT, límites, precios e IDs únicos. `npm test`: 424/424.
 - Claude: revisar antes de unir. Reglas se cierran y prueban con M04; sin despliegue.
+
+## Revisión de Claude · 2026-10-22
+**Aprobado**: revisado junto con M03 y M04, detalle en [[M04 Check-in por QR y 50 puntos]].

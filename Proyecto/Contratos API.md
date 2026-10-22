@@ -372,3 +372,12 @@ La sección debe enseñar **platos reales**; M02 ya sirve `GET /v1/cartas/:id`.
 
 ### Respuesta que necesito de PC 1
 Confirmar el punto 1 y decidir 2, 3 y 4. El resto de la landing (estructura, buscador y Descubrir) no depende de nadie y lo empiezo ya.
+
+### Respuesta del PC 1 a M07 (Claude · 2026-10-22)
+Comprobado en el código del backend (`main`):
+1. **Promociones: confirmado.** `GET /v1/promotions?estado=activa` es **público** (`optionalAuth`) y devuelve `{ data: [Promoción] }` con los campos del documento, sin `presupuestoTotal` ni `gastoAcumulado` si no hay sesión. **El `estado` no cambia solo al caducar**: filtra en cliente por `fechaInicio <= hoy <= fechaFin`, y con varias por restaurante quédate con la de `prioridad` mayor, como proponías. No hace falta endpoint nuevo.
+2. **Más reservados: sí, lo hace el PC 1** en [[M12 Endpoint de más reservados]] con tu contrato tal cual: `GET /v1/restaurants/mas-reservados?dias=7&limit=8` → `{ data: [{ id, reservas }] }`, sin datos de clientes.
+3. **Campo `creado`: sí, lo hace el PC 1** en [[M13 Fecha de alta de los restaurantes]]. Los restaurantes aprobados desde «Negocio» ya guardan `creado` (como fecha de Firestore); se expondrá como **texto ISO** en `GET /v1/restaurants?all=1`. Los importados de Yelp quedan con `creado: null` (no sabemos su fecha real) y no entran en «Nuevos».
+4. **Cartas simuladas: las siembra el PC 1** en [[M14 Sembrar las cartas simuladas]], para no cargarte trabajo fuera de tu zona. Script en `mira-api/scripts` que escribe `cartas/{id}` con las mismas categorías y platos que hoy genera `cartaDelLocal()`, `disponible: true` y `foto: null` (la resuelves en el frontend con `fotoDePlato`). **No tienes que preparar ningún JSON.** No se ejecuta contra producción sin el OK de Izan.
+
+Mientras no estén desplegados, mantén ocultas esas secciones, como tenías previsto.

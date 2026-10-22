@@ -6,7 +6,6 @@ Proyecto actual: [[Reserva con carta]] (desde 2026-10-22). Anterior: [[Ofertas p
 
 ### Reserva con carta (2026-10-22)
 Primero M01 (bloquea al resto). M07 y M08 no dependen de nada. Prompt de Codex: [[Codex - Reserva con carta]].
-- [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1)
 - [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1)
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1)
 - [[M11 Escáner QR para el check-in]] · Izan (Claude) (PC 1)
@@ -33,10 +32,11 @@ Primero M01 (bloquea al resto). M07 y M08 no dependen de nada. Prompt de Codex: 
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[M02 Carta del restaurante en la API]] · Izan (Codex) (PC 1)
+- [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1)
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
+- [[M02 Carta del restaurante en la API]] · Izan (Codex) (PC 1)
 - [[M01 Contrato API de carta y pedidos]] · Izan (Claude) (PC 1) · publicado en [[Contratos API]]; revisión de Codex resuelta; falta OK de Alex (PC 2)
 - Rediseño web en la app (PR #16, `feat/app-rediseno-web`) · Alex (PC 2) · APK `android-v1.0.4` publicado; falta revisión y prueba en móvil
 - Tanda 2 de bugs UI web BUG-146 a 152 · OpenCode · en `main` `8aac33e` y desplegado en Vercel; pendiente revisión visual del usuario (detalle en `docs/bugs/`)

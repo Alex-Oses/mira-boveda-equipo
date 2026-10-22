@@ -1,10 +1,10 @@
 ---
-estado: libre
+estado: en curso
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M01, M02]
-rama:
+rama: feat/M03-pedido-reserva
 ---
 # M03 Pedido ligado a la reserva
 

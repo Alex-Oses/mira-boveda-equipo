@@ -3,6 +3,12 @@
 Una entrada por decisión, las más nuevas arriba. Formato:
 
 ```
+### 2026-10-22 · Reserva con carta (aprobado)
+- **Decisión:** el cliente puede añadir a la reserva un pedido de la carta. El pedido es un compromiso, queda fijo en la web y se paga en el local después de comer (sin pago online). Los cambios y platos agotados se hablan al llegar. Escanear el QR marca la reserva como presentada y, si llevaba pedido, da +50 puntos (al escanear, no al reservar). La carta la crea el restaurante al darse de alta.
+- **Reparto:** PC 1 backend + panel de pedidos y escáner; PC 2 flujo del cliente + editor de carta; PC 3 landing por secciones y cabecera sin racha ni puntos, sin depender de la API nueva (OpenCode va más lento).
+- **Fuera:** empresas de reparto (JustEat, UberEats), miniproyecto posterior.
+- **Quién:** Izan (con Claude). Detalle en [[Reserva con carta]].
+
 ### AAAA-MM-DD · Título
 - Decisión:
 - Por qué:

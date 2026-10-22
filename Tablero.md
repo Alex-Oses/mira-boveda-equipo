@@ -1,8 +1,22 @@
 # Tablero
 
-Proyecto actual: [[Ofertas por geolocalización]]. Cierre: [[Prueba conjunta]] (cuando G06 y G09 estén en main). Formato: `[[tarea]] · responsable`. Al cambiar de estado, mueve la línea y cambia `estado` en la nota de la tarea.
+Proyecto actual: [[Reserva con carta]] (desde 2026-10-22). Anterior: [[Ofertas por geolocalización]], cierre en [[Prueba conjunta]]. Formato: `[[tarea]] · responsable`. Al cambiar de estado, mueve la línea y cambia `estado` en la nota de la tarea.
 
 ## Libre
+
+### Reserva con carta (2026-10-22)
+Primero M01 (bloquea al resto). M07 y M08 no dependen de nada.
+- [[M01 Contrato API de carta y pedidos]] · Izan (PC 1)
+- [[M02 Carta del restaurante en la API]] · Izan (PC 1)
+- [[M03 Pedido ligado a la reserva]] · Izan (PC 1)
+- [[M04 Check-in por QR y 50 puntos]] · Izan (PC 1)
+- [[M10 Pedidos y reservas en el panel]] · Izan (PC 1)
+- [[M11 Escáner QR para el check-in]] · Izan (PC 1)
+- [[M05 Pedir la comida al reservar]] · Alex (PC 2)
+- [[M06 Pedido en Mis reservas]] · Alex (PC 2)
+- [[M09 Editor de la carta del restaurante]] · Alex (PC 2)
+- [[M07 Landing por secciones]] · Ruben (PC 3)
+- [[M08 Cabecera sin racha ni puntos]] · Marco (PC 3)
 
 ### Permisos y primer arranque (2026-10-16)
 - [[R01 Revisión de G06 y G09 (unidas sin revisar)]] · Claude + Codex (PC 1)

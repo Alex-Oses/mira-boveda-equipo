@@ -16,6 +16,6 @@ PC 3 y PC 4 reparten el trabajo del panel; las instrucciones del PC 4 y el hilo 
 Escribid vuestro nombre igual en todas partes: tareas, sesiones y ramas.
 
 ## Reparto en [[Reserva con carta]] (2026-10-22)
-- **PC 1 · Izan (Claude + Codex):** backend de carta, pedidos y check-in, y panel de pedidos y escáner (M01-M04, M10, M11).
+- **PC 1 · Izan:** Claude hace M01, M10 y M11 y revisa el backend; Codex hace M02, M03 y M04 en `mira-api` y revisa M10 y M11.
 - **PC 2 · Alex (Claude):** pedir al reservar, pedido en «Mis reservas» y editor de carta (M05, M06, M09).
 - **PC 3 · Ruben y Marco (OpenCode):** landing por secciones y cabecera (M07, M08), sin depender de la API nueva.

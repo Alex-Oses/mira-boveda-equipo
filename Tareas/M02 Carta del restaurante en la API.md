@@ -1,6 +1,6 @@
 ---
 estado: libre
-responsable: Izan (Claude + Codex)
+responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M01]
@@ -20,4 +20,4 @@ Guardar y servir la carta de cada restaurante.
 Se crea, edita y lee una carta con los endpoints del contrato, con tests en verde.
 
 ## Notas
-Proyecto: [[Reserva con carta]].
+Proyecto: [[Reserva con carta]]. Revisión cruzada: Claude revisa el código antes de unirlo.

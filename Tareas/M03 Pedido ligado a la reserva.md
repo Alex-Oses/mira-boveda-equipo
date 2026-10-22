@@ -1,6 +1,6 @@
 ---
 estado: libre
-responsable: Izan (Claude + Codex)
+responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M01, M02]
@@ -20,4 +20,4 @@ Que una reserva pueda llevar un pedido de la carta, fijo desde que se reserva.
 Una reserva con pedido se crea, el cliente y el restaurante la leen con el pedido, y un pedido con platos de otro restaurante se rechaza.
 
 ## Notas
-Proyecto: [[Reserva con carta]].
+Proyecto: [[Reserva con carta]]. Revisión cruzada: Claude revisa el código antes de unirlo.

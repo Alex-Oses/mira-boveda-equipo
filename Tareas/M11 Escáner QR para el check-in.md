@@ -1,6 +1,6 @@
 ---
 estado: libre
-responsable: Izan (Claude + Codex)
+responsable: Izan (Claude)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M04]
@@ -20,4 +20,4 @@ Conectar el escáner que ya existe ([[G10 Escáner de QR y aviso de llegada]]) a
 Escaneando el QR de una reserva con pedido se marca presentada, se ve el pedido y el cliente recibe sus 50 puntos.
 
 ## Notas
-Proyecto: [[Reserva con carta]].
+Proyecto: [[Reserva con carta]]. Revisión cruzada: Codex revisa que las llamadas coincidan con su backend.

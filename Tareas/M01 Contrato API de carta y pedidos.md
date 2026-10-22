@@ -1,6 +1,6 @@
 ---
 estado: libre
-responsable: Izan (Claude + Codex)
+responsable: Izan (Claude)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: []
@@ -21,4 +21,4 @@ Publicar en [[Contratos API]] el contrato de la carta, el pedido ligado a la res
 El contrato está en [[Contratos API]], apuntado en [[Decisiones]] y PC 2 da el OK.
 
 ## Notas
-Proyecto: [[Reserva con carta]].
+Proyecto: [[Reserva con carta]]. Revisión cruzada: Codex revisa que las llamadas coincidan con su backend.

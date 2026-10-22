@@ -1,6 +1,6 @@
 ---
 estado: libre
-responsable: Izan (Claude + Codex)
+responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M01, M03]
@@ -20,4 +20,4 @@ Al escanear el QR de la reserva, marcarla como presentada y dar +50 puntos si ll
 Escanear una reserva con pedido la marca presentada y suma 50 puntos una sola vez; sin pedido, no suma.
 
 ## Notas
-Proyecto: [[Reserva con carta]].
+Proyecto: [[Reserva con carta]]. Revisión cruzada: Claude revisa el código antes de unirlo.

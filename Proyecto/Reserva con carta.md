@@ -46,6 +46,8 @@ Secciones más compactas («+ optimizadas, menos espacio»), en este orden:
 | PC 2 | Alex (Claude) | M05, M06, M09 | modal de reserva, «Mis reservas» (web y app) y alta del restaurante |
 | PC 3 | Ruben y Marco (OpenCode) | M07 (Ruben), M08 (Marco) | landing, `Header` y `BottomNav` (solo web) |
 
+**Dentro del PC 1:** Claude hace M01 (contrato), M10 y M11 (frontend del panel y `mobile/`) y revisa el backend; Codex hace M02, M03 y M04 en `mira-api` y revisa que M10 y M11 llamen bien a su API. Prompt de Codex: [[Codex - Reserva con carta]].
+
 **Por qué así:** OpenCode va más lento, así que PC 3 lleva trabajo que **no depende de la API nueva ni toca los archivos de los otros PCs**, y puede ir a su ritmo. M01 (contrato) es lo único que bloquea: PC 2 puede empezar con un mock en cuanto esté publicado.
 
 Si una sección de la landing necesita un endpoint nuevo, PC 3 se lo pide a PC 1 (no lo hace en el backend).

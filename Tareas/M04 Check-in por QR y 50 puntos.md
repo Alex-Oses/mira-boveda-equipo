@@ -56,3 +56,7 @@ Tras M13/M12/M14, se retoma la misma rama de M04 para P3 (cancelación de presen
 ## Prueba de unión completa (Claude · 2026-10-22)
 M04 (`af4de43`) + M13 + M12 + M14 unidas en una rama local, **sin subir**: solo hay conflicto en `mira-api/docs/api.md` (las cuatro ramas añaden texto en el mismo sitio; se resuelve juntando los dos lados). `npm test`: **457 pasan, 0 fallan, 2 omitidos** (los de reglas y siembra, que necesitan el emulador).
 **Orden para unir a `main` del backend:** M04 (incluye M02 y M03) → M13 → M12 → M14. No se ha unido ni desplegado: lo decide Izan.
+
+## Despliegue (Claude · 2026-10-22)
+Unido a `main` del backend (`ebd274b`) en el orden M04 → M13 → M12 → M14, con 457 tests en verde, y desplegado en Render. Comprobado en producción: `GET /v1/cartas/:id` (404 sin carta), `POST /v1/reservations/checkin` y `GET /v1/reservations/restaurante` (401 sin sesión), `GET /v1/restaurants/mas-reservados` (200 con datos) y `creado` en los 705 restaurantes del catálogo (10 con fecha).
+**Pendiente (lo hace Izan):** desplegar `firestore.rules` (`firebase deploy --only firestore:rules`) y configurar `RESERVAS_QR_SECRET` en Render; mientras no esté, el QR usa `VISITAS_SECRET`. Las cartas simuladas (M14) **no se han sembrado** en producción.

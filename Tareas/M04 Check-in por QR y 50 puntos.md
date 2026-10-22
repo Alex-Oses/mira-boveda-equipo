@@ -63,3 +63,5 @@ Unido a `main` del backend (`ebd274b`) en el orden M04 → M13 → M12 → M14, 
 
 ## Reglas de Firestore (Claude · 2026-10-22)
 Las reglas **publicadas en la consola ya lo cierran todo** (`match /{document=**} { allow read, write: if false; }`), así que `reservas`, `cartas` y `puntos_movimientos` ya estaban protegidas en producción: el agujero solo estaba en el archivo del repo. Se ha cambiado `mira-api/firestore.rules` por las reglas publicadas (backend `788a302`) y el test de reglas ahora exige 403 para todos los roles. **No hay que publicar nada.** Test con emulador sin ejecutar aquí (falta Java). Sigue pendiente `RESERVAS_QR_SECRET` en Render (mientras, usa `VISITAS_SECRET`).
+
+**2026-10-22:** `RESERVAS_QR_SECRET` configurado en Render por Izan y API comprobada (`/health` ok). M04 sin pendientes.

@@ -9,7 +9,6 @@ M01 ya publicado. M08 no depende de nada. M07 espera respuestas del PC 1 ([[Cont
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1)
 - [[M11 Escáner QR para el check-in]] · Izan (Claude) (PC 1)
 - [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · lo pide Ruben (M07)
-- [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1) · lo pide Ruben (M07)
 - [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · lo pide Ruben (M07)
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2)
 - [[M06 Pedido en Mis reservas]] · Alex (PC 2)

@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
@@ -42,3 +42,10 @@ Proyecto: [[Reserva con carta]]. Revisión cruzada: Claude revisa el código ant
 
 ## Seguimiento Codex · menores de revisión
 Tras M13/M12/M14, se retoma la misma rama de M04 para P3 (cancelación de presentada) y P2 (rango en la consulta), autorizado por Izan. Sin unión ni despliegue.
+
+## Entrega de los menores · Codex, 2026-10-22
+- `af4de43` en la misma rama feat/M04-checkin-puntos. Pendiente de revisión de Claude de este commit adicional; la aprobación anterior era para f98a795.
+- P3: cancelar una presentada devuelve 409 CONFLICT, tanto en /reservations/:id/cancel como al cambiar estado desde el panel (empresa/admin); sin cambiar aforo ni puntos. Probada carrera cancelación/check-in.
+- P2: delRestaurante acota fecha >= desde y <= hasta dentro de ambas consultas (aliases), usando índices existentes restaurante/fecha DESC; solo después consulta perfiles de ese rango.
+- Suite con emulador: **449/449**, sin omisiones. Una ejecución se atascó en la prueba previa de JAM: aislada 11/11 y repetición completa 449/449. Sin unión ni despliegue.
+- M13, M12 y M14 parten por separado de f98a795, como pidió Izan. No se han unido entre sí ni a main; ramas publicadas para revisión y decisión posterior de Izan.

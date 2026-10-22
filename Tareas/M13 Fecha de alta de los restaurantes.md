@@ -27,3 +27,5 @@ Lo pide Ruben (PC 3) para [[M07 Landing por secciones]]. Revisión cruzada: Clau
 - Rama: https://github.com/ruben-munoz-bl/restuarante-mira-backend/tree/feat/M13-creado (base M04).
 - creado ISO/null en catálogo y mapa, caché con versión actualizada; sin backfill. Alta/aprobación admin probada (ya guarda fecha real).
 - npm test: 445 pasan, 0 fallan; 1 omitido de reglas (M04, requiere emulador). Claude revisa; no unir ni desplegar.
+
+Validación final con emulador habilitado: **449/449, sin omisiones**. Commit `533c7b4`. Sin unión ni despliegue.

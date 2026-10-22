@@ -1,5 +1,5 @@
 ---
-estado: libre
+estado: en curso
 responsable: Izan (Claude)
 pc: PC 1
 proyecto: Reserva con carta

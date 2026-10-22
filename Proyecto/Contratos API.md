@@ -1,4 +1,4 @@
-# Contratos API (ofertas por geolocalización)
+# Contratos API (ofertas por geolocalización y reserva con carta)
 
 Lo escribe el **PC 1** al empezar cada fase. Los PC 2 y 3 programan contra esto con datos simulados. Cualquier cambio se avisa aquí y en [[Decisiones]].
 
@@ -226,3 +226,101 @@ Promociones empieza apagado; no precargar ni guardar true automáticamente al ab
 Corrección T10 subida en `a5f332c`: 340/340, pendiente nueva revisión; promociones solo true explícito. Sin despliegue. Aviso de PC 2 publicado arriba y en la nota T10.
 
 - C01 (2026-10-16, en revisión local, `feat/C01-consentimientos`): GET/PUT `/v1/users/me` implementan `consentimientos` según [[Permisos y primer arranque]], strict y merge por campo; GET `{}` si no hay. Contrato sin cambios; 403/403 tests; pendiente publicación, revisión y despliegue API + reglas.
+
+## Reserva con carta (M01)
+Publicado el 2026-10-22 por el PC 1 (Izan + Claude). Lo implementa Codex en [[M02 Carta del restaurante en la API]], [[M03 Pedido ligado a la reserva]] y [[M04 Check-in por QR y 50 puntos]]. Lo usan el PC 2 ([[M05 Pedir la comida al reservar]], [[M06 Pedido en Mis reservas]], [[M09 Editor de la carta del restaurante]]) y Claude en el panel ([[M10 Pedidos y reservas en el panel]], [[M11 Escáner QR para el check-in]]). Proyecto: [[Reserva con carta]].
+
+Errores comunes, como en el resto de la API: `400 { error: "VALIDATION_ERROR", details }`, `401 { error: "UNAUTHORIZED" }`, `403 { error: "FORBIDDEN" }`, `404 { error: "NOT_FOUND" }`, `409 { error: "CONFLICT", message }`. Los precios van en **euros con 2 decimales** (número), siempre `moneda: "EUR"`.
+
+### Modelo `Carta` (colección `cartas`, id = `restauranteId`)
+Un documento por restaurante. Se guarda y se lee entera.
+```
+{
+  restauranteId: "1",
+  categorias: [                         // 1-30, en el orden en que se muestran
+    {
+      id: "cat_entrantes",              // lo genera el servidor si no viene
+      nombre: "Entrantes",              // 1-60
+      platos: [                         // 0-60 por categoría, máx. 300 en total
+        {
+          id: "pl_croquetas",           // lo genera el servidor si no viene; estable al editar
+          nombre: "Croquetas de jamón", // 1-80
+          descripcion: "6 unidades",    // 0-300
+          precio: 9.5,                  // 0.01-999.99
+          foto: null | "https://…",     // URL https, opcional
+          alergenos: ["gluten", "lactosa"],  // mismos valores que ALERGENOS del frontend
+          disponible: true              // false = se ve en el editor, no se puede pedir
+        }
+      ]
+    }
+  ],
+  actualizada: "2026-10-22T10:00:00.000Z"
+}
+```
+
+### GET /v1/cartas/:restauranteId  (auth: no)
+Para el cliente al reservar. Respuesta 200: `Carta` con **solo los platos `disponible: true`** y sin las categorías que se queden vacías.
+Errores: 404 si el restaurante no existe **o no tiene carta** (el cliente no ofrece pedir por adelantado).
+
+### GET /v1/cartas/:restauranteId/editar  (auth: empresa dueña o admin)
+Para el editor (M09). Respuesta 200: `Carta` completa, también con los no disponibles. Si aún no tiene: `200 { restauranteId, categorias: [], actualizada: null }`.
+Errores: 401, 403, 404 (restaurante no existe).
+
+### PUT /v1/cartas/:restauranteId  (auth: empresa dueña o admin)
+Sustituye la carta entera. Petición: `{ categorias: [...] }` con el formato de arriba (los `id` son opcionales; si vienen, se conservan).
+Respuesta 200: `Carta` guardada, con todos los `id`. Cambiar la carta **no cambia los pedidos ya hechos**.
+Errores: 400 (límites, precio, URL), 401, 403, 404.
+
+### Pedido dentro de la reserva
+`POST /v1/reservations` (el que ya existe) acepta un campo opcional:
+```
+pedido: { lineas: [ { platoId: "pl_croquetas", cantidad: 2 } ] }   // 1-30 líneas, cantidad 1-20
+```
+El servidor copia de la carta el nombre y el precio y guarda en la reserva:
+```
+pedido: null | {
+  lineas: [ { platoId, nombre, precio, cantidad, subtotal } ],
+  total: 19,
+  moneda: "EUR",
+  creadoEn: "…"
+}
+```
+- **El pedido no se puede editar después.** Si el cliente cancela la reserva, el pedido se va con ella.
+- Sin pago online: se paga en el local.
+- La respuesta 201 de siempre añade `pedido` (o `null`).
+- Errores nuevos (400): `{ error: "PLATO_NO_DISPONIBLE", platoId }` si el plato no está en la carta de **ese** restaurante o está `disponible: false`; `{ error: "SIN_CARTA" }` si se manda pedido a un restaurante sin carta.
+
+### La reserva, para el cliente
+`GET /v1/reservations` (el que ya existe) añade a cada reserva:
+- `pedido`: `null` o el objeto de arriba.
+- `presentadaEn`: `null` o la fecha del check-in.
+- `qr`: el QR de la reserva (texto a dibujar como código QR), **solo** si la reserva no está cancelada, no se ha presentado y su fecha es hoy o futura. Si no, `null`.
+
+### El QR de la reserva
+Texto `r1.<reservaId>.<firma>`, con `firma` = HMAC-SHA256 de `r1.<reservaId>` en base64url, con `RESERVAS_QR_SECRET` (si no se configura, `VISITAS_SECRET`). No caduca por tiempo: vale **el día de la reserva** y **una sola vez**. Sustituye al `codigo` `MIRA-…` como prueba de llegada; el `codigo` se sigue devolviendo para mostrarlo.
+
+### POST /v1/reservations/checkin  (auth: empresa dueña del restaurante de la reserva, o admin)
+Lo llama el escáner (M11). Petición: `{ qr }`.
+Respuesta 200:
+```
+{
+  reserva: { id, codigo, fecha, hora, comensales, presentadaEn, pedido },
+  cliente: { nombre },          // nunca uid ni email
+  puntosPedido: 50 | 0
+}
+```
+- Marca `presentadaEn` (el `estado` no cambia: el ticket y los puntos de reserva siguen como hasta ahora).
+- **+50 puntos** al cliente si la reserva lleva pedido: movimiento `puntos_movimientos` con `tipo: "pedido_anticipado"` y la reserva guarda `puntosPedido: 50`. Todo en la misma transacción: no se dan dos veces.
+- Errores: 400 `QR_INVALIDO` (formato o firma), 403 `OTRO_RESTAURANTE`, 404 `NOT_FOUND`, 409 `QR_USADO` (ya presentada), 409 `RESERVA_CANCELADA`, 409 `FUERA_DE_FECHA` (no es el día de la reserva, hora de Madrid).
+
+### GET /v1/reservations/restaurante?restauranteId=1&desde=2026-10-22&hasta=2026-10-29  (auth: empresa dueña o admin)
+Para la sección Pedidos → Reservas (M10). `desde` por defecto hoy (Madrid); `hasta` como máximo 31 días después de `desde`. Ordenadas por fecha y hora.
+Respuesta 200:
+```
+{ data: [ { id, codigo, fecha, hora, comensales, estado, comentarios, presentadaEn, cliente: { nombre }, pedido } ] }
+```
+Sin uid ni email del cliente. Errores: 400, 401, 403, 404.
+
+### Qué no cambia
+- `PUT /v1/reservations/:id/cancel`, el ticket y `confirm-attendance` del panel siguen igual.
+- El QR de las ofertas ([[G08 QR firmado, visitas y comisión]], `v1.…`) es otro: el escáner distingue por el prefijo (`v1.` visita, `r1.` reserva).

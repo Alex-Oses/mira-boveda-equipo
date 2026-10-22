@@ -3,6 +3,11 @@
 Una entrada por decisión, las más nuevas arriba. Formato:
 
 ```
+### 2026-10-22 · Contrato de reserva con carta (M01)
+- **Decisión:** carta en `cartas/{restauranteId}` (un documento, se sustituye entera). El pedido va dentro de la reserva con nombre y precio copiados y no se edita. La reserva tiene un QR propio firmado `r1.<reservaId>.<firma>` (HMAC, `RESERVAS_QR_SECRET`), válido el día de la reserva y una vez. `POST /v1/reservations/checkin` marca `presentadaEn` sin cambiar `estado` y da +50 puntos (`pedido_anticipado`) si hay pedido, en la misma transacción.
+- **Por qué:** el `codigo` `MIRA-…` se puede adivinar; no tocar `estado` evita romper ticket, comisión y puntos de reserva que ya funcionan.
+- **Quién:** Izan (Claude). Detalle en [[Contratos API]]. Falta OK de Alex y Codex.
+
 ### 2026-10-22 · Reserva con carta (aprobado)
 - **Decisión:** el cliente puede añadir a la reserva un pedido de la carta. El pedido es un compromiso, queda fijo en la web y se paga en el local después de comer (sin pago online). Los cambios y platos agotados se hablan al llegar. Escanear el QR marca la reserva como presentada y, si llevaba pedido, da +50 puntos (al escanear, no al reservar). La carta la crea el restaurante al darse de alta.
 - **Reparto:** PC 1 backend + panel de pedidos y escáner; PC 2 flujo del cliente + editor de carta; PC 3 landing por secciones y cabecera sin racha ni puntos, sin depender de la API nueva (OpenCode va más lento).

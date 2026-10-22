@@ -1,5 +1,5 @@
 ---
-estado: libre
+estado: en revisión
 responsable: Izan (Claude)
 pc: PC 1
 proyecto: Reserva con carta
@@ -21,4 +21,6 @@ Publicar en [[Contratos API]] el contrato de la carta, el pedido ligado a la res
 El contrato está en [[Contratos API]], apuntado en [[Decisiones]] y PC 2 da el OK.
 
 ## Notas
+**Publicado (2026-10-22, Claude):** en [[Contratos API]], sección «Reserva con carta (M01)». Falta el OK de Alex (PC 2) y de Codex. Decisiones tomadas: carta en un documento por restaurante; pedido con nombre y precio copiados; QR firmado `r1.` propio de la reserva; el check-in marca `presentadaEn` sin cambiar `estado`; +50 puntos en la misma transacción.
+
 Proyecto: [[Reserva con carta]]. Revisión cruzada: Codex revisa que las llamadas coincidan con su backend.

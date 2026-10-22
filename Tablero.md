@@ -33,6 +33,7 @@ M01 ya publicado. M08 no depende de nada. M07 espera respuestas del PC 1 ([[Cont
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1)
 - [[M07 Landing por secciones]] · Ruben (PC 3) · empieza por estructura, buscador y Descubrir; espera al PC 1 para promociones, más reservados, nuevos y cartas
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 

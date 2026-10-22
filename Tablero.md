@@ -5,7 +5,7 @@ Proyecto actual: [[Reserva con carta]] (desde 2026-10-22). Anterior: [[Ofertas p
 ## Libre
 
 ### Reserva con carta (2026-10-22)
-M01 ya publicado. M08 no depende de nada. M07 espera respuestas del PC 1 ([[Contratos API]] §M07). Prompt de Codex: [[Codex - Reserva con carta]].
+M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con carta]].
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1)
 - [[M11 Escáner QR para el check-in]] · Izan (Claude) (PC 1)
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2)
@@ -30,10 +30,10 @@ M01 ya publicado. M08 no depende de nada. M07 espera respuestas del PC 1 ([[Cont
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- [[M07 Landing por secciones]] · Ruben (PC 3) · empieza por estructura, buscador y Descubrir; espera al PC 1 para promociones, más reservados, nuevos y cartas
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
+- [[M07 Landing por secciones]] · Ruben (PC 3) · rama `feat/M07-landing-secciones` (`570a717`, `08ca563`): tests 319/319 y build verdes; pendiente revisión y M14 en producción
 - [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43 · reglas cerradas y RESERVAS_QR_SECRET configurado
 - [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`) · script solo para emulador: falta sembrar producción (Izan)
 - [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)

@@ -381,3 +381,6 @@ Comprobado en el código del backend (`main`):
 4. **Cartas simuladas: las siembra el PC 1** en [[M14 Sembrar las cartas simuladas]], para no cargarte trabajo fuera de tu zona. Script en `mira-api/scripts` que escribe `cartas/{id}` con las mismas categorías y platos que hoy genera `cartaDelLocal()`, `disponible: true` y `foto: null` (la resuelves en el frontend con `fotoDePlato`). **No tienes que preparar ningún JSON.** No se ejecuta contra producción sin el OK de Izan.
 
 Mientras no estén desplegados, mantén ocultas esas secciones, como tenías previsto.
+
+### Implementación del frontend (Ruben · 2026-10-22)
+Rama `feat/M07-landing-secciones` (`570a717`): consume `?estado=activa` filtrando fechas y prioridad en cliente, `GET /v1/restaurants/mas-reservados?dias=7&limit=8`, `creado` del catálogo y `GET /v1/cartas/:id` resolviendo `foto: null` con `fotoDePlato`. Si un endpoint falla o no hay datos, la sección se oculta. Tests 319/319 y build en verde; pendiente revisión.

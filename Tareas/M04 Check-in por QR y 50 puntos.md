@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: en curso
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
@@ -39,3 +39,6 @@ Proyecto: [[Reserva con carta]]. Revisión cruzada: Claude revisa el código ant
 - **P2 · Listado del restaurante:** `delRestaurante` lee **todas** las reservas del restaurante (sin filtro de fecha en la consulta) y filtra en memoria, y luego hace una lectura de perfil por cliente. Con pocos datos va bien; con miles de reservas será lento. No bloquea; anotado para más adelante (filtrar `fecha` en la consulta con índice).
 - **P3 · Cancelar tras llegar:** `cancelarReserva` no mira `presentadaEn`: una reserva ya presentada se puede cancelar. Propuesta: 409 `CONFLICT` si `presentadaEn`. No bloquea.
 - Falta antes de producción: unir a `main` del backend, desplegar reglas y API y configurar `RESERVAS_QR_SECRET` en Render. **No se ha unido ni desplegado**: lo decide Izan.
+
+## Seguimiento Codex · menores de revisión
+Tras M13/M12/M14, se retoma la misma rama de M04 para P3 (cancelación de presentada) y P2 (rango en la consulta), autorizado por Izan. Sin unión ni despliegue.

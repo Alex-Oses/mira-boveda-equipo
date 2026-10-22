@@ -1,10 +1,10 @@
 ---
-estado: libre
+estado: en curso
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M01, M03]
-rama:
+rama: feat/M04-checkin-puntos
 ---
 # M04 Check-in por QR y 50 puntos
 

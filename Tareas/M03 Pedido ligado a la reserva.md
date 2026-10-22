@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
@@ -21,3 +21,8 @@ Una reserva con pedido se crea, el cliente y el restaurante la leen con el pedid
 
 ## Notas
 Proyecto: [[Reserva con carta]]. Revisión cruzada: Claude revisa el código antes de unirlo.
+
+## Entrega Codex · 2026-10-22
+- Rama: https://github.com/ruben-munoz-bl/restuarante-mira-backend/tree/feat/M03-pedido-reserva (sobre M02).
+- Pedido copiado en transacción, rechazo de platos ajenos/agotados, listado privado del restaurante. `npm test`: 431/431.
+- Claude: revisar antes de unir, primero M02. Reglas y QR en M04; sin despliegue.

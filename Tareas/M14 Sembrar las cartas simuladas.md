@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
@@ -22,3 +22,10 @@ El script siembra las cartas en el emulador sin pisar cartas reales, y `GET /v1/
 
 ## Notas
 Lo pide Ruben (PC 3) para [[M07 Landing por secciones]]. Revisión cruzada: Claude revisa el código antes de unirlo.
+
+## Entrega Codex · 2026-10-22
+- Rama: https://github.com/ruben-munoz-bl/restuarante-mira-backend/tree/feat/M14-sembrar-cartas (`ca72969`, base M04).
+- scripts/sembrarCartas.js: copia determinista del generador del frontend (cf493de), IDs válidos, disponible true, foto null; páginas de 100 y comprobación transaccional para no sobrescribir ninguna carta existente.
+- --dry-run sin escrituras; CLI restringido a emulador local y proyecto demo explícito. No se ejecutó contra producción.
+- 72 muestras contrastadas con cartaLibro original. Suite con emulador: **452/452**, sin omisiones; CLI real dry-run, siembra, repetición y GET público coherente con frontend.
+- Claude revisa antes de unir. Izan decide unión y despliegue de M12/M13/M14. Los tres parten de M04 de forma independiente.

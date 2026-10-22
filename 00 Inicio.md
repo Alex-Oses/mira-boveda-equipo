@@ -10,8 +10,11 @@ Memoria compartida del equipo y de nuestras IAs (Claude, Codex...). Aquí se apu
 
 ## Proyecto
 - [[MIRA - Resumen]]: repos, stack y cómo arrancarlo.
-- [[Ofertas por geolocalización]] ← **proyecto actual** (fases, PC y reparto)
+- [[Arquitectura frontend y plan de estilos]]: investigación, estilos y plan de diseño (2026-10-19).
+- [[Reserva con carta]] ← **proyecto actual** (pedir la comida al reservar, landing y cabecera; reparto por PC)
+- [[Ofertas por geolocalización]]: proyecto anterior (fases, PC y reparto)
 - [[Contratos API]]: lo publica el PC 1 al empezar cada fase
+- [[Permisos y primer arranque]] ← **bugs del 2026-10-16** (bienvenida, permisos, RGPD)
 - [[Prueba conjunta]]: guion de la prueba de punta a punta de las 3 fases
 - [[Plan app móvil y notificaciones]]: notificaciones push (apoyo a la app móvil)
 - [[Equipo]]

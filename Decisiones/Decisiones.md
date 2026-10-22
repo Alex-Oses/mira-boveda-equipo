@@ -3,11 +3,22 @@
 Una entrada por decisión, las más nuevas arriba. Formato:
 
 ```
+### 2026-10-22 · Reserva con carta (aprobado)
+- **Decisión:** el cliente puede añadir a la reserva un pedido de la carta. El pedido es un compromiso, queda fijo en la web y se paga en el local después de comer (sin pago online). Los cambios y platos agotados se hablan al llegar. Escanear el QR marca la reserva como presentada y, si llevaba pedido, da +50 puntos (al escanear, no al reservar). La carta la crea el restaurante al darse de alta.
+- **Reparto:** PC 1 backend + panel de pedidos y escáner; PC 2 flujo del cliente + editor de carta; PC 3 landing por secciones y cabecera sin racha ni puntos, sin depender de la API nueva (OpenCode va más lento).
+- **Fuera:** empresas de reparto (JustEat, UberEats), miniproyecto posterior.
+- **Quién:** Izan (con Claude). Detalle en [[Reserva con carta]].
+
 ### AAAA-MM-DD · Título
 - Decisión:
 - Por qué:
 - Quién:
 ```
+
+### 2026-10-16 · Avisos por distancia solo de partners o favoritos (G11)
+- **Decisión:** los avisos por distancia (G06) solo saltan si el restaurante es **partner** (lo marca el admin con 1 clic) o está en los **favoritos** del usuario. No hay envíos masivos de ofertas (G12 aparcada).
+- **Por qué:** no saturar al usuario con avisos de cualquier restaurante.
+- **Quién:** Alex (PC 2); el backend lo revisa PC 1.
 
 ### 2026-10-15 · G06 y G09 se quedan con Alex (PC 2); PC 3, de momento, fuera de la app
 - **Decisión:** al asignar la parte de app a Ruben (PC 3) apareció a la vez Alex (PC 2) con G06 y G09 **en curso** en `feat/mira-app`. El usuario decide: **se los deja Alex** y PC 3 no toca la app de momento. A futuro se valorá **llevar el panel del restaurante a la app** (ahí entraría PC 3).

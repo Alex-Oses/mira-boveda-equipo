@@ -26,3 +26,6 @@ Los PC 2 y 3 confirman que pueden trabajar con el mock.
 
 ## Mock unido a main (2026-10-15)
 El mock de ofertas (fases 1 a 3: ofertas, cerca, avisos y estadísticas) está en `main` del frontend (`7e9d85e`). Ya no hace falta cambiar a la rama `feat/G01-contrato-ofertas`: `npm run mock-api` desde `main`.
+
+## OK de PC 2 (Alex, 2026-10-16)
+El mock sirve y la app (G06/G09) se hizo contra él. Única diferencia: `GET /mias` no da 401 sin token ni 404 si el restaurante no existe (anotado en [[Contratos API]]). No bloquea.

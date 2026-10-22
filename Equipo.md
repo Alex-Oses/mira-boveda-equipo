@@ -8,9 +8,14 @@
 | PC 2 | Alex | Alex-Oses | Claude Code | App del cliente (web + móvil) |
 | PC 2 | (persona) |  |  | App del cliente (web + móvil) |
 | PC 3 | Ruben | ruben-munoz-bl | Opencode | Panel del restaurante (G04) |
-| PC 4 | Marco |  | Opencode | Panel del restaurante, en paralelo: G07 y G10 |
+| PC 3 | Marco |  | Opencode | Con Ruben (antes PC 4: G07 y G10) |
 
 PC 3 y PC 4 reparten el trabajo del panel; las instrucciones del PC 4 y el hilo de comunicación (git + `.md`) están en el frontend, rama `docs/pc4-marco`, carpeta `docs/coordenacion/`.
 
 
 Escribid vuestro nombre igual en todas partes: tareas, sesiones y ramas.
+
+## Reparto en [[Reserva con carta]] (2026-10-22)
+- **PC 1 · Izan:** Claude hace M01, M10 y M11 y revisa el backend; Codex hace M02, M03 y M04 en `mira-api` y revisa M10 y M11.
+- **PC 2 · Alex (Claude):** pedir al reservar, pedido en «Mis reservas» y editor de carta (M05, M06, M09).
+- **PC 3 · Ruben y Marco (OpenCode):** landing por secciones y cabecera (M07, M08), sin depender de la API nueva.

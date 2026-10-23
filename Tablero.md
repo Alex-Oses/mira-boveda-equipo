@@ -5,16 +5,12 @@ Proyecto actual: [[Reserva con carta]] (desde 2026-10-22). Anterior: [[Ofertas p
 ## Libre
 
 ### Reserva con carta (2026-10-22)
-Primero M01 (bloquea al resto). M07 y M08 no dependen de nada. Prompt de Codex: [[Codex - Reserva con carta]].
-- [[M02 Carta del restaurante en la API]] · Izan (Codex) (PC 1)
-- [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1)
-- [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1)
+M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con carta]].
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1)
 - [[M11 Escáner QR para el check-in]] · Izan (Claude) (PC 1)
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2)
 - [[M06 Pedido en Mis reservas]] · Alex (PC 2)
 - [[M09 Editor de la carta del restaurante]] · Alex (PC 2)
-- [[M07 Landing por secciones]] · Ruben (PC 3)
 - [[M08 Cabecera sin racha ni puntos]] · Marco (PC 3)
 
 ### Permisos y primer arranque (2026-10-16)
@@ -37,7 +33,14 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[M01 Contrato API de carta y pedidos]] · Izan (Claude) (PC 1) · publicado en [[Contratos API]]; falta OK de Alex (PC 2) y Codex
+- [[M07 Landing por secciones]] · Ruben (PC 3) · rama `feat/M07-landing-secciones` (`570a717`, `08ca563`) + ajustes en `feat/M07-ajustes-ui` (`05a6652`…`b8d123a`, subida): todas las secciones en carrusel, avance automático y buscador compacto; tests 320/320, build, E2E 29/29 y monkey verdes; PR #20 abierto, pendiente revisión y M14 en producción
+- [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43 · reglas cerradas y RESERVAS_QR_SECRET configurado
+- [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`) · script solo para emulador: falta sembrar producción (Izan)
+- [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
+- [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
+- [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
+- [[M02 Carta del restaurante en la API]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
+- [[M01 Contrato API de carta y pedidos]] · Izan (Claude) (PC 1) · publicado en [[Contratos API]]; revisión de Codex resuelta; falta OK de Alex (PC 2)
 - Rediseño web en la app (PR #16, `feat/app-rediseno-web`) · Alex (PC 2) · APK `android-v1.0.4` publicado; falta revisión y prueba en móvil
 - Tanda 2 de bugs UI web BUG-146 a 152 · OpenCode · en `main` `8aac33e` y desplegado en Vercel; pendiente revisión visual del usuario (detalle en `docs/bugs/`)
 - [[G06 Avisos por distancia en web y móvil]] · Alex (PC 2) · unida a main (PR #5) sin revisar: revisa PC 1 en main

@@ -230,7 +230,7 @@ Corrección T10 subida en `a5f332c`: 340/340, pendiente nueva revisión; promoci
 ## Reserva con carta (M01)
 Publicado el 2026-10-22 por el PC 1 (Izan + Claude). Lo implementa Codex en [[M02 Carta del restaurante en la API]], [[M03 Pedido ligado a la reserva]] y [[M04 Check-in por QR y 50 puntos]]. Lo usan el PC 2 ([[M05 Pedir la comida al reservar]], [[M06 Pedido en Mis reservas]], [[M09 Editor de la carta del restaurante]]) y Claude en el panel ([[M10 Pedidos y reservas en el panel]], [[M11 Escáner QR para el check-in]]). Proyecto: [[Reserva con carta]].
 
-Errores comunes, como en el resto de la API: `400 { error: "VALIDATION_ERROR", details }`, `401 { error: "UNAUTHORIZED" }`, `403 { error: "FORBIDDEN" }`, `404 { error: "NOT_FOUND" }`, `409 { error: "CONFLICT", message }`. Los precios van en **euros con 2 decimales** (número), siempre `moneda: "EUR"`.
+Errores comunes, como en el resto de la API: `400 { error: "VALIDATION_ERROR", details }`, `401 { error: "MISSING_TOKEN" | "INVALID_TOKEN" }` (los de `verifyFirebaseAuth`, sin cambiarlo), `403 { error: "FORBIDDEN" }`, `404 { error: "NOT_FOUND" }`, `409 { error: "CONFLICT", message }`. Los precios van en **euros con 2 decimales** (número), siempre `moneda: "EUR"`.
 
 ### Modelo `Carta` (colección `cartas`, id = `restauranteId`)
 Un documento por restaurante. Se guarda y se lee entera.
@@ -321,6 +321,66 @@ Respuesta 200:
 ```
 Sin uid ni email del cliente. Errores: 400, 401, 403, 404.
 
+### Precisiones tras la revisión de Codex (2026-10-22)
+- **Firestore (P1).** Ni la web ni la app leen o escriben `reservas` directamente: todo pasa por la API (Admin SDK, que no pasa por las reglas). En `firestore.rules`:
+  - `reservas`: `read` solo el dueño (`uid`) o admin; `create`, `update` y `delete`: `false`.
+  - `cartas`: `read` y `write`: `false` (se sirve por la API).
+  - `puntos_movimientos`: `create: false` (hoy cualquiera con sesión puede crear movimientos; lo cierra M04 porque añade el de +50).
+  - Pruebas de las reglas en local, **sin desplegar**; se despliegan con el backend tras la revisión.
+- **IDs (P2).** `id` de categorías y platos: `^[A-Za-z0-9_-]{1,40}$`. Únicos: categorías dentro de la carta y platos en **toda** la carta. Duplicados → 400 `VALIDATION_ERROR`. En el pedido, repetir un `platoId` → 400 `VALIDATION_ERROR` (no se agrupa).
+- **Secreto del QR (P2).** `RESERVAS_QR_SECRET` (o `VISITAS_SECRET`) de 32 caracteres como mínimo, como en G08.
+  - Sin secreto válido, `POST /v1/reservations/checkin` → 503 `RESERVAS_QR_NO_CONFIGURADO`.
+  - `GET /v1/reservations` sigue funcionando y devuelve `qr: null`, nunca 503 ni oculta reservas.
+- **Rango del listado (P2).** `desde` por defecto hoy (Madrid) y `hasta` por defecto igual que `desde`. Rango inclusivo. `hasta < desde` o más de 31 días → 400 `VALIDATION_ERROR`.
+
+Con esto, el contrato queda cerrado para Codex (M02-M04).
+
 ### Qué no cambia
 - `PUT /v1/reservations/:id/cancel`, el ticket y `confirm-attendance` del panel siguen igual.
 - El QR de las ofertas ([[G08 QR firmado, visitas y comisión]], `v1.…`) es otro: el escáner distingue por el prefijo (`v1.` visita, `r1.` reserva).
+
+## M07 · Landing por secciones (PC 3, Ruben · 2026-10-22)
+
+Lo pide el PC 3 antes de empezar [[M07 Landing por secciones]]. Las secciones sin datos se ocultan solas: **la landing no toca el backend**. Decisión de producto en [[Decisiones]] (2026-10-22).
+
+### 1. Promociones · `GET /v1/promotions?estado=activa` (ya existe, auth: no)
+Para «Restaurantes en promoción» (campañas, **no** las ofertas por distancia de G01).
+- Confirmad que es público y que devuelve `{ data: [{ id, restauranteId, tipo, estado, prioridad, fechaInicio, fechaFin }] }`.
+- Si el `estado` no se actualiza solo al caducar, filtro en cliente por `fechaInicio <= hoy <= fechaFin`.
+- Si hay varias por restaurante, me quedo con `prioridad` mayor.
+- No hace falta endpoint nuevo si esto es cierto.
+
+### 2. Más reservados · `GET /v1/restaurants/mas-reservados?dias=7&limit=8` (público, nuevo)
+Para «Los más reservados de la semana».
+- Cuenta `reservas` con `fecha` en los últimos `dias` (día de Madrid) y `estado !== "cancelada"`.
+- Respuesta: `{ data: [{ id, reservas }] }`, de más a menos. Solo agregados: sin uid ni datos del cliente.
+- `dias` 1–30 (def. 7); `limit` 1–20 (def. 8).
+- La forma de calcularlo (índice, contadores o lectura) la decidís vosotros; el PC 3 solo necesita `id` + número.
+- Sin esto, la sección queda oculta.
+
+### 3. Nuevos restaurantes · campo `creado` en `restaurants` (no es endpoint)
+Hoy el documento no tiene fecha de alta.
+- Propuesta: `creado` ISO al crear el restaurante (alta de negocio o admin) y, en el backfill de los ~700 de Yelp, la fecha que tenga sentido (p. ej. la de importación) o `null`.
+- Expuesto en `?all=1` (y en `/mapa` si sale barato); ordeno en cliente. Con `null` el local no entra en la sección.
+
+### 4. Fotos de platos · cartas simuladas a Firestore (consulta para Izan/Codex)
+La sección debe enseñar **platos reales**; M02 ya sirve `GET /v1/cartas/:id`.
+- Hoy el frontend genera la carta con `cartaDelLocal()`/`cartaLibro()` (`src/models/restaurantModel.js`): determinista por `id`, misma en web y app.
+- Propuesta: script de siembra en `mira-api/scripts` que recorra `restaurants` y escriba `cartas/{id}` con esas categorías y platos, `disponible: true` y `foto` resuelta (o `null` y la resuelve el frontend con `fotoDePlato`).
+- ¿Lo hacéis en PC 1 o preparo yo el JSON desde el frontend y os lo paso? No toco `mira-api`.
+- Mientras no haya cartas, la sección se oculta (no invento platos en la landing).
+
+### Respuesta que necesito de PC 1
+Confirmar el punto 1 y decidir 2, 3 y 4. El resto de la landing (estructura, buscador y Descubrir) no depende de nadie y lo empiezo ya.
+
+### Respuesta del PC 1 a M07 (Claude · 2026-10-22)
+Comprobado en el código del backend (`main`):
+1. **Promociones: confirmado.** `GET /v1/promotions?estado=activa` es **público** (`optionalAuth`) y devuelve `{ data: [Promoción] }` con los campos del documento, sin `presupuestoTotal` ni `gastoAcumulado` si no hay sesión. **El `estado` no cambia solo al caducar**: filtra en cliente por `fechaInicio <= hoy <= fechaFin`, y con varias por restaurante quédate con la de `prioridad` mayor, como proponías. No hace falta endpoint nuevo.
+2. **Más reservados: sí, lo hace el PC 1** en [[M12 Endpoint de más reservados]] con tu contrato tal cual: `GET /v1/restaurants/mas-reservados?dias=7&limit=8` → `{ data: [{ id, reservas }] }`, sin datos de clientes.
+3. **Campo `creado`: sí, lo hace el PC 1** en [[M13 Fecha de alta de los restaurantes]]. Los restaurantes aprobados desde «Negocio» ya guardan `creado` (como fecha de Firestore); se expondrá como **texto ISO** en `GET /v1/restaurants?all=1`. Los importados de Yelp quedan con `creado: null` (no sabemos su fecha real) y no entran en «Nuevos».
+4. **Cartas simuladas: las siembra el PC 1** en [[M14 Sembrar las cartas simuladas]], para no cargarte trabajo fuera de tu zona. Script en `mira-api/scripts` que escribe `cartas/{id}` con las mismas categorías y platos que hoy genera `cartaDelLocal()`, `disponible: true` y `foto: null` (la resuelves en el frontend con `fotoDePlato`). **No tienes que preparar ningún JSON.** No se ejecuta contra producción sin el OK de Izan.
+
+Mientras no estén desplegados, mantén ocultas esas secciones, como tenías previsto.
+
+### Implementación del frontend (Ruben · 2026-10-22)
+Rama `feat/M07-landing-secciones` (`570a717`): consume `?estado=activa` filtrando fechas y prioridad en cliente, `GET /v1/restaurants/mas-reservados?dias=7&limit=8`, `creado` del catálogo y `GET /v1/cartas/:id` resolviendo `foto: null` con `fotoDePlato`. Si un endpoint falla o no hay datos, la sección se oculta. Tests 319/319 y build en verde; pendiente revisión.

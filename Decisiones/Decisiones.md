@@ -3,6 +3,12 @@
 Una entrada por decisión, las más nuevas arriba. Formato:
 
 ```
+### 2026-10-22 · Reglas de Firestore: todo cerrado
+- **Decisión:** las reglas son las publicadas en la consola: ningún cliente lee ni escribe Firestore directamente (`allow read, write: if false` para todo). El archivo `mira-api/firestore.rules` del repo pasa a ser exactamente eso (backend `788a302`).
+- **Por qué:** la web y la app solo usan Firebase Auth; todo lo demás va por mira-api (Admin SDK, que no pasa por las reglas). El archivo antiguo del repo era mucho más permisivo y desplegarlo habría abierto restaurantes, aforo, finanzas, invitaciones…
+- **Para todos:** no añadáis lecturas o escrituras directas a Firestore desde la web o la app; si hace falta un dato, pedid un endpoint al PC 1.
+- **Quién:** Izan (Claude).
+
 ### 2026-10-22 · Contrato de reserva con carta (M01)
 - **Decisión:** carta en `cartas/{restauranteId}` (un documento, se sustituye entera). El pedido va dentro de la reserva con nombre y precio copiados y no se edita. La reserva tiene un QR propio firmado `r1.<reservaId>.<firma>` (HMAC, `RESERVAS_QR_SECRET`), válido el día de la reserva y una vez. `POST /v1/reservations/checkin` marca `presentadaEn` sin cambiar `estado` y da +50 puntos (`pedido_anticipado`) si hay pedido, en la misma transacción.
 - **Por qué:** el `codigo` `MIRA-…` se puede adivinar; no tocar `estado` evita romper ticket, comisión y puntos de reserva que ya funcionan.
@@ -19,6 +25,16 @@ Una entrada por decisión, las más nuevas arriba. Formato:
 - Por qué:
 - Quién:
 ```
+
+### 2026-10-22 · Todas las secciones de la landing en carrusel
+- **Decisión:** las cuatro secciones con datos usan el mismo carrusel de scroll-snap y flechas. La pista ocupa todo el ancho de la ventana: la primera tarjeta alinea con el título y las siguientes llegan al borde, con anchos 82% móvil, 46% tableta y `clamp(320px, 27vw, 370px)` escritorio. El CTA del buscador es corto («Buscar»/«Cercar»/«Search») y no se parte. El carrusel avanza solo cada 5 s y vuelve al inicio; se pausa al pasar el ratón o al enfocar con el teclado, y se queda quieto con `prefers-reduced-motion`. Sin barra de scroll: solo flechas y deslizamiento táctil.
+- **Por qué:** las filas de 3 tarjetas parecían una rejilla estática y dejaban franjas vacías; el carrusel muestra que hay más contenido y llena los lados. El botón anterior se partía en dos líneas y parecía desproporcionado.
+- **Quién:** Ruben (PC 3), commit `09317a8`.
+
+### 2026-10-22 · Landing por secciones y Descubrir infinito (M07)
+- **Decisión:** la landing deja de listar restaurantes. Queda: buscador con filtros plegados (solo el nombre a la vista), 5 secciones (promociones, fotos de platos, más reservados de la semana, Top 50 Barcelona, nuevos) y bloque final con botón a Descubrir. El listado infinito de 27 en 27 pasa a Descubrir, que mantiene el vuelo de los 7 mejores; si llega con filtros desde la landing se abre filtrado, sin vuelo y con el desplegable abierto. «Promoción» = campañas (`promociones`), no las ofertas por distancia. Los platos deben ser reales: se siembran las cartas simuladas actuales en Firestore (M02).
+- **Por qué:** la landing se vuelve curada y compacta; el catálogo completo vive en Descubrir, con un solo motor de paginación.
+- **Quién:** Ruben (PC 3). Peticiones a PC 1 en [[Contratos API]] §M07.
 
 ### 2026-10-16 · Avisos por distancia solo de partners o favoritos (G11)
 - **Decisión:** los avisos por distancia (G06) solo saltan si el restaurante es **partner** (lo marca el admin con 1 clic) o está en los **favoritos** del usuario. No hay envíos masivos de ofertas (G12 aparcada).

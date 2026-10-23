@@ -4,7 +4,7 @@ responsable: Izan (Codex)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: []
-rama: feat/M14-sembrar-cartas
+rama: feat/M14-sembrar-produccion
 ---
 # M14 Sembrar las cartas simuladas
 
@@ -37,3 +37,10 @@ Lo pide Ruben (PC 3) para [[M07 Landing por secciones]]. Revisión cruzada: Clau
 ## Despliegue (Claude · 2026-10-22)
 Unido a `main` del backend (`ebd274b`) en el orden M04 → M13 → M12 → M14, con 457 tests en verde, y desplegado en Render. Comprobado en producción: `GET /v1/cartas/:id` (404 sin carta), `POST /v1/reservations/checkin` y `GET /v1/reservations/restaurante` (401 sin sesión), `GET /v1/restaurants/mas-reservados` (200 con datos) y `creado` en los 705 restaurantes del catálogo (10 con fecha).
 **Pendiente (lo hace Izan):** desplegar `firestore.rules` (`firebase deploy --only firestore:rules`) y configurar `RESERVAS_QR_SECRET` en Render; mientras no esté, el QR usa `VISITAS_SECRET`. Las cartas simuladas (M14) **no se han sembrado** en producción.
+
+## Plan de producción preparado · Codex · 2026-10-23
+- Rama [feat/M14-sembrar-produccion](https://github.com/ruben-munoz-bl/restuarante-mira-backend/tree/feat/M14-sembrar-produccion), commit `b9d0af6`, desde main `788a302`. En revisión; sin merge ni despliegue.
+- Modo `--produccion --dry-run --project restaurante-mira-18e0c`: lista cada carta ausente con ID/nombre del restaurante y número de categorías/platos, y resumen final. Omite documentos técnicos y cualquier carta existente. Valida el formato M02.
+- Producción sin dry-run o proyecto explícito, o combinada con emulador: rechazo antes de inicializar Firebase. No se habilita escritura en producción; solo lectura. El modo de escritura previo sigue limitado al emulador demo local.
+- Pruebas de main con Firebase simulado: cero transacciones y estado sin cambios; planes correctos y cierre de app Firebase. `npm test`: **460 correctos, 2 omitidos** (requieren emulador); `node --check` correcto. Este backend no define script de build.
+- **No se ha ejecutado contra producción**, ni siquiera el dry-run. Izan debe dar el OK antes de leer el proyecto real. El comando previsto y las credenciales de lectura externas se describen en `mira-api/docs/api.md`.

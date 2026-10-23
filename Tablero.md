@@ -36,7 +36,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[M09 Editor de la carta del restaurante]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M07 Landing por secciones]] · Ruben (PC 3) · rama `feat/M07-landing-secciones` (`570a717`, `08ca563`) + ajustes en `feat/M07-ajustes-ui` (`05a6652`…`b8d123a`, subida): todas las secciones en carrusel, avance automático y buscador compacto; tests 320/320, build, E2E 29/29 y monkey verdes; PR #20 abierto, pendiente revisión y M14 en producción
 - [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43 · reglas cerradas y RESERVAS_QR_SECRET configurado
-- [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`) · script solo para emulador: falta sembrar producción (Izan)
+- [[M14 Sembrar las cartas simuladas]] · Codex · plan de producción en revisión: `feat/M14-sembrar-produccion` (`b9d0af6`), solo --produccion --dry-run; 460 tests correctos/2 omitidos, sin script build (sintaxis correcta); **sin ejecutar contra producción, requiere OK de Izan**
 - [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
 - [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
 - [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)

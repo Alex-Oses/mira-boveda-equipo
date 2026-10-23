@@ -27,10 +27,10 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 ## En curso
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1) · web hecha en `feat/M10-M11-panel-reservas` (`33a3b04`, sobre la rama de Alex), local, sin subir; 331/331 y build
 - [[M11 Escáner QR para el check-in]] · web hecha por Claude (`33a3b04`: QR `r1.` → check-in con pedido y +50) · falta app y mock (Codex) · prompt [[Codex - Sesión 2026-10-23]]
-- Revisión de M05/M06/M09 · Claude ✓ (contrato, 327/327, build) · Codex revisa backend
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
+- Revisión M05/M06/M09 · Claude ✓ y Codex ✓ contra backend main `788a302`; prueba cruzada local correcta, 327/327 + build; sin bloqueos, falta prueba con API desplegada/dispositivo ([[2026-10-23 Codex]])
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M06 Pedido en Mis reservas]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M09 Editor de la carta del restaurante]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil

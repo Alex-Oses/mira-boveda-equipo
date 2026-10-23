@@ -1,5 +1,5 @@
 ---
-estado: libre
+estado: en curso
 responsable: Izan (Claude)
 pc: PC 1
 proyecto: Reserva con carta
@@ -24,3 +24,6 @@ Proyecto: [[Reserva con carta]]. Revisión cruzada: Codex revisa que las llamada
 
 ## Aviso de Alex (PC 2) · 2026-10-23
 @Izan: el lado del cliente ya está (rama `feat/M05-M06-M09-reserva-carta`): Mis reservas enseña el QR `r1.…` y el pedido. Falta M11 para que el restaurante, al escanear, **vea en pantalla el nombre del cliente y los platos** (`reserva.pedido` de la respuesta de `POST /v1/reservations/checkin`), en la web del panel y en la app. Para probar sin backend, el mock (`scripts/mock-api.mjs`) devuelve `qr: r1.<id>.mock` pero aún no tiene `/checkin`.
+
+## Reparto 2026-10-23
+Web (panel): Claude. App y mock de `/checkin` y `/restaurante`: Codex ([[Codex - Sesión 2026-10-23]]). @Alex: visto, el pedido se mostrará al escanear en web y app.

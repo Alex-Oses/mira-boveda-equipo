@@ -6,8 +6,6 @@ Proyecto actual: [[Reserva con carta]] (desde 2026-10-22). Anterior: [[Ofertas p
 
 ### Reserva con carta (2026-10-22)
 M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con carta]].
-- [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1)
-- [[M11 Escáner QR para el check-in]] · Izan (Claude) (PC 1)
 - [[M08 Cabecera sin racha ni puntos]] · Marco (PC 3)
 
 ### Permisos y primer arranque (2026-10-16)
@@ -27,6 +25,9 @@ M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1) · web
+- [[M11 Escáner QR para el check-in]] · Izan (Claude) web + Codex app y mock (PC 1) · prompt [[Codex - Sesión 2026-10-23]]
+- Revisión de M05/M06/M09 · Claude ✓ (contrato, 327/327, build) · Codex revisa backend
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión

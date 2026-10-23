@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Ruben (PC 3, OpenCode)
 pc: PC 3
 proyecto: Reserva con carta
@@ -11,31 +11,33 @@ rama: feat/M15-promociones-panel
 ## Objetivo
 Poder crear una campaña de promoción desde el panel y que la landing la muestre en «En promoción». Hoy solo existe `POST /v1/promotions`; no hay pantalla, y por eso producción devuelve `{"data":[]}`.
 
-## Contexto (2026-10-23)
-- Backend `POST /v1/promotions` (auth `empresa`/`admin`; el admin puede crear para cualquier restaurante):
-  - Obligatorios: `restauranteId`, `fechaInicio`, `fechaFin`, `presupuestoTotal` (>0, ≤1.000.000).
-  - Opcionales: `tipo` (def. `boost_visibilidad`), `cpc` (def. 0,20), `puntosExtraPorReserva` (def. 0).
-  - Crea `estado: "activa"`, `prioridad: 100`, contadores a cero.
-  - **409** si ya hay una promoción `activa` para ese restaurante, sin mirar fechas.
-- `GET /v1/promotions?restauranteId=…` es público; sin sesión oculta `presupuestoTotal` y `gastoAcumulado`. El panel necesita pedirlo autenticado.
-- `GET /v1/promotions/:id/stats` (empresa/admin) devuelve views, clicks, ctr, reservasGeneradas y gastoAcumulado.
-- **No hay `PUT` ni `DELETE`**: no se puede editar ni desactivar desde la UI. Una campaña caducada sigue `activa` y bloquea la siguiente con 409.
-- La landing ya pinta la sección si hay campañas vigentes (`landingApi.fetchPromocionesActivas`).
+## Decisiones (2026-10-23)
+- Panel **admin global** (`#/admin`, sección «Promociones»), no el dashboard del restaurante.
+- Alcance: **crear + listar + stats**. Sin editar/desactivar (el backend no tiene `PUT`/`DELETE`).
+- Formulario **completo con defaults**: tipo `boost_visibilidad`, CPC 0,20, puntos extra 0, fechas hoy → +30 días y presupuesto 300 €. Tipo/CPC/puntos van en «Opciones avanzadas».
 
-## Pasos
-1. `promotionsApi.crear` y `list` con opción de auth en `src/services/api.js`.
-2. `PromocionesPanel.jsx` reutilizable (patrón `OfertasPanel`): lista, crear, validación, 409 y stats.
-3. Integrarlo en el panel que se decida (admin global y/o dashboard del restaurante).
-4. i18n `promociones.*` en es/ca/en.
-5. Tests de la lógica pura (validación/fechas) + `npm test` + `npm run build`.
+## Hecho
+- `src/services/api.js`: `promotionsApi.crear` y `list` con `auth: true` (para ver presupuesto/gasto).
+- `src/models/promocionesModel.js`: defaults, validación, fechas de Madrid, estados y errores de API. Test `test/promocionesModel.test.js` (9 casos).
+- `src/components/dashboard/PromocionesPanel.jsx`: lista, alta, stats y aviso cuando ya hay una campaña activa.
+- `src/components/ops/OpsPromociones.jsx`: buscador de restaurante (mismo patrón que `OpsOfertas`) y panel.
+- `src/components/ops/OpsPanel.jsx`: sección `promociones` con icono `campaign`.
+- i18n `promociones.*` y `ops.seccPromociones` en es/ca/en.
+- `npm test`: **336/336**. `npm run build`: **OK**.
+- Rama `feat/M15-promociones-panel`, commits `a6d61d2` y `c14e4c0`, pusheada. PR: https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/new/feat/M15-promociones-panel (no hay `gh` instalado para abrirlo desde aquí).
 
-## Terminada cuando
-Se crea una campaña con fechas vigentes desde el panel, aparece en la lista y en «En promoción» de la landing, y el formulario muestra los errores 400/403/409.
+## Reparto con Codex (M15)
+- **Codex (PC 1)**: rama `feat/M15-promociones-api` — `PUT /v1/promotions/:id` para editar `fechaFin`/`presupuestoTotal`/`estado` y 409 que ignore las caducadas o las finalice al crear. Avisará en esta nota (ver [[Codex - Cierre Reserva con carta]]).
+- **Ruben (PC 3)**: editor del panel en esta rama, de momento solo crear/listar/stats. Cuando llegue el `PUT`, añadir editar y cerrar.
 
-## Decisiones pendientes
-- [ ] ¿Panel admin global (`#/admin`), dashboard del restaurante (`#/dashboard`) o ambos?
-- [ ] ¿Solo crear + listar (backend actual) o también editar/desactivar (requiere backend)?
-- [ ] ¿Campos mínimos (fechas + presupuesto) o completos (tipo/CPC/puntos)?
+## Dependencias de backend (importante)
+1. **Crear como admin**: en `origin/main`, `crearPromocion` comprueba `rest.ownerUid !== uid` y devuelve **403 incluso al admin**. La rama `fix/ia-respuesta-idioma` (cambios sin commitear) lo sustituye por `comprobarPropiedadRestaurante({ uid, role, … })`, que deja pasar al admin. **Hasta que eso se despliegue, el admin solo podrá crear en restaurantes sin `ownerUid`.**
+2. **Ciclo completo**: `feat/M15-promociones-api` de Codex añadirá el `PUT`; sin él una campaña mal creada o caducada no se puede cerrar y bloquea las siguientes con 409. No se ha tocado el backend.
 
 ## Limitación conocida
-Sin `PUT /v1/promotions/:id`, una campaña mal creada o caducada no se puede cerrar desde la UI y bloquea nuevas (409). Si se quiere ciclo completo, PC 1 debe añadir el endpoint.
+La UI avisa y oculta «Nueva promoción» mientras haya una en `estado: activa` (aunque haya caducado), porque el backend la sigue contando.
+
+## Pendiente
+- Probar en local con una sesión admin real (no hay credenciales en el repo): crear una campaña, verla en la lista y en «En promoción».
+- Abrir el PR (no hay `gh` instalado) y que lo revise PC 1, sobre todo por la dependencia de ownership.
+- Cuando Codex entregue `PUT /v1/promotions/:id`, añadir editar/cerrar en el panel.

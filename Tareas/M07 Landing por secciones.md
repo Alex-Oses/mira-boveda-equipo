@@ -65,3 +65,11 @@ Rama `feat/M07-ajustes-ui` (worktree `.worktrees/m07`), desde `08ca563`:
 - `b8d123a`: avance automático cada 5 s con vuelta al inicio, pausa al pasar el ratón o enfocar y respeto a `prefers-reduced-motion`; barra de scroll oculta, solo flechas y deslizamiento táctil. Nuevo test E2E: E2E 29/29.
 - `9888be9`: el runner de Windows trae `prefers-reduced-motion: reduce` y el carrusel, con razón, no avanza. El E2E fija `no-preference` en `qa/navegador.py` salvo con `QA_REDUCED_MOTION`. `npm test` 320/320 y build en verde; CI del PR relanzado.
 - PR [#20](https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/20) abierto de `feat/M07-ajustes-ui` a `feat/M07-landing-secciones`; pendiente revisión y merge.
+
+## Revisión de la preview (2026-10-23 · Ruben)
+
+- CI: el run `39910922600` de `9888be9` terminó en verde; el fallo era el `prefers-reduced-motion` del runner de Windows.
+- `67f2385`: en Descubrir, el contador se queda pegado arriba con un botón «Buscar y filtrar» que devuelve al buscador (probado a 1400 y 390 px). `npm test` 320/320 y build en verde.
+- Promociones: la preview pide `GET /v1/promotions?estado=activa` y producción devuelve `{"data":[]}`. No es la sesión: el endpoint es público y sin filtros también devuelve vacío. La sección se oculta porque no hay campañas; para verla hay que crear una con fechas vigentes, sin tocar el frontend.
+- Platos: la preview pide `/v1/cartas/:id` y recibe 404 (M14 sin sembrar); usa la carta simulada. Elige las 8 primeras fichas del catálogo y el primer plato de cada carta, con la foto resuelta por `fotoDePlato`. No hay curación del backend; M14 solo aportará las cartas reales.
+- Endpoints: M12 y M13 desplegados (se ven «más reservados» y «Nuevos»); M14 pendiente; promociones sin datos.

@@ -384,3 +384,5 @@ Mientras no estén desplegados, mantén ocultas esas secciones, como tenías pre
 
 ### Implementación del frontend (Ruben · 2026-10-22)
 Rama `feat/M07-landing-secciones` (`570a717`): consume `?estado=activa` filtrando fechas y prioridad en cliente, `GET /v1/restaurants/mas-reservados?dias=7&limit=8`, `creado` del catálogo y `GET /v1/cartas/:id` resolviendo `foto: null` con `fotoDePlato`. Si un endpoint falla o no hay datos, la sección se oculta. Tests 319/319 y build en verde; pendiente revisión.
+
+- Preview 2026-10-23: M12 y M13 desplegados (se ven «más reservados» y «Nuevos»); M14 sin sembrar (`/v1/cartas/:id` 404, se usa la carta simulada); `GET /v1/promotions?estado=activa` devuelve `{ data: [] }` en producción, así que «En promoción» está oculta por falta de campañas.

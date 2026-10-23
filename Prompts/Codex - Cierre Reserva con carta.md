@@ -3,7 +3,7 @@
 Reparto: **Codex = backend `mira-api`**, **Claude = frontend web y app**. No toques el frontend salvo lo indicado.
 Nada de merge a main ni despliegue sin el OK de Izan; sube tus ramas y avisa en la bóveda.
 
-## 1. M14 · sembrar cartas en producción (urgente)
+## 1. M14 · sembrar cartas en producción — **HECHO por Alex (705 cartas, por secciones). Sáltalo**; empieza por el punto 2.
 Rama `feat/M14-sembrar-produccion`. En producción `GET /v1/cartas/:id` da 404 para todos.
 - Modo `--produccion` con `--dry-run` por defecto; escribir solo con `--confirmar`.
 - Nunca sobrescribe una carta existente; idempotente.

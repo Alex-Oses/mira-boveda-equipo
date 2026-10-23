@@ -24,7 +24,7 @@ Poder crear una campaña de promoción desde el panel y que la landing la muestr
 - `src/components/ops/OpsPanel.jsx`: sección `promociones` con icono `campaign`.
 - i18n `promociones.*` y `ops.seccPromociones` en es/ca/en.
 - `npm test`: **336/336**. `npm run build`: **OK**.
-- Rama `feat/M15-promociones-panel`, commit `a6d61d2`, pusheada. PR: https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/new/feat/M15-promociones-panel (no hay `gh` instalado para abrirlo desde aquí).
+- Rama `feat/M15-promociones-panel`, commits `a6d61d2` y `c14e4c0`, pusheada. PR: https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/new/feat/M15-promociones-panel (no hay `gh` instalado para abrirlo desde aquí).
 
 ## Reparto con Codex (M15)
 - **Codex (PC 1)**: rama `feat/M15-promociones-api` — `PUT /v1/promotions/:id` para editar `fechaFin`/`presupuestoTotal`/`estado` y 409 que ignore las caducadas o las finalice al crear. Avisará en esta nota (ver [[Codex - Cierre Reserva con carta]]).

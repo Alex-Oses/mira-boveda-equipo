@@ -25,7 +25,7 @@ M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
-- Cierre Reserva con carta · Codex: M14 producción por secciones, M15 API de promociones, revisión M05 ([[Codex - Cierre Reserva con carta]]) · Claude: app (QR y pedido en el calendario, editor de carta), prueba con API real
+- Cierre Reserva con carta · Codex: ~~M14~~ (sembrado por Alex), M15 API de promociones, revisión M05 ([[Codex - Cierre Reserva con carta]]) · Claude: app hecha en `feat/app-calendario-carta` (`6a8b886`: QR y pedido en el calendario, editor de carta), sin subir; falta prueba con API real
 - [[M15 Editor de promociones en el panel]] · Ruben (PC 3) · crear campañas desde el panel; el admin ya puede hacerlo para cualquier restaurante vía `POST /v1/promotions`; pendiente decidir panel/alcance y la falta de `PUT` para cerrar campañas
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 

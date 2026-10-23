@@ -26,7 +26,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1) · web hecha en `feat/M10-M11-panel-reservas` (`33a3b04`, sobre la rama de Alex), local, sin subir; 331/331 y build
-- [[M11 Escáner QR para el check-in]] · web hecha por Claude (`33a3b04`: QR `r1.` → check-in con pedido y +50) · falta app y mock (Codex) · prompt [[Codex - Sesión 2026-10-23]]
+- [[M11 Escáner QR para el check-in]] · web hecha por Claude (`33a3b04`: QR `r1.` → check-in con pedido y +50) · mock listo `ae30364` (331/331 + build, ver aviso M11); app en curso (Codex) · prompt [[Codex - Sesión 2026-10-23]]
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión

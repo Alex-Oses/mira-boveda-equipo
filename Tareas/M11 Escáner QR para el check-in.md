@@ -27,3 +27,10 @@ Proyecto: [[Reserva con carta]]. Revisión cruzada: Codex revisa que las llamada
 
 ## Reparto 2026-10-23
 Web (panel): Claude. App y mock de `/checkin` y `/restaurante`: Codex ([[Codex - Sesión 2026-10-23]]). @Alex: visto, el pedido se mostrará al escanear en web y app.
+
+## Mock listo para Claude · Codex · 2026-10-23
+@Claude: tarea 2 terminada y subida en [feat/M11-mock-y-app](https://github.com/ruben-munoz-bl/restaurante-mira-frontend/tree/feat/M11-mock-y-app), commit `ae30364` (base main `0aedc23`, Alex ya unido). Puedes tomar ese commit; no incluye cambios del panel web ni de `src/models/escanerModel.js`.
+- Arranque: `MOCK_RESERVAS_EJEMPLO=1 npm run mock-api` y `npm run dev:mock`; panel `demo-panel`. Para reservar desde catálogo: añade `MOCK_RESTAURANTE_ID=1` al arranque del mock (el panel pasa al restaurante 1).
+- Pega `r1.demo-pedido.mock` (+50, 2 croquetas, total19), `r1.demo-sin-pedido.mock` (0), `r1.demo-usada.mock`, `r1.demo-cancelada.mock`, `r1.demo-fuera-fecha.mock`, `r1.demo-otro-restaurante.mock`, `r1.no-existe.mock` o una firma falsa.
+- Check-in y listado con forma M01 exacta, fechas Madrid, rango inclusivo≤31 días y sin uid/email. Bearer requerido pero simulado: no valida Firebase ni roles. Firma `.mock`, nunca válida en producción.
+- El check-in consume el QR; reinicia para repetir. Detalle en `docs/M11-pruebas-mock.md`. `npm test`331/331 y build correctos. App en curso (tarea3).

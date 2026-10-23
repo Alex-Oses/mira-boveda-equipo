@@ -73,3 +73,53 @@ Rama `feat/M07-ajustes-ui` (worktree `.worktrees/m07`), desde `08ca563`:
 - Promociones: la preview pide `GET /v1/promotions?estado=activa` y producción devuelve `{"data":[]}`. No es la sesión: el endpoint es público y sin filtros también devuelve vacío. La sección se oculta porque no hay campañas; para verla hay que crear una con fechas vigentes, sin tocar el frontend.
 - Platos: la preview pide `/v1/cartas/:id` y recibe 404 (M14 sin sembrar); usa la carta simulada. Elige las 8 primeras fichas del catálogo y el primer plato de cada carta, con la foto resuelta por `fotoDePlato`. No hay curación del backend; M14 solo aportará las cartas reales.
 - Endpoints: M12 y M13 desplegados (se ven «más reservados» y «Nuevos»); M14 pendiente; promociones sin datos.
+
+## Cómo está hecho ahora (2026-10-23 · Ruben)
+
+Rama de trabajo: `feat/M07-ajustes-ui` (`67f2385`), PR [#20](https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/20).
+Preview: https://restaurante-mira-frontend-git-feat-m07-ajustes-ui-rumu439-4703.vercel.app
+CI: `9888be9` en verde (run `39910922600`) y `67f2385` en verde (run `39912468120`).
+
+### Landing
+- `src/components/LandingSecciones.jsx`: Hero intacto → buscador plegado → secciones → bloque final que baja a `#/descubrir?lista=1`. Cada sección se pinta solo si tiene datos.
+- Orden de secciones: promociones → platos → más reservados → Top 50 Barcelona → nuevos → CTA final.
+- Carrusel propio (`Carrusel`, dentro de `LandingSecciones.jsx`): scroll-snap nativo, flechas ‹ › (ocultas en móvil), avance automático cada 5 s con vuelta al inicio, pausa al pasar el ratón o al enfocar y respeto a `prefers-reduced-motion: reduce`. Sin barra de scroll.
+- Estilos en `src/styles/landing.css`. Tarjeta: 82% móvil, 46% tableta y `clamp(320px, 27vw, 370px)` en escritorio, para que asome la siguiente.
+- Textos `landing.*` en `src/i18n/{es,ca,en}.js`.
+
+### Fuentes de datos (`src/services/landingApi.js`)
+- **Promociones**: `GET /v1/promotions?estado=activa` (público). El estado no caduca solo, así que las fechas y la prioridad se filtran en cliente.
+- **Más reservados**: `GET /v1/restaurants/mas-reservados?dias=7&limit=8` (M12).
+- **Platos**: `GET /v1/cartas/:id` por restaurante; si no hay carta usa `primerPlatoLocal` (`shortcut:`) y la foto se resuelve con `fotoDePlato`. Ver «Platos» abajo.
+- **Top 50 y nuevos**: catálogo completo `GET /v1/restaurants?all=1` (caché 60 s) + `topBarcelona()` y `nuevosRestaurantes()` de `src/models/landingModel.js` (campo `creado`, M13).
+- Si un endpoint falla o viene vacío devuelve `[]` y su sección desaparece; nunca rompe el Hero.
+
+### Descubrir (`src/components/Descubrir.jsx`)
+- Vuelo de los 7 mejores; debajo, buscador y lista infinita de 27 en 27.
+- Si llega con filtros en la URL (`#/descubrir?...`) no hay vuelo, el desplegable se abre y la lista ya viene filtrada.
+- `?lista=1` (botón «ver más restaurantes») salta directo a `#dsc-todos`.
+- `67f2385`: en el listado, el contador se queda pegado arriba con un botón «Buscar y filtrar» que devuelve al buscador. Estilo en `src/styles/descubrir.css`, texto `descubrir.filtros`.
+- El buscador filtra solo por nombre (`filterService`).
+
+### Platos: cómo se eligen
+1. `LandingSecciones` pide `fetchPlatosDestacados` con el catálogo completo.
+2. Se cogen las **8 primeras fichas** del catálogo (`LIMITE_PLATOS = 8`).
+3. De cada una se pide `/v1/cartas/:id` y se toma **el primer plato con nombre** de la carta.
+4. Si la carta no existe (404) se usa la carta simulada local (`primerPlatoLocal`).
+5. La foto se resuelve con `fotoDePlato` a partir del nombre del plato.
+
+No hay curación del backend ni flag de «destacado»: M14 solo aportará las cartas reales. En la preview todos los `/v1/cartas/:id` dan 404, así que ahora mismo se ven platos simulados.
+
+### QA
+- `qa/navegador.py` emula `prefers-reduced-motion: no-preference` salvo con `QA_REDUCED_MOTION` (el runner de Windows trae `reduce`).
+- `qa/tests/test_flujo_home.py`: tests de carruseles y autoavance.
+
+## Preguntas abiertas para Izan (2026-10-23)
+
+1. **Promociones**: en producción no hay campañas (`GET /v1/promotions?estado=activa` → `{"data":[]}`), por eso la sección no se ve. ¿Creamos una campaña de ejemplo con fechas vigentes para la preview, o lo dejamos oculto hasta que exista una real? Solo existe el `POST /v1/promotions`; no hay pantalla ni script que las cree.
+2. **Platos**: ahora se cogen las 8 primeras fichas y el primer plato de cada carta. ¿Qué criterio prefieres para «platos que apetecen»: aleatorio, un principal en vez del primero, o un flag de destacado desde el backend?
+3. **Acceso a filtros**: la barra «Buscar y filtrar» es la solución mínima. ¿La mantenemos o prefieres otra (botón flotante, buscador fijo…)?
+
+## Para retocar sin miedo
+- Solo estética/UX: `src/styles/landing.css`, `src/styles/descubrir.css`, estructura del `Carrusel` en `src/components/LandingSecciones.jsx` y textos `landing.*` / `descubrir.*`.
+- Fuera de alcance de M07: `Header`, modal de reserva, panel y backend.

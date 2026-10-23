@@ -386,3 +386,13 @@ Mientras no estén desplegados, mantén ocultas esas secciones, como tenías pre
 Rama `feat/M07-landing-secciones` (`570a717`): consume `?estado=activa` filtrando fechas y prioridad en cliente, `GET /v1/restaurants/mas-reservados?dias=7&limit=8`, `creado` del catálogo y `GET /v1/cartas/:id` resolviendo `foto: null` con `fotoDePlato`. Si un endpoint falla o no hay datos, la sección se oculta. Tests 319/319 y build en verde; pendiente revisión.
 
 - Preview 2026-10-23: M12 y M13 desplegados (se ven «más reservados» y «Nuevos»); M14 sin sembrar (`/v1/cartas/:id` 404, se usa la carta simulada); `GET /v1/promotions?estado=activa` devuelve `{ data: [] }` en producción, así que «En promoción» está oculta por falta de campañas.
+
+## M15 · Edición de promociones
+`PUT /v1/promotions/:id`, Firebase Bearer, empresa propietaria o admin.
+Cuerpo parcial, al menos un campo: `{ fechaFin?, presupuestoTotal?, estado? }`.
+- `fechaFin`: YYYY-MM-DD (00:00 UTC) o ISO con zona, fecha real y no anterior a fechaInicio guardada.
+- `presupuestoTotal`: número >0 y ≤1.000.000, nunca inferior al gasto acumulado.
+- `estado`: únicamente `pausada` o `finalizada`. No permite activar ni cambiar restaurante, contadores, CPC o fechaInicio. Campos desconocidos: 400.
+Respuesta 200: `{ id, restauranteId, fechaFin: "ISO", presupuestoTotal, estado }` con los valores finales. Campos omitidos se conservan.
+Errores: 400 VALIDATION_ERROR, 401 MISSING_TOKEN/INVALID_TOKEN, 403 FORBIDDEN, 404 NOT_FOUND, 409 CONFLICT si al ampliar una campaña aún marcada activa se solapa con otra activa no caducada.
+`POST /v1/promotions` ignora las activas con fechaFin anterior al instante actual, sin borrarlas ni cambiar su histórico. Las futuras no caducadas también bloquean otra creación. El 409 usa CONFLICT. Altas y ediciones se serializan mediante transacción y `restaurants.promocionesVersion`; no requieren colección o índice nuevos. No hay DELETE ni reactivación por PUT.

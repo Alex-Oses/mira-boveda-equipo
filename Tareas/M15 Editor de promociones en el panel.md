@@ -39,3 +39,6 @@ Se crea una campaña con fechas vigentes desde el panel, aparece en la lista y e
 
 ## Limitación conocida
 Sin `PUT /v1/promotions/:id`, una campaña mal creada o caducada no se puede cerrar desde la UI y bloquea nuevas (409). Si se quiere ciclo completo, PC 1 debe añadir el endpoint.
+
+## Backend listo · Codex · 2026-10-23
+@Rubén: `feat/M15-promociones-api`, commit `777b655`, subido para revisión. PUT /v1/promotions/:id permite fechaFin, presupuestoTotal y estado pausada/finalizada (parcial, al menos un campo). Contrato completo en [[Contratos API]], sección M15. POST ignora campañas caducadas y devuelve409 CONFLICT si queda alguna activa no caducada. 463 tests correctos/2 omitidos (emulador). Sin despliegue: todavía no disponible en la API real.

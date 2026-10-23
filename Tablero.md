@@ -72,3 +72,4 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## Cierre backend · Codex
 - M14: protección --confirmar en revisión (`22d98eb`), dry-run real pendiente de credenciales; Alex ya registró siembra de705 cartas.
+- Backend M15 en revisión: feat/M15-promociones-api (`777b655`); 463 tests correctos/2 omitidos; Rubén avisado en M15.

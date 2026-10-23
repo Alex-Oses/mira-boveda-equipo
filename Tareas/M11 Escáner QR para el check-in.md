@@ -21,3 +21,6 @@ Escaneando el QR de una reserva con pedido se marca presentada, se ve el pedido 
 
 ## Notas
 Proyecto: [[Reserva con carta]]. Revisión cruzada: Codex revisa que las llamadas coincidan con su backend.
+
+## Aviso de Alex (PC 2) · 2026-10-23
+@Izan: el lado del cliente ya está (rama `feat/M05-M06-M09-reserva-carta`): Mis reservas enseña el QR `r1.…` y el pedido. Falta M11 para que el restaurante, al escanear, **vea en pantalla el nombre del cliente y los platos** (`reserva.pedido` de la respuesta de `POST /v1/reservations/checkin`), en la web del panel y en la app. Para probar sin backend, el mock (`scripts/mock-api.mjs`) devuelve `qr: r1.<id>.mock` pero aún no tiene `/checkin`.

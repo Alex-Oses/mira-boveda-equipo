@@ -117,6 +117,8 @@ No hay curación del backend ni flag de «destacado»: M14 solo aportará las ca
 ## Preguntas abiertas para Izan (2026-10-23)
 
 1. **Promociones**: en producción no hay campañas (`GET /v1/promotions?estado=activa` → `{"data":[]}`), por eso la sección no se ve. ¿Creamos una campaña de ejemplo con fechas vigentes para la preview, o lo dejamos oculto hasta que exista una real? Solo existe el `POST /v1/promotions`; no hay pantalla ni script que las cree.
+   - **No confundir** con las **ofertas por distancia** ([[G04 Editor básico de ofertas por distancia]], editor «Ofertas» en el dashboard) ni con el flag **partner** ([[G11 Avisos solo de favoritos y destacados]], «Gestión Restaurantes»). Ninguna de las dos crea campañas.
+   - Hueco detectado (2026-10-23): no hay tarea asignada para un editor de promociones/campañas en el panel; `components/promotions/` del frontend son estilos de ofertas. Por eso «En promoción» no puede llenarse desde la app.
 2. **Platos**: ahora se cogen las 8 primeras fichas y el primer plato de cada carta. ¿Qué criterio prefieres para «platos que apetecen»: aleatorio, un principal en vez del primero, o un flag de destacado desde el backend?
 3. **Acceso a filtros**: la barra «Buscar y filtrar» es la solución mínima. ¿La mantenemos o prefieres otra (botón flotante, buscador fijo…)?
 

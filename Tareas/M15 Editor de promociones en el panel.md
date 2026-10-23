@@ -1,5 +1,5 @@
 ---
-estado: en revisión
+estado: hecho
 responsable: Ruben (PC 3, OpenCode)
 pc: PC 3
 proyecto: Reserva con carta
@@ -23,8 +23,8 @@ Poder crear una campaña de promoción desde el panel y que la landing la muestr
 - `src/components/ops/OpsPromociones.jsx`: buscador de restaurante (mismo patrón que `OpsOfertas`) y panel.
 - `src/components/ops/OpsPanel.jsx`: sección `promociones` con icono `campaign`.
 - i18n `promociones.*` y `ops.seccPromociones` en es/ca/en.
-- `npm test`: **339/339**. `npm run build`: **OK**.
-- Rama `feat/M15-promociones-panel`, commits `a6d61d2`, `c14e4c0` y el de editar/finalizar, pusheada. PR: https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/new/feat/M15-promociones-panel (no hay `gh` instalado para abrirlo desde aquí).
+- `npm test`: **353/353** tras mergear `main`. `npm run build`: **OK**.
+- PR [#24](https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/24) mergeado a `main` (merge commit `640ee0e`). CI verde: unit-frontend, e2e y Vercel; monkey skipped.
 
 ## Reparto con Codex (M15)
 - **Codex (PC 1)**: rama `feat/M15-promociones-api` — `PUT /v1/promotions/:id` para editar `fechaFin`/`presupuestoTotal`/`estado` y 409 que ignore las caducadas o las finalice al crear. Ya está desplegado (ver abajo).
@@ -41,5 +41,5 @@ Prueba de extremo a extremo en el panel (`#/admin` → Promociones → Ari's Res
 La UI oculta «Nueva promoción» mientras haya una en `estado: activa` (aunque haya caducado), porque el backend la sigue contando. Ahora se puede resolver con «Finalizar», que sí cambia el estado.
 
 ## Pendiente
-- Abrir el PR (no hay `gh` instalado) y que lo revise PC 1.
-- Confirmar en la landing que una campaña activa aparece en «En promoción»; la prueba se hizo sobre la lista del panel y la API.
+- Confirmar visualmente en la landing que una campaña activa aparece en «En promoción»; la prueba se hizo sobre la lista del panel y la API. No se dejó ninguna campaña activa en producción.
+- Revisión de PC 1 (opcional: ya está en `main` y con CI verde).

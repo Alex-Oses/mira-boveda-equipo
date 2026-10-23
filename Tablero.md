@@ -29,7 +29,6 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[M15 Editor de promociones en el panel]] · Ruben (PC 3) · sección «Promociones» en `#/admin` (crear/listar/stats/editar/finalizar); 339/339 y build; rama `feat/M15-promociones-panel` (`a6d61d2`, `c14e4c0` + editar/finalizar), PR pendiente de abrir (sin `gh`); backend de Izan desplegado y probado en real (crear como admin y `PUT`), datos de prueba borrados
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) · en `main` (`f065fd7`); falta prueba con API real
 - [[M11 Escáner QR para el check-in]] · web Claude + app y mock Codex · en `main` (`b2f2d0d`, `f065fd7`); falta prueba con API real y en móvil
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
@@ -53,6 +52,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[G01 Contrato API fase 1]] · Izan (Claude) · OK de PC 2 (Alex), falta PC 3
 
 ## Hecho
+- [[M15 Editor de promociones en el panel]] · Ruben (PC 3) · sección «Promociones» en `#/admin` (crear/listar/stats/editar/finalizar), en `main` (PR #24, `640ee0e`); 353/353 y build; CI verde; probado en real con admin (crear, editar y finalizar) y datos de prueba borrados
 - Errores del APK BUG-138 a 145 · Codex, revisado por Claude · PR #10 en main y APK `android-v1.0.1` (descarga en `#/app`)
 - [[C02 Primer arranque y permisos (web y app)]] · Izan (Claude) · en producción (web y APK `android-v1.0.1`)
 - [[C01 Consentimientos en el perfil (API)]] · Codex (PC 1) · en producción (sin reglas: ver [[Permisos y primer arranque]])

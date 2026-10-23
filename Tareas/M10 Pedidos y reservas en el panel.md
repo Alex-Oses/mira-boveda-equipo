@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Izan (Claude)
 pc: PC 1
 proyecto: Reserva con carta

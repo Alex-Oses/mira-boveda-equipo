@@ -26,12 +26,11 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
 - [[M15 Editor de promociones en el panel]] · Ruben (PC 3) · crear campañas desde el panel; el admin ya puede hacerlo para cualquier restaurante vía `POST /v1/promotions`; pendiente decidir panel/alcance y la falta de `PUT` para cerrar campañas
-- [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1) · web hecha en `feat/M10-M11-panel-reservas` (`33a3b04`, sobre la rama de Alex), local, sin subir; 331/331 y build
-- [[M11 Escáner QR para el check-in]] · web hecha por Claude (`33a3b04`: QR `r1.` → check-in con pedido y +50) · falta app y mock (Codex) · prompt [[Codex - Sesión 2026-10-23]]
-- Revisión de M05/M06/M09 · Claude ✓ (contrato, 327/327, build) · Codex revisa backend
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
+- [[M10 Pedidos y reservas en el panel]] · Izan (Claude) · en `main` (`f065fd7`); falta prueba con API real
+- [[M11 Escáner QR para el check-in]] · web Claude + app y mock Codex · en `main` (`b2f2d0d`, `f065fd7`); falta prueba con API real y en móvil
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M06 Pedido en Mis reservas]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M09 Editor de la carta del restaurante]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil

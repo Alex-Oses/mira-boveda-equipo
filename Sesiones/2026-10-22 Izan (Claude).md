@@ -25,3 +25,8 @@ tareas: [M01, M02, M03, M04, M05, M06, M07, M08, M09, M10, M11]
 
 ## Ramas y archivos tocados
 - Solo la bóveda.
+
+## 2026-10-23
+- Revisadas M05/M06/M09 (Alex) y el mock + M11 app de Codex.
+- M10 y M11 web unidas a `main` del frontend (`f065fd7`) junto con `feat/M11-mock-y-app` (`b2f2d0d`): 338/338 y build.
+- Pendiente: sembrar cartas en producción por secciones (M14, OK de Izan), revisión de Codex de M05 contra backend, editor de carta y QR/pedido en el calendario de la app, prueba con API real.

@@ -40,3 +40,6 @@ Unido a `main` del backend (`ebd274b`) en el orden M04 → M13 → M12 → M14, 
 
 ## Siembra en producción (Alex · 2026-10-23)
 `node scripts/sembrarCartas.js --produccion --project restaurante-mira-18e0c` (backend `1e606a9`): 706 leídos, 1 técnico, 0 existentes, **705 creadas**, por secciones. Comprobado `GET /v1/cartas/:id` y el botón «Pide la comida ya» en la web de producción.
+
+## Cierre Codex
+Rama `feat/M14-sembrar-produccion`, `22d98eb`: producción simula por defecto; escribir exige --confirmar. 460 tests correctos/2 omitidos. Dry-run real bloqueado por ausencia de ADC (salida en [[2026-10-23 Codex]]). No se ejecutó --confirmar. Pendiente revisión Claude y credencial para verificación de lectura.

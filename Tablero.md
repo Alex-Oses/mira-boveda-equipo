@@ -69,3 +69,6 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - API de estadísticas para [[G07 Estadísticas de ofertas]] · Izan (Claude) · desplegada
 - [[G05 Ofertas cerca de mí]] · Izan (Claude) · desplegado
 - [[G02 Modelo de ofertas y endpoints base]] · Izan (Claude) · desplegado
+
+## Cierre backend · Codex
+- M14: protección --confirmar en revisión (`22d98eb`), dry-run real pendiente de credenciales; Alex ya registró siembra de705 cartas.

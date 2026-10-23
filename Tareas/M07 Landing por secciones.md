@@ -63,4 +63,5 @@ Rama `feat/M07-ajustes-ui` (worktree `.worktrees/m07`), desde `08ca563`:
 - Buscador: CTA «Buscar»/«Cercar»/«Search», sin salto de línea y con las acciones a la derecha (104×48 px a 1280).
 - Test E2E generalizado a las cuatro secciones con datos. Verde: `npm test` 320/320, build, E2E 28/28 y monkey semilla 1.
 - `b8d123a`: avance automático cada 5 s con vuelta al inicio, pausa al pasar el ratón o enfocar y respeto a `prefers-reduced-motion`; barra de scroll oculta, solo flechas y deslizamiento táctil. Nuevo test E2E: E2E 29/29.
+- `9888be9`: el runner de Windows trae `prefers-reduced-motion: reduce` y el carrusel, con razón, no avanza. El E2E fija `no-preference` en `qa/navegador.py` salvo con `QA_REDUCED_MOTION`. `npm test` 320/320 y build en verde; CI del PR relanzado.
 - PR [#20](https://github.com/ruben-munoz-bl/restaurante-mira-frontend/pull/20) abierto de `feat/M07-ajustes-ui` a `feat/M07-landing-secciones`; pendiente revisión y merge.

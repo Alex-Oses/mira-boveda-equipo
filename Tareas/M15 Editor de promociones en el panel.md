@@ -30,9 +30,13 @@ Poder crear una campaña de promoción desde el panel y que la landing la muestr
 - **Codex (PC 1)**: rama `feat/M15-promociones-api` — `PUT /v1/promotions/:id` para editar `fechaFin`/`presupuestoTotal`/`estado` y 409 que ignore las caducadas o las finalice al crear. Avisará en esta nota (ver [[Codex - Cierre Reserva con carta]]).
 - **Ruben (PC 3)**: editor del panel en esta rama, de momento solo crear/listar/stats. Cuando llegue el `PUT`, añadir editar y cerrar.
 
-## Dependencias de backend (importante)
-1. **Crear como admin**: en `origin/main`, `crearPromocion` comprueba `rest.ownerUid !== uid` y devuelve **403 incluso al admin**. La rama `fix/ia-respuesta-idioma` (cambios sin commitear) lo sustituye por `comprobarPropiedadRestaurante({ uid, role, … })`, que deja pasar al admin. **Hasta que eso se despliegue, el admin solo podrá crear en restaurantes sin `ownerUid`.**
-2. **Ciclo completo**: `feat/M15-promociones-api` de Codex añadirá el `PUT`; sin él una campaña mal creada o caducada no se puede cerrar y bloquea las siguientes con 409. No se ha tocado el backend.
+## Aviso para Izan (PC 1) · bloqueos de backend (2026-10-23)
+El editor ya está en rama y probado en local, pero no se puede usar de verdad hasta que el backend resuelva esto. No he tocado `mira-api`.
+
+1. **El admin recibe 403 al crear en locales con dueño.** En `origin/main`, `crearPromocion` comprueba `rest.ownerUid !== uid` y devuelve 403 aunque el token sea de admin. El fix ya está escrito en `fix/ia-respuesta-idioma` (cambios sin commitear): usa `comprobarPropiedadRestaurante({ uid, role, … })`, que deja pasar al admin. **Pido: commitear y desplegar ese bypass** (o decirme la fecha). Mientras tanto solo funciona en restaurantes sin `ownerUid`; el panel muestra `promociones.errPermiso`.
+2. **Falta cerrar/editar campañas.** Sin `PUT /v1/promotions/:id`, una campaña caducada sigue `estado: "activa"` y el `POST` devuelve 409, así que bloquea las siguientes y no hay forma de arreglarlo desde el panel. Codex lo tiene en `feat/M15-promociones-api` (ver [[Codex - Cierre Reserva con carta]] §2): `PUT` para `fechaFin`/`presupuestoTotal`/`estado` y 409 que ignore o finalice las caducadas. **Pido: confirmar que ese `PUT` también deja pasar al admin** y avisar aquí cuando esté.
+
+Cuando estén las dos cosas: pruebo con una sesión admin real (no hay credenciales en el repo), abro el PR y añado editar/cerrar en el panel.
 
 ## Limitación conocida
 La UI avisa y oculta «Nueva promoción» mientras haya una en `estado: activa` (aunque haya caducado), porque el backend la sigue contando.

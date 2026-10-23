@@ -29,7 +29,7 @@ Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
-- [[M15 Editor de promociones en el panel]] · Ruben (PC 3) · sección «Promociones» en `#/admin` (crear/listar/stats); 336/336 y build; rama `feat/M15-promociones-panel` (`a6d61d2`, `c14e4c0`), PR pendiente de abrir (sin `gh`); depende del `PUT` de Codex para editar/cerrar y del fix de ownership para crear como admin en locales con dueño
+- [[M15 Editor de promociones en el panel]] · Ruben (PC 3) · sección «Promociones» en `#/admin` (crear/listar/stats); 336/336 y build; rama `feat/M15-promociones-panel` (`a6d61d2`, `c14e4c0`), PR pendiente de abrir (sin `gh`); **Izan avisado (2026-10-23)**: 403 del admin por `ownerUid` (fix en `fix/ia-respuesta-idioma`) y falta el `PUT` de Codex (`feat/M15-promociones-api`) para editar/cerrar.
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) · en `main` (`f065fd7`); falta prueba con API real
 - [[M11 Escáner QR para el check-in]] · web Claude + app y mock Codex · en `main` (`b2f2d0d`, `f065fd7`); falta prueba con API real y en móvil
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil

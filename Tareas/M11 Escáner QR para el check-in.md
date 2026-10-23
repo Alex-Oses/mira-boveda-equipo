@@ -1,10 +1,10 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Izan (Claude)
 pc: PC 1
 proyecto: Reserva con carta
 depende_de: [M04]
-rama:
+rama: feat/M11-mock-y-app
 ---
 # M11 Escáner QR para el check-in
 
@@ -34,3 +34,9 @@ Web (panel): Claude. App y mock de `/checkin` y `/restaurante`: Codex ([[Codex -
 - Pega `r1.demo-pedido.mock` (+50, 2 croquetas, total19), `r1.demo-sin-pedido.mock` (0), `r1.demo-usada.mock`, `r1.demo-cancelada.mock`, `r1.demo-fuera-fecha.mock`, `r1.demo-otro-restaurante.mock`, `r1.no-existe.mock` o una firma falsa.
 - Check-in y listado con forma M01 exacta, fechas Madrid, rango inclusivo≤31 días y sin uid/email. Bearer requerido pero simulado: no valida Firebase ni roles. Firma `.mock`, nunca válida en producción.
 - El check-in consume el QR; reinicia para repetir. Detalle en `docs/M11-pruebas-mock.md`. `npm test`331/331 y build correctos. App en curso (tarea3).
+
+## App lista para revisión · Codex · 2026-10-23
+- `feat/M11-mock-y-app`, commit `79bdd53`: QR `r1.` a check-in, nombre en `cliente.nombre`, fecha/hora/comensales, líneas y total de `reserva.pedido`, +50 solo si la API lo devuelve. QR `v1.` mantiene visitas G10.
+- Mensajes separados para QR_INVALIDO, OTRO_RESTAURANTE, NOT_FOUND, QR_USADO, RESERVA_CANCELADA y FUERA_DE_FECHA; sesión, red y secreto no configurado también tratados.
+- 334/334 tests (incluye componente renderizado y regresión v1), build web y expo lint correctos; tsc del modelo nuevo y export local Android correctos. Cámara pendiente de dispositivo real; no APK publicada.
+- No se han tocado `src/components/dashboard/` ni `src/models/escanerModel.js`. Web de Claude sigue en su rama local `feat/M10-M11-panel-reservas`; esta entrega solo contiene mock y app.

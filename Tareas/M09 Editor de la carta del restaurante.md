@@ -1,5 +1,5 @@
 ---
-estado: en curso
+estado: en revisión
 responsable: Alex (Claude)
 pc: PC 2
 proyecto: Reserva con carta

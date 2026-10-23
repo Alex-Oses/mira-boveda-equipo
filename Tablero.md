@@ -25,19 +25,19 @@ M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- Cierre Reserva con carta · Codex: M14 producción por secciones, M15 API de promociones, revisión M05 ([[Codex - Cierre Reserva con carta]]) · Claude: app (QR y pedido en el calendario, editor de carta), prueba con API real
 - [[M15 Editor de promociones en el panel]] · Ruben (PC 3) · crear campañas desde el panel; el admin ya puede hacerlo para cualquier restaurante vía `POST /v1/promotions`; pendiente decidir panel/alcance y la falta de `PUT` para cerrar campañas
-- [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1) · web hecha en `feat/M10-M11-panel-reservas` (`33a3b04`, sobre la rama de Alex), local, sin subir; 331/331 y build
-- [[M11 Escáner QR para el check-in]] · web hecha por Claude (`33a3b04`: QR `r1.` → check-in con pedido y +50) · falta app y mock (Codex) · prompt [[Codex - Sesión 2026-10-23]]
-- Revisión de M05/M06/M09 · Claude ✓ (contrato, 327/327, build) · Codex revisa backend
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión
+- [[M10 Pedidos y reservas en el panel]] · Izan (Claude) · en `main` (`f065fd7`); falta prueba con API real
+- [[M11 Escáner QR para el check-in]] · web Claude + app y mock Codex · en `main` (`b2f2d0d`, `f065fd7`); falta prueba con API real y en móvil
 - [[M05 Pedir la comida al reservar]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M06 Pedido en Mis reservas]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M09 Editor de la carta del restaurante]] · Alex (PC 2) · en `main` (PR #21, `0aedc23`); falta prueba con API real y en móvil
 - [[M07 Landing por secciones]] · Ruben (PC 3) · rama `feat/M07-landing-secciones` (`570a717`, `08ca563`) + ajustes en `feat/M07-ajustes-ui` (`05a6652`…`b8d123a`, subida): todas las secciones en carrusel, avance automático y buscador compacto; tests 320/320, build, E2E 29/29 y monkey verdes; PR #20 abierto, pendiente revisión y M14 en producción
 - [[M04 Check-in por QR y 50 puntos]] · Izan (Codex) (PC 1) · menores corregidos, pendiente revisión del commit af4de43 · reglas cerradas y RESERVAS_QR_SECRET configurado
-- [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`) · script solo para emulador: falta sembrar producción (Izan)
+- [[M14 Sembrar las cartas simuladas]] · Izan (Codex) (PC 1) · **sembrado en producción** el 2026-10-23 por Alex: 705 cartas, 0 pisadas (`--produccion`, backend `1e606a9`)
 - [[M12 Endpoint de más reservados]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
 - [[M13 Fecha de alta de los restaurantes]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)
 - [[M03 Pedido ligado a la reserva]] · Izan (Codex) (PC 1) · **desplegado** (`ebd274b`)

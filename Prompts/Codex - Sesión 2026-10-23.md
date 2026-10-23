@@ -10,7 +10,7 @@ Tú revisa contra **tu** backend: cuerpo de `POST /v1/reservations` con `pedido`
 ## 2. Mock para probar M10 y M11 sin backend
 Rama `feat/M11-mock-y-app` **desde** `ruben/feat/M05-M06-M09-reserva-carta` (el mock ya tiene cartas allí).
 En `scripts/mock-api.mjs` añade, con la forma exacta del contrato:
-- `POST /v1/reservations/checkin {qr}` → `{ reserva: {id,codigo,fecha,hora,comensales,presentadaEn,pedido}, cliente:{nombre}, puntos }`; errores `QR_INVALIDO`, `YA_PRESENTADA`, `FUERA_DE_FECHA` (los del contrato).
+- `POST /v1/reservations/checkin {qr}` → `{ reserva: {id,codigo,fecha,hora,comensales,presentadaEn,pedido}, cliente:{nombre}, puntosPedido: 50|0 }`; errores del contrato: 400 `QR_INVALIDO`, 403 `OTRO_RESTAURANTE`, 404 `NOT_FOUND`, 409 `QR_USADO`, 409 `RESERVA_CANCELADA`, 409 `FUERA_DE_FECHA`.
 - `GET /v1/reservations/restaurante?restauranteId&desde&hasta` → `{ data:[…] }` (sin uid ni email).
 Commit propio y avisa a Claude en la nota M11 en cuanto esté (lo necesita para probar).
 

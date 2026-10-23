@@ -8,9 +8,6 @@ Proyecto actual: [[Reserva con carta]] (desde 2026-10-22). Anterior: [[Ofertas p
 M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con carta]].
 - [[M10 Pedidos y reservas en el panel]] · Izan (Claude) (PC 1)
 - [[M11 Escáner QR para el check-in]] · Izan (Claude) (PC 1)
-- [[M05 Pedir la comida al reservar]] · Alex (PC 2)
-- [[M06 Pedido en Mis reservas]] · Alex (PC 2)
-- [[M09 Editor de la carta del restaurante]] · Alex (PC 2)
 - [[M08 Cabecera sin racha ni puntos]] · Marco (PC 3)
 
 ### Permisos y primer arranque (2026-10-16)
@@ -30,6 +27,9 @@ M01 ya publicado. M08 no depende de nada. Prompt de Codex: [[Codex - Reserva con
 Ver [[Plan app móvil y notificaciones]]: T01 a T10.
 
 ## En curso
+- [[M05 Pedir la comida al reservar]] · Alex (PC 2) · rama `feat/M05-M06-M09-reserva-carta`
+- [[M06 Pedido en Mis reservas]] · Alex (PC 2) · rama `feat/M05-M06-M09-reserva-carta`
+- [[M09 Editor de la carta del restaurante]] · Alex (PC 2) · rama `feat/M05-M06-M09-reserva-carta`
 - [[T07 Web Push en la PWA]] · Alex (PC 2): clave VAPID hecha; falta ponerla en Vercel y probar en iPhone
 
 ## En revisión

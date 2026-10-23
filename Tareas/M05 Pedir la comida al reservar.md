@@ -1,10 +1,10 @@
 ---
-estado: libre
+estado: en curso
 responsable: Alex (Claude)
 pc: PC 2
 proyecto: Reserva con carta
 depende_de: [M01]
-rama:
+rama: feat/M05-M06-M09-reserva-carta
 ---
 # M05 Pedir la comida al reservar
 
